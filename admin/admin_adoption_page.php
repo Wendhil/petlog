@@ -11,7 +11,7 @@ include 'dbconn/authentication.php';
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Barangay Animal Welfare</title>
-  <link rel="shortcut icon" href="img/logo2.png" type="image/x-icon">
+  <link rel="shortcut icon" href="img/barangay.png" type="image/x-icon">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,61 +42,65 @@ include 'dbconn/authentication.php';
                 <button class="bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600">Search</button>
             </div>
         </div>
-        <table class="w-64 border border-gray-300">
+       <div class="overflow-x-auto">
+       <table class="w-64 border border-gray-300">
             <thead>
                 <tr class="bg-gray-100">
-                    <th class="py-2 px-4 border text-center">ID</th>
-                    <th class="py-2 px-4 border text-center">Name</th>
-                    <th class="py-2 px-4 border text-center">Email</th>
-                    <th class="py-2 px-4 border text-center">Phone</th>
-                    <th class="py-2 px-4 border text-center">Address</th>
-                    <th class="py-2 px-4 border text-center">Pet Name</th>
-                    <th class="py-2 px-4 border text-center">Pet Type</th>
-                    <th class="py-2 px-4 border text-center">Reason</th>
-                    <th class="py-2 px-4 border text-center">Experience</th>
-                    <th class="py-2 px-4 border text-center">Action</th>
+                    <th class="px-8 border text-center">ID</th>
+                    <th class="px-8 border text-center">Name</th>
+                    <th class="px-8 border text-center">Email</th>
+                    <th class="px-8 border text-center">Phone</th>
+                    <th class="px-8 border text-center">Address</th>
+                    <th class="px-8 border text-center">Pet Name</th>
+                    <th class="px-8 border text-center">Pet Type</th>
+                    <th class="px-8 border text-center">Reason</th>
+                    <th class="px-8 border text-center">Experience</th>
+                    <th class="px-8 border text-center">Time and Date</th>
+                    <th class="px-8 border text-center">Action</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
                 // Fetch user data from the database
-                $sql = "SELECT * FROM adoptions"; // Adjust 'registrations' to your actual table name
+                $sql = "SELECT * FROM adoption"; // Adjust 'registrations' to your actual table name
                 $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
                     // Loop through each row and output data
                     while ($row = $result->fetch_assoc()) {
                         echo "<tr>"; // Start a new table row
-                        echo "<td class='py-2 px-4 border text-center'>" . $row['id'] . "</td>";
-                        echo "<td class='py-2 px-4 border text-center'>" . $row['name'] . "</td>";
-                        echo "<td class='py-2 px-4 border text-center'>" . $row['email'] . "</td>";
-                        echo "<td class='py-2 px-4 border text-center'>" . $row['phone'] . "</td>";
-                        echo "<td class='py-2 px-4 border text-center'>" . $row['address'] . "</td>";
-                        echo "<td class='py-2 px-4 border text-center'>" . $row['pet_name'] . "</td>";
-                        echo "<td class='py-2 px-4 border text-center'>" . $row['pet_type'] . "</td>";
-                        echo "<td class='py-2 px-4 border text-center'>" . $row['reason'] . "</td>";
-                        echo "<td class='py-2 px-4 border text-center'>" . $row['experience'] . "</td>";
+                        echo "<td class='px-8 border text-center'>" . $row['adopt_id'] . "</td>";
+                        echo "<td class='px-8 border text-center'>" . $row['name'] . "</td>";
+                        echo "<td class='px-8 border text-center'>" . $row['email'] . "</td>";
+                        echo "<td class='px-8 border text-center'>" . $row['phone'] . "</td>";
+                        echo "<td class='px-8 border text-center'>" . $row['address'] . "</td>";
+                        echo "<td class='px-8 border text-center'>" . $row['pet_name'] . "</td>";
+                        echo "<td class='px-8 border text-center'>" . $row['pet_type'] . "</td>";
+                        echo "<td class='px-8 border text-center'>" . $row['reason'] . "</td>";
+                        echo "<td class='px-8 border text-center'>" . $row['experience'] . "</td>";
+                        echo "<td class='px-8 border text-center'>" . $row['created_at'] . "</td>";
                         // Add Action Buttons
-                        echo "<td class='py-2 px-4 border text-center'>";
-                        echo "<a href='update.php?id=" . $row['id'] . "' class='bg-yellow-500 text-white p-1 rounded-lg hover:bg-yellow-600'>Update</a>";
+                        echo "<td class='px-8 border text-center'>";
+                        echo "<a href='update.php?id=" . $row['adopt_id'] . "' class='bg-yellow-500 text-white p-1 rounded-lg hover:bg-yellow-600'>Update</a>";
                         echo "<span></span>";
-                        echo "<a href='delete.php?id=" . $row['id'] . "' class='bg-red-500 text-white p-1 rounded-lg hover:bg-red-600' onclick='return confirm(\"Are you sure you want to delete this record?\");'>Delete</a>";
+                        echo "<a href='delete.php?id=" . $row['adopt_id'] . "' class='bg-red-500 text-white p-1 rounded-lg hover:bg-red-600' onclick='return confirm(\"Are you sure you want to delete this record?\");'>Delete</a>";
                         echo "</td>";
                         echo "</tr>"; // End the table row
                     }
                 } else {
-                    echo "<tr><td colspan='10' class='py-2 px-4 border text-center'>No users found</td></tr>";
+                    echo "<tr><td colspan='10' class='px-8 border text-center'>No users found</td></tr>";
                 }
                 ?>
             </tbody>
         </table>
+       </div>
     </div>
 </div>
 
     </main>
   </div>
 
-  <script src="codejs/script.js"></script>
-  <script src="codejs/script-admin.js" ></script>
+  <script src="disc/js/script.js"></script>
+  <script src="disc/js/script-admin.js" ></script>
 </body>
 </html>

@@ -9,7 +9,7 @@ include('dbconn/config.php');
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Barangay Animal Welfare</title>
-  <link rel="shortcut icon" href="img/logo2.png" type="image/x-icon">
+  <link rel="shortcut icon" href="img/barangay.png" type="image/x-icon">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -52,6 +52,7 @@ include('dbconn/config.php');
                     <th class="py-2 px-4 border text-center">Pet Image</th>
                     <th class="py-2 px-4 border text-center">Vaccine Record</th>
                     <th class="py-2 px-4 border text-center">Additional Information</th>
+                    <th class="py-2 px-4 border text-center">time and date</th>
                     <th class="py-2 px-4 border text-center">Actions</th>
                   
                 </tr>
@@ -59,7 +60,7 @@ include('dbconn/config.php');
             <tbody>
                 <?php
                 // Fetch user data from the database
-                $sql = "SELECT * FROM registrations"; // Adjust 'registrations' to your actual table name
+                $sql = "SELECT * FROM register"; // Adjust 'registrations' to your actual table name
                 $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
@@ -67,16 +68,17 @@ include('dbconn/config.php');
                     while ($row = $result->fetch_assoc()) {
                         echo "<tr>"; // Start a new table row
                         echo "<td class='py-2 px-4 border text-center'>" . $row['id'] . "</td>";
-                        echo "<td class='py-2 px-4 border text-center'>" . $row['owner_name'] . "</td>";
-                        echo "<td class='py-2 px-4 border text-center'>" . $row['pet_name'] . "</td>";
-                        echo "<td class='py-2 px-4 border text-center'>" . $row['pet_age'] . "</td>";
-                        echo "<td class='py-2 px-4 border text-center'>" . $row['pet_breed'] . "</td>";
+                        echo "<td class='py-2 px-4 border text-center'>" . $row['owner'] . "</td>";
+                        echo "<td class='py-2 px-4 border text-center'>" . $row['pet'] . "</td>";
+                        echo "<td class='py-2 px-4 border text-center'>" . $row['age'] . "</td>";
+                        echo "<td class='py-2 px-4 border text-center'>" . $row['breed'] . "</td>";
                         echo "<td class='py-2 px-4 border text-center'>" . $row['address'] . "</td>";
                         // Show pet image as a clickable image
                         echo "<td class='py-2 px-4 border text-center'><a href='" . htmlspecialchars($row['pet_image']) . "' target='_blank'><img src='" . htmlspecialchars($row['pet_image']) . "' alt='Pet Image' class='w-16 h-16 object-cover rounded'></a></td>";
                         // Show vaccine record as a text link
-                        echo "<td class='py-2 px-4 border text-center'><a href='" . htmlspecialchars($row['vaccine_record']) . "' target='_blank'>" . htmlspecialchars($row['vaccine_record']) . "</a></td>";
+                        echo "<td class='py-2 px-4 border text-center'><a href='" . htmlspecialchars($row['pet_vaccine']) . "' target='_blank'>" . htmlspecialchars($row['pet_vaccine']) . "</a></td>";
                         echo "<td class='py-2 px-4 border text-center'>" . $row['additional_info'] . "</td>";
+                        echo "<td class='px-8 border text-center'>" . $row['created_at'] . "</td>";
                         // Add Action Buttons
                         echo "<td class='py-2 px-4 border text-center'>";
                         echo "<a href='update.php?id=" . $row['id'] . "' class='bg-yellow-500 text-white p-1 rounded-lg hover:bg-yellow-600'>Update</a>";

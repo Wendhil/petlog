@@ -11,7 +11,7 @@ include 'dbconn/authentication.php';
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Barangay Animal Welfare</title>
-  <link rel="shortcut icon" href="img/logo2.png" type="image/x-icon">
+  <link rel="shortcut icon" href="img/barangay.png" type="image/x-icon">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -56,6 +56,7 @@ include 'dbconn/authentication.php';
                     <th class="py-2 px-4 border text-center">Type of Abuse</th>
                     <th class="py-2 px-4 border text-center">Description</th>
                     <th class="py-2 px-4 border text-center">Evidence</th>
+                    <th class="py-2 px-4 border text-center">Time and date</th>
                 </tr>
             </thead>
             <tbody>
@@ -69,17 +70,18 @@ include 'dbconn/authentication.php';
                     while ($row = $result->fetch_assoc()) {
                         echo "<tr>"; // Start a new table row
                         echo "<td class='py-2 px-4 border text-center'>" . $row['id'] . "</td>";
-                        echo "<td class='py-2 px-4 border text-center'>" . $row['report_party'] . "</td>";
+                        echo "<td class='py-2 px-4 border text-center'>" . $row['name'] . "</td>";
                         echo "<td class='py-2 px-4 border text-center'>" . $row['phone'] . "</td>";
                         echo "<td class='py-2 px-4 border text-center'>" . $row['email'] . "</td>";
                         echo "<td class='py-2 px-4 border text-center'>" . $row['species'] . "</td>";
                         echo "<td class='py-2 px-4 border text-center'>" . $row['breed'] . "</td>";
                         echo "<td class='py-2 px-4 border text-center'>" . $row['age'] . "</td>";
-                        echo "<td class='py-2 px-4 border text-center'>" . $row['number'] . "</td>";
-                        echo "<td class='py-2 px-4 border text-center'>" . $row['abuse_nature'] . "</td>";
-                        echo "<td class='py-2 px-4 border text-center'>" . $row['description'] . "</td>";
+                        echo "<td class='py-2 px-4 border text-center'>" . $row['numabuse'] . "</td>";
+                        echo "<td class='py-2 px-4 border text-center'>" . $row['typeabuse'] . "</td>";
+                        echo "<td class='py-2 px-4 border text-center'>" . $row['descript'] . "</td>";
                         // Show pet image as a clickable image
                         echo "<td class='py-2 px-4 border text-center'><a href='" . htmlspecialchars($row['evidence']) . "' target='_blank'><img src='" . htmlspecialchars($row['evidence']) . "' alt='Pet Image' class='w-16 h-16 object-cover rounded'></a></td>";
+                        echo "<td class='px-8 border text-center'>" . $row['created_at'] . "</td>";
                         echo "</tr>"; // End the table row
                     }
                 } else {
