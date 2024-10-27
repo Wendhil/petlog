@@ -30,4 +30,5 @@ if (isset($_POST['createAccount'])) {
     $stmt->close();
     $conn->close();
 }
+
 ?>
