@@ -2,14 +2,24 @@
 session_start();
 include('admin/dbconn/config.php');
 
+// Check if the user is already logged in
+if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
+    if ($_SESSION['role'] === 'admin') {
+        header("Location: admin/admin_dashboard.php");
+        exit;
+    } elseif ($_SESSION['role'] === 'user') {
+        header("Location: user/user_dashboard.php");
+        exit;
+    }
+}
 
 // Function to generate CSRF token
-function generateToken(){
+function generateToken() {
     return bin2hex(random_bytes(32));
 }
 
 // Generate new token if not already set
-if(empty($_SESSION['csrf_token'])){
+if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = generateToken();
     $_SESSION['csrf_token_time'] = time(); // Save timestamp for token expiration
 }
@@ -67,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     header("Location: user/user_dashboard.php");
                     exit;
                 } else {
-                    $error['role'] = 'No Account.Please request account to barangay';
+                    $error['role'] = 'No Account. Please request account to barangay';
                 }
             } else {
                 $error['password'] = 'Incorrect password. Please try again.';
@@ -141,8 +151,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </script>
 </body>
 </html>
-
-
-
-
-
