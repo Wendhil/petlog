@@ -18,80 +18,77 @@ checkAccess('admin');
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="flex bg-gray-100">
+<body class="flex bg-gray-100 font-poppins ">
 
   <!-- Sidebar -->
   <?php include('disc/partials/admin_sidebar.php'); ?>
 
   <!-- Main Content with Navbar -->
-  <div class="w-full mx-4">
+  <div class="flex-1 mx-4">
 
     <!-- Top Navbar -->
     <?php include('disc/partials/admin_navbar.php'); ?>
 
     <!-- Main Content Area -->
-    <main id="mainContent" class="">
-      <div class="flex justify-center bg-white shadow-md rounded-lg p-6">
-        <div class="w-full">
-          <h2 class="text-xl font-bold mb-4 text-center"><i class="fas fa-user w-5 h-5 mr-2"></i>Registration Pet Management</h2>
+    <main id="mainContent" class="w-full">
+      <div class="flex justify-center bg-[#dee2e6] shadow-md rounded-lg p-6">
+        <div class="w-full overflow-x-auto">
+          <h2 class="text-xl font-bold mb-4 text-center">
+            <i class="fas fa-paw w-5 h-5 mr-2"></i>Registration Pet Management
+          </h2>
           <div class="flex justify-between py-4">
-            <div class="">
+            <div>
               <input class="border p-2 rounded-lg" type="text" placeholder="Search...">
               <button class="bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600">Search</button>
             </div>
           </div>
-          <div class="overflow-x-auto"> <!-- Added wrapper for horizontal scrolling -->
-            <table class="min-w-full border border-gray-300 table-auto"> <!-- Changed to table-auto for better responsiveness -->
+          <div class="overflow-x-auto"> <!-- Horizontal scrolling -->
+            <table class="min-w-full border border-gray-300 table-auto">
               <thead>
-                <tr class="bg-gray-100">
-                  <th class="py-2 px-4 border text-center">ID</th>
-                  <th class="py-2 px-4 border text-center">Owner Name</th>
-                  <th class="py-2 px-4 border text-center">Pet Name</th>
-                  <th class="py-2 px-4 border text-center">Pet Age</th>
-                  <th class="py-2 px-4 border text-center">Pet Breed</th>
-                  <th class="py-2 px-4 border text-center">Address</th>
-                  <th class="py-2 px-4 border text-center">Pet Image</th>
-                  <th class="py-2 px-4 border text-center">Vaccine Record</th>
-                  <th class="py-2 px-4 border text-center">Additional Information</th>
-                  <th class="py-2 px-4 border text-center">Time and Date</th>
-                  <th class="py-2 px-4 border text-center">Actions</th>
+                <tr class="bg-[#90e0ef]">
+                  <th class="py-2 px-2 border text-center font-bold text-xs md:text-base">ID</th>
+                  <th class="py-2 px-2 border text-center font-bold text-xs md:text-base">Owner Name</th>
+                  <th class="py-2 px-2 border text-center font-bold text-xs md:text-base">Pet Name</th>
+                  <th class="py-2 px-2 border text-center font-bold text-xs md:text-base">Pet Age</th>
+                  <th class="py-2 px-2 border text-center font-bold text-xs md:text-base">Pet Breed</th>
+                  <th class="py-2 px-2 border text-center font-bold text-xs md:text-base">Address</th>
+                  <th class="py-2 px-2 border text-center font-bold text-xs md:text-base">Pet Image</th>
+                  <th class="py-2 px-2 border text-center font-bold text-xs md:text-base">Vaccine Record</th>
+                  <th class="py-2 px-2 border text-center font-bold text-xs md:text-base">Additional Info</th>
+                  <th class="py-2 px-2 border text-center font-bold text-xs md:text-base">Time and Date</th>
+                  <th class="py-2 px-2 border text-center font-bold text-xs md:text-base">Actions</th>
                 </tr>
               </thead>
               <tbody>
-    <?php
-    // Fetch user data from the database
-    $sql = "SELECT * FROM register"; // Adjust 'register' to your actual table name
-    $result = $conn->query($sql);
+                <?php
+                // Fetch user data from the database
+                $sql = "SELECT * FROM register"; // Adjust 'register' to your actual table name
+                $result = $conn->query($sql);
 
-    if ($result->num_rows > 0) {
-        // Loop through each row and output data
-        while ($row = $result->fetch_assoc()) {
-            echo "<tr>"; // Start a new table row
-            echo "<td class='py-2 px-4 border text-center'>" . $row['id'] . "</td>";
-            echo "<td class='py-2 px-4 border text-center'>" . $row['owner'] . "</td>";
-            echo "<td class='py-2 px-4 border text-center'>" . $row['pet'] . "</td>";
-            echo "<td class='py-2 px-4 border text-center'>" . $row['age'] . "</td>";
-            echo "<td class='py-2 px-4 border text-center'>" . $row['breed'] . "</td>";
-            echo "<td class='py-2 px-4 border text-center'>" . $row['address'] . "</td>";
-            // Show pet image as a clickable image
-            echo "<td class='py-2 px-4 border text-center'><a href='" . htmlspecialchars($row['pet_image']) . "' target='_blank'><img src='" . htmlspecialchars($row['pet_image']) . "' alt='Pet Image' class='w-16 h-16 object-cover rounded'></a></td>";
-            // Show vaccine record as a text link
-            echo "<td class='py-2 px-4 border text-center'><a href='" . htmlspecialchars($row['pet_vaccine']) . "' target='_blank'>" . htmlspecialchars($row['pet_vaccine']) . "</a></td>";
-            echo "<td class='py-2 px-4 border text-center'>" . $row['additional_info'] . "</td>";
-            echo "<td class='py-2 px-4 border text-center'>" . $row['created_at'] . "</td>";
-            // Add Action Buttons
-            echo "<td class='py-2 px-4  text-center flex justify-center space-x-2'>"; // Adjusted for alignment
-            echo "<a href='update.php?id=" . $row['id'] . "' class='bg-yellow-500 text-white px-4 py-1 rounded-lg hover:bg-yellow-600'>Update</a>";
-            echo "<a href='delete.php?id=" . $row['id'] . "' class='bg-red-500 text-white px-4 py-1 rounded-lg hover:bg-red-600' onclick='return confirm(\"Are you sure you want to delete this record?\");'>Delete</a>";
-            echo "</td>";
-            echo "</tr>"; // End the table row
-        }
-    } else {
-        echo "<tr><td colspan='11' class='py-2 px-4 border text-center'>No users found</td></tr>";
-    }
-    ?>
-</tbody>
-
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<tr>"; 
+                        echo "<td class='py-2 px-2 border text-center'>" . htmlspecialchars($row['id']) . "</td>";
+                        echo "<td class='py-2 px-2 border text-center'>" . htmlspecialchars($row['owner']) . "</td>";
+                        echo "<td class='py-2 px-2 border text-center'>" . htmlspecialchars($row['pet']) . "</td>";
+                        echo "<td class='py-2 px-2 border text-center'>" . htmlspecialchars($row['age']) . "</td>";
+                        echo "<td class='py-2 px-2 border text-center'>" . htmlspecialchars($row['breed']) . "</td>";
+                        echo "<td class='py-2 px-2 border text-center'>" . htmlspecialchars($row['address']) . "</td>";
+                        echo "<td class='py-2 px-2 border text-center'><a href='" . htmlspecialchars($row['pet_image']) . "' target='_blank'><img src='" . htmlspecialchars($row['pet_image']) . "' alt='Pet Image' class='w-16 h-16 object-cover rounded'></a></td>";
+                        echo "<td class='py-2 px-2 border text-center'><a href='" . htmlspecialchars($row['pet_vaccine']) . "' target='_blank'>" . htmlspecialchars($row['pet_vaccine']) . "</a></td>";
+                        echo "<td class='py-2 px-2 border text-center'>" . htmlspecialchars($row['additional_info']) . "</td>";
+                        echo "<td class='py-2 px-2 border text-center'>" . htmlspecialchars($row['created_at']) . "</td>";
+                        echo "<td class='py-2 px-2 text-center flex justify-center space-x-2'>";
+                        echo "<a href='update.php?id=" . $row['id'] . "' class='bg-yellow-500 text-white px-2 py-1 rounded-lg hover:bg-yellow-600'>Update</a>";
+                        echo "<a href='delete.php?id=" . $row['id'] . "' class='bg-red-500 text-white px-2 py-1 rounded-lg hover:bg-red-600' onclick='return confirm(\"Are you sure you want to delete this record?\");'>Delete</a>";
+                        echo "</td>";
+                        echo "</tr>"; 
+                    }
+                } else {
+                    echo "<tr><td colspan='11' class='py-2 px-4 border text-center'>No users found</td></tr>";
+                }
+                ?>
+              </tbody>
             </table>
           </div>
         </div>

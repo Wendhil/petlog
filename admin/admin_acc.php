@@ -20,7 +20,7 @@ checkAccess('admin');
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="flex bg-gray-100">
+<body class="flex bg-gray-100 font-poppins font-semibold">
 
   <!-- Sidebar -->
   <?php include('disc/partials/admin_sidebar.php'); ?>
