@@ -2,6 +2,7 @@
 include('dbconn/config.php');
 include('dbconn/authentication.php');
 checkAccess('admin'); 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
