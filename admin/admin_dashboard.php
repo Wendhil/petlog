@@ -54,9 +54,18 @@ if ($result->num_rows > 0) {
   <title>Barangay Animal Welfare</title>
   <link rel="shortcut icon" href="img/barangay.png" type="image/x-icon">
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="disc/css/style.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="css/style.css">
   <style>
-    /* You can keep your CSS styles here if needed */
+    .chart-container {
+      width: 800px; /* Adjust width for larger size */
+      height: 400px; /* Adjust height for larger size */
+      margin: auto;
+    }
   </style>
 </head>
 <body class="flex bg-gray-100">
@@ -78,7 +87,7 @@ if ($result->num_rows > 0) {
     <!-- Combined Charts Box -->
     <div class="bg-white rounded-lg shadow-md p-6 mb-4">
       <h2 class="text-lg font-bold mb-4">Animal Data Distribution</h2>
-      <div class="chart-container mx-auto">
+      <div class="chart-container">
         <canvas id="combinedChart"></canvas>
       </div>
     </div>
