@@ -19,7 +19,7 @@ checkAccess('admin');
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="flex bg-gray-100 font-poppins ">
+<body class="flex bg-[#90e0ef] font-poppins ">
 
   <!-- Sidebar -->
   <?php include('disc/partials/admin_sidebar.php'); ?>
@@ -32,7 +32,7 @@ checkAccess('admin');
 
     <!-- Main Content Area -->
     <main id="mainContent" class="w-full">
-      <div class="flex justify-center bg-[#dee2e6] shadow-md rounded-lg p-6">
+      <div class="flex justify-center bg-white shadow-md rounded-lg p-2">
         <div class="w-full overflow-x-auto">
           <h2 class="text-xl font-bold mb-4 text-center">
             <i class="fas fa-paw w-5 h-5 mr-2"></i>Registration Pet Management
@@ -69,16 +69,16 @@ checkAccess('admin');
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
                         echo "<tr>"; 
-                        echo "<td class='py-2 px-2 border text-center'>" . htmlspecialchars($row['id']) . "</td>";
-                        echo "<td class='py-2 px-2 border text-center'>" . htmlspecialchars($row['owner']) . "</td>";
-                        echo "<td class='py-2 px-2 border text-center'>" . htmlspecialchars($row['pet']) . "</td>";
-                        echo "<td class='py-2 px-2 border text-center'>" . htmlspecialchars($row['age']) . "</td>";
-                        echo "<td class='py-2 px-2 border text-center'>" . htmlspecialchars($row['breed']) . "</td>";
-                        echo "<td class='py-2 px-2 border text-center'>" . htmlspecialchars($row['address']) . "</td>";
-                        echo "<td class='py-2 px-2 border text-center'><a href='" . htmlspecialchars($row['pet_image']) . "' target='_blank'><img src='" . htmlspecialchars($row['pet_image']) . "' alt='Pet Image' class='w-16 h-16 object-cover rounded'></a></td>";
-                        echo "<td class='py-2 px-2 border text-center'><a href='" . htmlspecialchars($row['pet_vaccine']) . "' target='_blank'>" . htmlspecialchars($row['pet_vaccine']) . "</a></td>";
-                        echo "<td class='py-2 px-2 border text-center'>" . htmlspecialchars($row['additional_info']) . "</td>";
-                        echo "<td class='py-2 px-2 border text-center'>" . htmlspecialchars($row['created_at']) . "</td>";
+                        echo "<td class='py-1 px-1  text-center'>" . htmlspecialchars($row['id']) . "</td>";
+                        echo "<td class='py-1 px-1  text-center'>" . htmlspecialchars($row['owner']) . "</td>";
+                        echo "<td class='py-2 px-2  text-center'>" . htmlspecialchars($row['pet']) . "</td>";
+                        echo "<td class='py-2 px-2  text-center'>" . htmlspecialchars($row['age']) . "</td>";
+                        echo "<td class='py-2 px-2  text-center'>" . htmlspecialchars($row['breed']) . "</td>";
+                        echo "<td class='py-2 px-2  text-center'>" . htmlspecialchars($row['address']) . "</td>";
+                        echo "<td class='py-2 px-2  text-center'><a href='" . htmlspecialchars($row['pet_image']) . "' target='_blank'><img src='" . htmlspecialchars($row['pet_image']) . "' alt='Pet Image' class='w-16 h-16 object-cover rounded'></a></td>";
+                        echo "<td class='py-2 px-2  text-center'><a href='" . htmlspecialchars($row['pet_vaccine']) . "' target='_blank'>" . htmlspecialchars($row['pet_vaccine']) . "</a></td>";
+                        echo "<td class='py-2 px-2  text-center'>" . htmlspecialchars($row['additional_info']) . "</td>";
+                        echo "<td class='py-2 px-2  text-center'>" . htmlspecialchars($row['created_at']) . "</td>";
                         echo "<td class='py-2 px-2 text-center flex justify-center space-x-2'>";
                         echo "<a href='update.php?id=" . $row['id'] . "' class='bg-yellow-500 text-white px-2 py-1 rounded-lg hover:bg-yellow-600'>Update</a>";
                         echo "<a href='delete.php?id=" . $row['id'] . "' class='bg-red-500 text-white px-2 py-1 rounded-lg hover:bg-red-600' onclick='return confirm(\"Are you sure you want to delete this record?\");'>Delete</a>";

@@ -18,7 +18,7 @@ checkAccess('admin');
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="flex bg-gray-100 font-poppins">
+<body class="flex bg-[#90e0ef] font-poppins">
 
   <!-- Sidebar -->
   <?php include('disc/partials/admin_sidebar.php'); ?>
@@ -31,31 +31,31 @@ checkAccess('admin');
 
     <!-- Main Content Area -->
     <main id="mainContent" class="w-full">
-      <div class="flex justify-center bg-[#dee2e6] shadow-md rounded-lg p-6">
-        <div class="w-full overflow-x-auto"> <!-- Added overflow-x-auto for better handling -->
-          <h2 class="text-xl font-bold mb-4 text-center">
+      <div class="flex justify-center bg-white shadow-md rounded-lg p-2">
+        <div class="w-full overflow-x-auto">
+          <h2 class="text-xl font-bold mb-6 text-center">
             <i class="fas fa-user w-5 h-5 mr-2"></i>Adoption Management
           </h2>
-          <div class="flex justify-between py-4">
+          <div class="flex justify-between py-2">
             <div class="">
               <input class="border p-2 rounded-lg" type="text" placeholder="Search...">
               <button class="bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600">Search</button>
             </div>
           </div>
-          <table class="min-w-full border border-gray-300">
+          <table class="min-w-full">
             <thead>
               <tr class="bg-[#90e0ef]">
-                <th class="px-4 py-2 border text-center">ID</th>
-                <th class="px-4 py-2 border text-center">Name</th>
-                <th class="px-4 py-2 border text-center">Email</th>
-                <th class="px-4 py-2 border text-center">Phone</th>
-                <th class="px-4 py-2 border text-center">Address</th>
-                <th class="px-4 py-2 border text-center">Pet Name</th>
-                <th class="px-4 py-2 border text-center">Pet Type</th>
-                <th class="px-4 py-2 border text-center">Reason</th>
-                <th class="px-4 py-2 border text-center">Experience</th>
-                <th class="px-4 py-2 border text-center">Time and Date</th>
-                <th class="px-4 py-2 border text-center">Action</th>
+                <th class="px-4 py-2 text-center">ID</th>
+                <th class="px-4 py-2 text-center">Name</th>
+                <th class="px-4 py-2 text-center">Email</th>
+                <th class="px-4 py-2 text-center">Phone</th>
+                <th class="px-4 py-2 text-center">Address</th>
+                <th class="px-4 py-2 text-center">Pet Name</th>
+                <th class="px-4 py-2 text-center">Pet Type</th>
+                <th class="px-4 py-2 text-center">Reason</th>
+                <th class="px-4 py-2 text-center">Experience</th>
+                <th class="px-4 py-2 text-center">Time and Date</th>
+                <th class="px-4 py-2 text-center">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -68,25 +68,25 @@ checkAccess('admin');
                   // Loop through each row and output data
                   while ($row = $result->fetch_assoc()) {
                       echo "<tr>";
-                      echo "<td class='px-4 py-2 border text-center'>" . htmlspecialchars($row['adopt_id']) . "</td>";
-                      echo "<td class='px-4 py-2 border text-center'>" . htmlspecialchars($row['name']) . "</td>";
-                      echo "<td class='px-4 py-2 border text-center'>" . htmlspecialchars($row['email']) . "</td>";
-                      echo "<td class='px-4 py-2 border text-center'>" . htmlspecialchars($row['phone']) . "</td>";
-                      echo "<td class='px-4 py-2 border text-center'>" . htmlspecialchars($row['address']) . "</td>";
-                      echo "<td class='px-4 py-2 border text-center'>" . htmlspecialchars($row['pet_name']) . "</td>";
-                      echo "<td class='px-4 py-2 border text-center'>" . htmlspecialchars($row['pet_type']) . "</td>";
-                      echo "<td class='px-4 py-2 border text-center'>" . htmlspecialchars($row['reason']) . "</td>";
-                      echo "<td class='px-4 py-2 border text-center'>" . htmlspecialchars($row['experience']) . "</td>";
-                      echo "<td class='px-4 py-2 border text-center'>" . htmlspecialchars($row['created_at']) . "</td>";
+                      echo "<td class='px-4 py-2 text-center'>" . htmlspecialchars($row['adopt_id']) . "</td>";
+                      echo "<td class='px-4 py-2 text-center'>" . htmlspecialchars($row['name']) . "</td>";
+                      echo "<td class='px-4 py-2 text-center'>" . htmlspecialchars($row['email']) . "</td>";
+                      echo "<td class='px-4 py-2 text-center'>" . htmlspecialchars($row['phone']) . "</td>";
+                      echo "<td class='px-4 py-2 text-center'>" . htmlspecialchars($row['address']) . "</td>";
+                      echo "<td class='px-4 py-2 text-center'>" . htmlspecialchars($row['pet_name']) . "</td>";
+                      echo "<td class='px-4 py-2 text-center'>" . htmlspecialchars($row['pet_type']) . "</td>";
+                      echo "<td class='px-4 py-2 text-center'>" . htmlspecialchars($row['reason']) . "</td>";
+                      echo "<td class='px-4 py-2 text-center'>" . htmlspecialchars($row['experience']) . "</td>";
+                      echo "<td class='px-4 py-2 text-center'>" . htmlspecialchars($row['created_at']) . "</td>";
                       // Add Action Buttons
-                      echo "<td class='px-4 py-2 border text-center flex justify-center items-center space-x-2'>"; // Updated for centering
+                      echo "<td class='px-4 py-2 text-center flex justify-center items-center space-x-2'>";
                       echo "<a href='update.php?id=" . htmlspecialchars($row['adopt_id']) . "' class='bg-yellow-500 text-white px-3 py-1 rounded-lg hover:bg-yellow-600'>Update</a>";
                       echo "<a href='delete.php?id=" . htmlspecialchars($row['adopt_id']) . "' class='bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600' onclick='return confirm(\"Are you sure you want to delete this record?\");'>Delete</a>";
                       echo "</td>";
                       echo "</tr>";
                   }
               } else {
-                  echo "<tr><td colspan='11' class='px-4 py-2 border text-center'>No users found</td></tr>";
+                  echo "<tr><td colspan='11' class='px-4 py-2 text-center'>No users found</td></tr>";
               }
               ?>
             </tbody>

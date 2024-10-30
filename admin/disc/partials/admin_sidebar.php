@@ -18,7 +18,7 @@
       </button>
    
     </div> 
-    <a href="admin_dashboard.php" data-content="dashboard" class="text-center font-bold space-x-4 p-2 hover:bg-blue-700 rounded">
+    <a href="admin_dashboard.php" data-content="dashboard" class="text-center font-bold space-x-4 p-2 ">
         <span class="sidebar-text">Pet AnimalWelfare Protection System</span>
       </a>
     <hr class="mx-4">
@@ -49,6 +49,10 @@
         <i class="fa-solid fa-user-plus"></i>
         <span class="sidebar-text">Account Management</span>
       </a>
+
+      <span class="sidebar-text"><h1 class="font-bold">Settings</h1></span>
+
+
     </nav>
 </div>
 

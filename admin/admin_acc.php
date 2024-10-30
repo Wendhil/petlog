@@ -20,7 +20,7 @@ checkAccess('admin');
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="flex bg-gray-100 font-poppins font-semibold">
+<body class="flex bg-[#90e0ef] font-poppins font-semibold">
 
   <!-- Sidebar -->
   <?php include('disc/partials/admin_sidebar.php'); ?>
@@ -33,7 +33,7 @@ checkAccess('admin');
 
     <!-- Main Content Area -->
     <main id="mainContent" class="">
-      <div class="flex justify-center bg-white shadow-md rounded-lg p-6">
+      <div class="flex justify-center bg-white shadow-md rounded-lg p-3">
         <div class="w-full">
           <h2 class="text-xl font-semibold mb-4 text-center"><i class="fas fa-user w-5 h-5 mr-2"></i>Account Management</h2>
           <div class="flex justify-between py-4">
@@ -68,11 +68,11 @@ if ($result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {
     $rowClass = isset($userTypeColors[$row['role']]) ? $userTypeColors[$row['role']] : 'bg-gray-200';
     echo "<tr class='$rowClass'>";
-    echo "<td class='py-2 px-4 border text-center'>" . $row['id'] . "</td>";
-    echo "<td class='py-2 px-4 border text-center'>" . $row['username'] . "</td>";
-    echo "<td class='py-2 px-4 border text-center'>" . $row['email'] . "</td>";
-    echo "<td class='py-2 px-4 border text-center'>" . $row['role'] . "</td>";
-    echo "<td class='py-2 px-4 border text-center'>
+    echo "<td class='py-2 px-4  text-center'>" . $row['id'] . "</td>";
+    echo "<td class='py-2 px-4  text-center'>" . $row['username'] . "</td>";
+    echo "<td class='py-2 px-4  text-center'>" . $row['email'] . "</td>";
+    echo "<td class='py-2 px-4  text-center'>" . $row['role'] . "</td>";
+    echo "<td class='py-2 px-4  text-center'>
             <a href='#' onclick=\"openUpdateModal('{$row['id']}', '{$row['username']}', '{$row['email']}', '{$row['role']}')\" class='text-blue-500 hover:underline'>Edit</a> | 
             <a href='#' onclick=\"openDeleteModal('{$row['id']}')\" class='text-red-500 hover:underline'>Delete</a>
           </td>";
