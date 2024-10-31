@@ -71,16 +71,16 @@ checkAccess('admin');
                   // Loop through each row and output data
                   while ($row = $result->fetch_assoc()) {
                       echo "<tr>";
-                      echo "<td class='py-2 px-2  text-center text-xs'>" . htmlspecialchars($row['id']) . "</td>";
-                      echo "<td class='py-2 px-2  text-center text-xs'>" . htmlspecialchars($row['name']) . "</td>";
-                      echo "<td class='py-2 px-2  text-center text-xs'>" . htmlspecialchars($row['phone']) . "</td>";
-                      echo "<td class='py-2 px-2  text-center text-xs'>" . htmlspecialchars($row['email']) . "</td>";
-                      echo "<td class='py-2 px-2  text-center text-xs'>" . htmlspecialchars($row['species']) . "</td>";
-                      echo "<td class='py-2 px-2  text-center text-xs'>" . htmlspecialchars($row['breed']) . "</td>";
-                      echo "<td class='py-2 px-2  text-center text-xs'>" . htmlspecialchars($row['age']) . "</td>";
-                      echo "<td class='py-2 px-2  text-center text-xs'>" . htmlspecialchars($row['numabuse']) . "</td>";
-                      echo "<td class='py-2 px-2  text-center text-xs'>" . htmlspecialchars($row['typeabuse']) . "</td>";
-                      echo "<td class='py-2 px-2  text-center text-xs'>" . htmlspecialchars($row['descript']) . "</td>";
+                      echo "<td class='py-2 px-2  text-center '>" . htmlspecialchars($row['id']) . "</td>";
+                      echo "<td class='py-2 px-2  text-center '>" . htmlspecialchars($row['name']) . "</td>";
+                      echo "<td class='py-2 px-2  text-center '>" . htmlspecialchars($row['phone']) . "</td>";
+                      echo "<td class='py-2 px-2  text-center '>" . htmlspecialchars($row['email']) . "</td>";
+                      echo "<td class='py-2 px-2  text-center '>" . htmlspecialchars($row['species']) . "</td>";
+                      echo "<td class='py-2 px-2  text-center '>" . htmlspecialchars($row['breed']) . "</td>";
+                      echo "<td class='py-2 px-2  text-center '>" . htmlspecialchars($row['age']) . "</td>";
+                      echo "<td class='py-2 px-2  text-center '>" . htmlspecialchars($row['numabuse']) . "</td>";
+                      echo "<td class='py-2 px-2  text-center '>" . htmlspecialchars($row['typeabuse']) . "</td>";
+                      echo "<td class='py-2 px-2  text-center '>" . htmlspecialchars($row['descript']) . "</td>";
                       // Show evidence image as a clickable image
                       echo "<td class='py-2 px-4  text-center'><a href='" . htmlspecialchars($row['evidence']) . "' target='_blank'><img src='" . htmlspecialchars($row['evidence']) . "' alt='Evidence Image' class='w-16 h-16 object-cover rounded'></a></td>";
                       echo "<td class='py-2 px-2  text-center text-xs'>" . htmlspecialchars($row['created_at']) . "</td>";

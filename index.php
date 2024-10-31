@@ -98,29 +98,41 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="disc/css/style.css">
     <link rel="shortcut icon" href="admin/img/barangay.png" type="image/x-icon">
     <style>
         body {
-            background-image: url(admin/img/stray.png);
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f7fb;
+        }
+        .background-img {
+            background-image: url('admin/img/stray.png');
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
         }
+        .overlay {
+            background-color: rgba(0, 47, 108, 0.7);
+        }
+        .login-card {
+            background-color: #ffffff;
+            border-left: 6px solid #002f6c;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
     </style>
 </head>
-<body class="flex items-center justify-center h-screen relative font-poppins"> <!-- Added font class -->
-    <div class="absolute inset-0 bg-black opacity-50"></div> <!-- Overlay -->
-    <div class="bg-transparent p-6 rounded-lg shadow-lg w-full max-w-sm md:max-w-md relative z-10">
+<body class="flex flex-col items-center justify-center h-screen background-img relative">
+    <div class="absolute inset-0 overlay"></div>
+    <div class="login-card p-8 rounded-lg w-full max-w-md relative z-10">
         <div class="flex justify-center mb-4">
-            <img src="admin/img/barangay.png" alt="Logo" class="h-24 w-auto"> <!-- Adjusted height for medium size -->
+            <img src="admin/img/barangay.png" alt="Government Logo" class="h-20 w-auto">
         </div>
+        <h2 class="text-center text-2xl font-semibold text-gray-700 mb-6">Barangay Pet Animal Welfare Protection Login</h2>
 
         <?php if (!empty($error)) : ?>
-            <div class="bg-red-500 text-white text-center py-2 mb-4">
+            <div class="bg-red-600 text-white text-center py-2 mb-4 rounded">
                 <?php 
                 foreach ($error as $err) {
-                    echo htmlspecialchars($err) . '<br>'; // Ensure safe output
+                    echo htmlspecialchars($err) . '<br>';
                 }
                 ?>
             </div>
@@ -130,20 +142,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
 
             <div class="mb-4">
-                <label for="umail" class="block text-sm font-medium text-white">Email/Username</label>
-                <input type="text" name="umail" id="umail" class="mt-1 p-2 border border-gray-300 rounded w-full" value="<?php echo isset($_POST['umail']) ? htmlspecialchars($_POST['umail']) : ''; ?>" autocomplete="off">
+                <label for="umail" class="block text-sm font-semibold text-gray-700">Email/Username</label>
+                <input type="text" name="umail" id="umail" class="mt-1 p-3 border border-gray-300 rounded w-full focus:outline-none focus:border-blue-600" value="<?php echo isset($_POST['umail']) ? htmlspecialchars($_POST['umail']) : ''; ?>" autocomplete="off">
             </div>
 
             <div class="mb-6">
-                <label for="password" class="block text-sm font-medium text-white">Password</label>
-                <input type="password" name="password" id="password" class="mt-1 p-2 border border-gray-300 rounded w-full" value="<?php echo isset($_POST['password']) ? htmlspecialchars($_POST['password']) : ''; ?>" autocomplete="off">
+                <label for="password" class="block text-sm font-semibold text-gray-700">Password</label>
+                <input type="password" name="password" id="password" class="mt-1 p-3 border border-gray-300 rounded w-full focus:outline-none focus:border-blue-600" value="<?php echo isset($_POST['password']) ? htmlspecialchars($_POST['password']) : ''; ?>" autocomplete="off">
             </div>
 
             <div class="flex justify-center">
-                <button type="submit" class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition duration-200">Login</button>
+                <button type="submit" class="bg-blue-600 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700 transition duration-200 w-full">Login</button>
             </div>
         </form>
     </div>
+
+    <!-- Copyright Footer -->
+    <footer class="text-gray-500 text-sm mt-4 text-center absolute bottom-4">
+        &copy; <?php echo date("Y"); ?> Barangay Pet Animal Welfare Protection System. All Rights Reserved.
+    </footer>
+
     <script>
         window.onload = function() {
             document.getElementById('loginForm').reset();
