@@ -93,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Barangay Pet Animal Welfare Protection </title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -126,7 +126,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="flex justify-center mb-4">
             <img src="admin/img/barangay.png" alt="Government Logo" class="h-20 w-auto">
         </div>
-        <h2 class="text-center text-2xl font-semibold text-gray-700 mb-6">Barangay Pet Animal Welfare Protection Login</h2>
+        <h2 class="text-center text-2xl font-semibold text-gray-700 mb-6">Login</h2>
 
         <?php if (!empty($error)) : ?>
             <div class="bg-red-600 text-white text-center py-2 mb-4 rounded">

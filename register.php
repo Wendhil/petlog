@@ -71,7 +71,7 @@ if (isset($_POST['createAccount'])) {
         <div class="flex justify-center mb-4">
             <img src="admin/img/barangay.png" alt="Government Logo" class="h-20 w-auto">
         </div>
-        <h2 class="text-center text-2xl font-semibold text-gray-700 mb-6">Barangay Pet Animal Welfare Protection Sign up</h2>
+        <h2 class="text-center text-2xl font-semibold text-gray-700 mb-6">Sign up</h2>
 
         <?php if (!empty($error)) : ?>
             <div class="bg-red-600 text-white text-center py-2 mb-4 rounded">
@@ -105,7 +105,7 @@ if (isset($_POST['createAccount'])) {
 
             <!-- Submit Button -->
             <div class="flex justify-center">
-                <button type="submit" name="createAccount" class="bg-blue-600 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700 transition duration-200 w-full">Login</button>
+                <button type="submit" name="createAccount" class="bg-blue-600 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700 transition duration-200 w-full">Sign up</button>
             </div>
             <a class="flex justify-center" href="index.php">Have an account. Login</a>
         </form>
