@@ -39,7 +39,7 @@ checkAccess('user');
       <div class="grid grid-cols-1 ml-4 p-4">
         <h2 class="flex font-bold sm:text-3xl m-4 ">Barangay Animal Welfare</h2>
         <p class="flex  m-4">Barangay Animal Welfare promotes animal well-being by encouraging responsible pet ownership, preventing abuse, addressing stray animal issues, and providing resources for pet care, all to foster a compassionate and safe community for animals and residents.</p>
-        <a href="adoption.php" class="flex justify-center items-center  hover:bg-blue-500 border-2 py-4 rounded-lg hover:text-white">Adoption Form</a>
+        <a href="user_adoption.php" class="flex justify-center items-center  hover:bg-blue-500 border-2 py-4 rounded-lg hover:text-white">Adoption Form</a>
       </div>
      </div>
      </div>
@@ -72,7 +72,7 @@ checkAccess('user');
       </div>
        </div>
        <div class="m-4 col-span-3 mx-6">
-       <a href="ourAnimal.php" class="flex p-2 border-2 rounded-3xl justify-center items-center hover:bg-blue-500 hover:text-white">
+       <a href="user_petview.php" class="flex p-2 border-2 rounded-3xl justify-center items-center hover:bg-blue-500 hover:text-white">
         <span>View Our Animals</span>
        </a>
        </div>
@@ -84,7 +84,7 @@ checkAccess('user');
       <div class="grid grid-cols-1 mr-4">
         <h2 class="flex font-bold  sm:text-4xl justify-center">Animal Abuse</h2>
         <p class="">Reporting animal abuse is essential to protect animals from harm. If you witness or suspect abuse or neglect, contact local authorities or animal welfare organizations. Your action can help ensure animals receive the care and protection they deserve, promoting a safer, more compassionate community.</p>
-        <a href="report.php" class="flex justify-center items-center  hover:bg-blue-500 border-2 px-2 rounded-lg hover:text-white">Report Form</a>
+        <a href="user_report.php" class="flex justify-center items-center  hover:bg-blue-500 border-2 px-2 rounded-lg hover:text-white">Report Form</a>
       </div>  
       <div class=" min-w-fit">
       <img class="rounded-lg" src="img/animal_welfare.jpg" alt="animal_welfare">
