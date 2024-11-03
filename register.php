@@ -2,35 +2,25 @@
 session_start();
 include('admin/dbconn/config.php');
 
-// Generate CSRF token if it doesn't already exist
-if (empty($_SESSION['csrf_token'])) {
-    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-}
-
 if (isset($_POST['createAccount'])) {
-    // Check if csrf_token exists in both the session and the POST request
-    if (!isset($_POST['csrf_token']) || !isset($_SESSION['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
-        die("Invalid CSRF token");
-    }
-
     $username = $_POST['username'];
     $email = $_POST['email'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $role = "user"; // Set default role to 'user'
-
+    $role = $_POST['role'];
+  
     // Prepare and execute the statement
     $stmt = $conn->prepare("INSERT INTO users (username, email, pwd, role) VALUES (?, ?, ?, ?)");
     if ($stmt->execute([$username, $email, $password, $role])) {
         // Redirect to the index page with a success message
         echo "<script>
-        alert('Account created successfully');
+        alert('Account created successfully ');
         window.location.href = 'register.php';
         </script>";
     } else {
         // Handle error here
         echo "Error: " . $stmt->error;
     }
-}
+  }
 ?>
 
 <!DOCTYPE html>
@@ -82,26 +72,29 @@ if (isset($_POST['createAccount'])) {
         <?php endif; ?>
 
         <form action="" method="POST">
-            <!-- CSRF Token -->
-            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+      
+      <!-- Username -->
+      <div class="mb-4">
+        <label class="block text-gray-700" for="createUsername">Username</label>
+        <input class="border rounded-lg w-full p-2" type="text" id="createUsername" name="username" required>
+      </div>
+      
+      <!-- Email -->
+      <div class="mb-4">
+        <label class="block text-gray-700" for="createEmail">Email</label>
+        <input class="border rounded-lg w-full p-2" type="email" id="createEmail" name="email" required>
+      </div>
+      
+      <!-- Role -->
+      <div class="mb-4">
+        <input type="hidden" name="role" value="user">
+      </div>
 
-            <!-- Username -->
-            <div class="mb-4">
-                <label class="block text-gray-700" for="username">Username</label>
-                <input class="border rounded-lg w-full p-2" type="text" id="username" name="username" required>
-            </div>
-
-            <!-- Email -->
-            <div class="mb-4">
-                <label class="block text-gray-700" for="email">Email</label>
-                <input class="border rounded-lg w-full p-2" type="email" id="email" name="email" required>
-            </div>
-
-            <!-- Password -->
-            <div class="mb-4">
-                <label class="block text-gray-700" for="password">Password</label>
-                <input class="border rounded-lg w-full p-2" type="password" id="password" name="password" required>
-            </div>
+      <!-- Password -->
+      <div class="mb-4">
+        <label class="block text-gray-700" for="createPassword">Password</label>
+        <input class="border rounded-lg w-full p-2" type="password" id="createPassword" name="password" required>
+      </div>
 
             <!-- Submit Button -->
             <div class="flex justify-center">
