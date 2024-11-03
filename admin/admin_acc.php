@@ -5,7 +5,7 @@ checkAccess('admin');
 
 //create acc
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if (isset($_POST['createAccount'])) {
   $username = $_POST['username'];
   $email = $_POST['email'];
   $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
@@ -27,12 +27,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 //update
 if (isset($_POST['updateAccount'])) {
-
-  function generateToken(){
-      return bin2hex(random_bytes(32));
-  }
-
-
   $id = $_POST['id'];
   $username = $_POST['username'];
   $email = $_POST['email'];
@@ -46,24 +40,24 @@ if (isset($_POST['updateAccount'])) {
       
       // SQL to update the user data with password
       $sql = "UPDATE users SET username = ?, email = ?, role = ?, pwd = ? WHERE id = ?";
-      
       $stmt = $conn->prepare($sql);
       $stmt->bind_param("ssssi", $username, $email, $role, $hashed_password, $id);
   } else {
       // SQL to update the user data without changing password
       $sql = "UPDATE users SET username = ?, email = ?, role = ? WHERE id = ?";
-      
       $stmt = $conn->prepare($sql);
       $stmt->bind_param("sssi", $username, $email, $role, $id);
   }
 
+  // Execute and check for errors
   if ($stmt->execute()) {
       echo "<script>
-              alert('Account updated successfully ');
+              alert('Account updated successfully');
               window.location.href = 'admin_acc.php';
-              </script>";
+            </script>";
   } else {
-      echo "Error: " . $stmt->error;
+      // Display the error
+      echo "Error updating account: " . $stmt->error;
   }
 
   $stmt->close();
@@ -253,7 +247,7 @@ if ($result->num_rows > 0) {
 
       <!-- New Password (Optional) -->
       <div class="mb-4">
-        <label class="block text-gray-700" for="updatePassword">New Password (Leave blank if not changing)</label>
+        <label class="block text-gray-700" for="updatePassword">New Password </label>
         <input class="border rounded-lg w-full p-2" type="password" id="updatePassword" name="password">
       </div>
 
