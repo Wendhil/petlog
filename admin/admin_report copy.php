@@ -1,6 +1,11 @@
 <?php
 include('dbconn/config.php');
 include('dbconn/authentication.php');
+inlcude('A:\xampp\htdocs\petlog\admin\admin_report.php
+A:\xampp\htdocs\petlog\user\stored
+A:\xampp\htdocs\petlog\user\stored\reportEvidence
+A:\xampp\htdocs\petlog\user\pet_image
+A:\xampp\htdocs\petlog\user\vaccine_record')
 checkAccess('admin'); 
 ?>
 

@@ -1,8 +1,8 @@
 <?php
-     define('DB_HOST','localhost:3306');
+     define('DB_HOST','localhost');
      define('DB_USER','root');
      define('DB_PASSWORD','');
-     define('DB_NAME','lgupetsystem');
+     define('DB_NAME','bpa_system');
    
  
  
