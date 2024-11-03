@@ -6,8 +6,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $error = array();
     $allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
-    $targetDir = "pet_image/";
-    $vaccineDir = "vaccine_record/";
+    $targetDir = "../stored/pet_image/";
+    $vaccineDir = "../stored/vaccine_record/";
 
     // Validate inputs
     if (empty($_POST['owner_name'])) {

@@ -6,8 +6,8 @@
   if (isset($_POST['updateReg'])) {
     $id = intval($_POST['id']); // Get the record ID
     $allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
-    $targetDir = "pet_image/";
-    $vaccineDir = "vaccine_record/";
+    $targetDir = ".../pet_image/";
+    $vaccineDir = ".../vaccine_record/";
 
     // Get input values
     $ownerName = htmlspecialchars($_POST['owner_name']);
@@ -135,7 +135,7 @@
                           echo "<td class='py-2 px-2 text-center'>" . $row['breed'] . "</td>";
                           echo "<td class='py-2 px-2 text-center'>" . $row['address'] . "</td>";
                           echo "<td class='py-2 px-2 text-center'><a href='" . $row['pet_image'] . "' target='_blank'><img src='" . $row['pet_image'] . "' alt='Pet Image' class='w-16 h-16 object-cover rounded'></a></td>";
-                          echo "<td class='py-2 px-2 text-center'><a href='" . $row['pet_vaccine'] . "' target='_blank'>" . $row['pet_vaccine'] . "</a></td>";
+                          echo "<td class='py-2 px-2 text-center'><a href='" . $row['pet_vaccine'] . "' target='_blank'><img src='". $row['pet_vaccine'] . "' alt='Pet vaccine' class='w-16 h-16 object-cover rounded'></a></td>";
                           echo "<td class='py-2 px-2 text-center'>" . $row['additional_info'] . "</td>";
                           echo "<td class='py-2 px-2 text-center'>" . $row['created_at'] . "</td>";
                           echo "<td class='py-2 px-2 text-center flex justify-center space-x-2'>";

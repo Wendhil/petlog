@@ -63,53 +63,63 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $incidentDescription = htmlspecialchars($_POST['description']);
     }
 
-    // Handle file upload
-    if (isset($_FILES['imgInput']) && $_FILES['imgInput']['error'] === 0) {
-        $allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
-        $fileType = mime_content_type($_FILES['imgInput']['tmp_name']);
-        $fileSize = $_FILES['imgInput']['size'];
+  // Handle file upload
+if (isset($_FILES['imgInput']) && $_FILES['imgInput']['error'] === 0) {
+    $allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+    $fileType = mime_content_type($_FILES['imgInput']['tmp_name']);
+    $fileSize = $_FILES['imgInput']['size'];
 
-        // Check file type
-        if (!in_array($fileType, $allowedTypes)) {
-            $error['imgInput'] = "Only JPEG, JPG, and PNG files are allowed";
-        } 
-        // Check file size (limit to 2MB)
-        elseif ($fileSize > 2 * 1024 * 1024) {
-            $error['imgInput'] = "File size should not exceed 2MB";
-        } else {
-            $evidenceFile = basename($_FILES['imgInput']['name']);
-            $targetDir = "stored/reportEvidence/";
-            $targetFile = $targetDir . preg_replace("/[^a-zA-Z0-9.\-_]/", "", $evidenceFile); // Sanitize filename
-        }
+    // Check file type
+    if (!in_array($fileType, $allowedTypes)) {
+        $error['imgInput'] = "Only JPEG, JPG, and PNG files are allowed";
+    } 
+    // Check file size (limit to 2MB)
+    elseif ($fileSize > 2 * 1024 * 1024) {
+        $error['imgInput'] = "File size should not exceed 2MB";
     } else {
-        $error['imgInput'] = "Evidence file is required";
+        $evidenceFile = basename($_FILES['imgInput']['name']);
+        $targetDir = "../stored/reportEvidence";
+
+        // Ensure the target directory exists
+        if (!is_dir($targetDir)) {
+            mkdir($targetDir, 0755, true);
+        }
+
+        // Sanitize the filename and prepare the target file path
+        $targetFile = $targetDir . preg_replace("/[^a-zA-Z0-9.\-_]/", "", $evidenceFile); 
+
+        // Move the uploaded file to the target directory
+        if (!move_uploaded_file($_FILES['imgInput']['tmp_name'], $targetFile)) {
+            $error['imgInput'] = "Failed to move uploaded file.";
+        }
     }
-
-    // Check if there are no errors before inserting into the database
-    if (empty($error)) {
-        $sql = "INSERT INTO reports (name, phone, email, species, breed, age, numabuse, typeabuse, descript, evidence) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
-// Bind parameters
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("ssssssssss", $reportParty, $phone, $email, $species, $breed, $age, $number, $abuse_nature, $incidentDescription, $targetFile);
-
-// Execute and check for success
-if ($stmt->execute()) {
-    // File is already moved before this, no need to move again here
-    echo "<script>
-    alert('Report successfully submitted');
-    window.location.href = 'user_report.php';
-    </script>";
 } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+    $error['imgInput'] = "Evidence file is required";
 }
 
+// Check if there are no errors before inserting into the database
+if (empty($error)) {
+    $sql = "INSERT INTO reports (name, phone, email, species, breed, age, numabuse, typeabuse, descript, evidence) 
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        $stmt->close();
+    // Bind parameters
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ssssssssss", $reportParty, $phone, $email, $species, $breed, $age, $number, $abuse_nature, $incidentDescription, $targetFile);
+
+    // Execute and check for success
+    if ($stmt->execute()) {
+        echo "<script>
+        alert('Report successfully submitted');
+        window.location.href = 'user_report.php';
+        </script>";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
     }
 
-    $conn->close();
+    $stmt->close();
+}
+
+$conn->close();
 }
 ?>
 

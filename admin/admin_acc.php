@@ -99,9 +99,6 @@ if (isset($_GET['id'])) {
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="disc/css/style.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="disc/js/script.js"></script>
-  <script src="disc/js/script-admin.js"></script>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="flex bg-[#90e0ef] font-poppins font-semibold">
@@ -273,6 +270,9 @@ if ($result->num_rows > 0) {
     </div>
 </div>
 
+
+<script src="disc/js/script.js"></script>
+<script src="disc/js/script-admin.js"></script>
 <script>
   
   // Open Add Account Modal
