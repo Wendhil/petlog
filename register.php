@@ -2,25 +2,36 @@
 session_start();
 include('admin/dbconn/config.php');
 
+// Generate a CSRF token if it doesn’t exist
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
 if (isset($_POST['createAccount'])) {
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $role = $_POST['role'];
-  
-    // Prepare and execute the statement
-    $stmt = $conn->prepare("INSERT INTO users (username, email, pwd, role) VALUES (?, ?, ?, ?)");
-    if ($stmt->execute([$username, $email, $password, $role])) {
-        // Redirect to the index page with a success message
-        echo "<script>
-        alert('Account created successfully ');
-        window.location.href = 'register.php';
-        </script>";
+    // Check the CSRF token
+    if (hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
+        // If CSRF token is valid, proceed with account creation
+        $username = $_POST['username'];
+        $email = $_POST['email'];
+        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        $role = $_POST['role'];
+
+        // Prepare and execute the statement
+        $stmt = $conn->prepare("INSERT INTO users (username, email, pwd, role) VALUES (?, ?, ?, ?)");
+        if ($stmt->execute([$username, $email, $password, $role])) {
+            // Redirect to the index page with a success message
+            echo "<script>
+            alert('Account created successfully');
+            window.location.href = 'register.php';
+            </script>";
+        } else {
+            // Handle error here
+            echo "Error: " . $stmt->error;
+        }
     } else {
-        // Handle error here
-        echo "Error: " . $stmt->error;
+        echo "<script>alert('Invalid CSRF token');</script>";
     }
-  }
+}
 ?>
 
 <!DOCTYPE html>
@@ -72,35 +83,37 @@ if (isset($_POST['createAccount'])) {
         <?php endif; ?>
 
         <form action="" method="POST">
-      
-      <!-- Username -->
-      <div class="mb-4">
-        <label class="block text-gray-700" for="createUsername">Username</label>
-        <input class="border rounded-lg w-full p-2" type="text" id="createUsername" name="username" required>
-      </div>
-      
-      <!-- Email -->
-      <div class="mb-4">
-        <label class="block text-gray-700" for="createEmail">Email</label>
-        <input class="border rounded-lg w-full p-2" type="email" id="createEmail" name="email" required>
-      </div>
-      
-      <!-- Role -->
-      <div class="mb-4">
-        <input type="hidden" name="role" value="user">
-      </div>
+            <!-- CSRF Token -->
+            <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
 
-      <!-- Password -->
-      <div class="mb-4">
-        <label class="block text-gray-700" for="createPassword">Password</label>
-        <input class="border rounded-lg w-full p-2" type="password" id="createPassword" name="password" required>
-      </div>
+            <!-- Username -->
+            <div class="mb-4">
+                <label class="block text-gray-700" for="createUsername">Username</label>
+                <input class="border rounded-lg w-full p-2" type="text" id="createUsername" name="username" required>
+            </div>
+
+            <!-- Email -->
+            <div class="mb-4">
+                <label class="block text-gray-700" for="createEmail">Email</label>
+                <input class="border rounded-lg w-full p-2" type="email" id="createEmail" name="email" required>
+            </div>
+
+            <!-- Role -->
+            <div class="mb-4">
+                <input type="hidden" name="role" value="user">
+            </div>
+
+            <!-- Password -->
+            <div class="mb-4">
+                <label class="block text-gray-700" for="createPassword">Password</label>
+                <input class="border rounded-lg w-full p-2" type="password" id="createPassword" name="password" required>
+            </div>
 
             <!-- Submit Button -->
             <div class="flex justify-center">
                 <button type="submit" name="createAccount" class="bg-blue-600 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700 transition duration-200 w-full">Sign up</button>
             </div>
-            <a class="flex justify-center" href="index.php">Have an account. Login</a>
+            <a class="flex justify-center" href="index.php">Have an account? Login</a>
         </form>
     </div>
 

@@ -78,7 +78,7 @@ if (isset($_FILES['imgInput']) && $_FILES['imgInput']['error'] === 0) {
         $error['imgInput'] = "File size should not exceed 2MB";
     } else {
         $evidenceFile = basename($_FILES['imgInput']['name']);
-        $targetDir = "../stored/reportEvidence";
+        $targetDir = "../stored/reportEvidence/";
 
         // Ensure the target directory exists
         if (!is_dir($targetDir)) {

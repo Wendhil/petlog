@@ -6,8 +6,8 @@
   if (isset($_POST['updateReg'])) {
     $id = intval($_POST['id']); // Get the record ID
     $allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
-    $targetDir = ".../pet_image/";
-    $vaccineDir = ".../vaccine_record/";
+    $targetDir = "../stored/pet_image";
+    $vaccineDir = "../stored/vaccine_record/";
 
     // Get input values
     $ownerName = htmlspecialchars($_POST['owner_name']);
