@@ -2,6 +2,9 @@
 session_start();
 include('admin/dbconn/config.php');
 
+// Initialize error array
+$error = [];
+
 // Generate a CSRF token if it doesn’t exist
 if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
@@ -10,26 +13,25 @@ if (empty($_SESSION['csrf_token'])) {
 if (isset($_POST['createAccount'])) {
     // Check the CSRF token
     if (hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
-        // If CSRF token is valid, proceed with account creation
+        // CSRF token is valid, proceed with account creation
         $username = $_POST['username'];
         $email = $_POST['email'];
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-        $role = $_POST['role'];
+        $role = $_POST['role']; // Retrieve role from POST data
 
         // Prepare and execute the statement
         $stmt = $conn->prepare("INSERT INTO users (username, email, pwd, role) VALUES (?, ?, ?, ?)");
-        if ($stmt->execute([$username, $email, $password, $role])) {
-            // Redirect to the index page with a success message
+        if ($stmt && $stmt->execute([$username, $email, $password, $role])) {
             echo "<script>
             alert('Account created successfully');
-            window.location.href = 'register.php';
+            window.location.href = 'index.php';
             </script>";
         } else {
-            // Handle error here
-            echo "Error: " . $stmt->error;
+            $error[] = "Error creating account. Please try again later.";
+            // Log the error instead of displaying it in production
         }
     } else {
-        echo "<script>alert('Invalid CSRF token');</script>";
+        $error[] = "Invalid CSRF token.";
     }
 }
 ?>
@@ -76,9 +78,9 @@ if (isset($_POST['createAccount'])) {
 
         <?php if (!empty($error)) : ?>
             <div class="bg-red-600 text-white text-center py-2 mb-4 rounded">
-                <?php foreach ($error as $err) {
-                    echo htmlspecialchars($err) . '<br>';
-                } ?>
+                <?php foreach ($error as $err) : ?>
+                    <?php echo htmlspecialchars($err) . '<br>'; ?>
+                <?php endforeach; ?>
             </div>
         <?php endif; ?>
 
@@ -113,7 +115,7 @@ if (isset($_POST['createAccount'])) {
             <div class="flex justify-center">
                 <button type="submit" name="createAccount" class="bg-blue-600 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700 transition duration-200 w-full">Sign up</button>
             </div>
-            <a class="flex justify-center" href="index.php">Have an account? Login</a>
+            <a class="flex justify-center mt-4 text-blue-600 hover:underline" href="index.php">Have an account? Login</a>
         </form>
     </div>
 
