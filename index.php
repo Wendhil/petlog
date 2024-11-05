@@ -13,34 +13,18 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
     }
 }
 
-// Function to generate CSRF token
-function generateToken() {
-    return bin2hex(random_bytes(32));
-}
-
-// Generate new token if not already set
-if (empty($_SESSION['csrf_token'])) {
-    $_SESSION['csrf_token'] = generateToken();
-    $_SESSION['csrf_token_time'] = time(); // Save timestamp for token expiration
-}
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $error = array(); // Initialize error array
-
-    // Validate CSRF token
-    if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
-        $error['csrf_token'] = "CSRF token mismatch";
-    }
     
     // Validate email/username and password fields
     if (empty($_POST['umail'])) {
-        $error['umail'] = 'Please enter your email or username';
+        $error['umail'] = 'Please enter your email or username.';
     } else { 
         $umail = htmlspecialchars(trim($_POST['umail']));
     }
 
     if (empty($_POST['password'])) {
-        $error['password'] = 'Please enter your password';
+        $error['password'] = 'Please enter your password.';
     } else {
         $password = htmlspecialchars(trim($_POST['password']));
     }
@@ -63,22 +47,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             // Verify the password
             if (password_verify($password, $hpassword)) {
+                // Prevent session fixation
+                session_regenerate_id(true);
+
                 // Set session variables for authentication
                 $_SESSION['user_id'] = $id;
                 $_SESSION['username'] = $username;
                 $_SESSION['role'] = $role;
-                $_SESSION['logged_in'] = true; // Set a flag to indicate the user is logged in
-        
+                $_SESSION['logged_in'] = true;
+
                 // Redirect based on role
                 if ($role === 'admin') {
                     header("Location: admin/admin_dashboard.php");
-                    exit;
                 } elseif ($role === 'user') {
                     header("Location: user/user_dashboard.php");
-                    exit;
                 } else {
-                    $error['role'] = 'No Account. Please request account to barangay';
+                    $error['role'] = 'Invalid role. Please contact support.';
                 }
+                exit;
             } else {
                 $error['password'] = 'Incorrect password. Please try again.';
             }
@@ -93,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Barangay Pet Animal Welfare Protection </title>
+    <title>Barangay Pet Animal Welfare Protection</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -139,8 +125,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <?php endif; ?>
 
         <form action="" method="POST" id="loginForm">
-            <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
-
             <div class="mb-4">
                 <label for="umail" class="block text-sm font-semibold text-gray-700">Email/Username</label>
                 <input type="text" name="umail" id="umail" class="mt-1 p-3 border border-gray-300 rounded w-full focus:outline-none focus:border-blue-600" value="<?php echo isset($_POST['umail']) ? htmlspecialchars($_POST['umail']) : ''; ?>" autocomplete="off">
@@ -148,25 +132,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <div class="mb-6">
                 <label for="password" class="block text-sm font-semibold text-gray-700">Password</label>
-                <input type="password" name="password" id="password" class="mt-1 p-3 border border-gray-300 rounded w-full focus:outline-none focus:border-blue-600" value="<?php echo isset($_POST['password']) ? htmlspecialchars($_POST['password']) : ''; ?>" autocomplete="off">
+                <input type="password" name="password" id="password" class="mt-1 p-3 border border-gray-300 rounded w-full focus:outline-none focus:border-blue-600" autocomplete="off">
             </div>
 
             <div class="flex justify-center">
                 <button type="submit" class="bg-blue-600 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700 transition duration-200 w-full">Login</button>
             </div>
         </form>
-        <a class="flex justify-center" href="register.php">Create an account. Sign up</a>
+        <a class="flex justify-center mt-4 text-blue-600 hover:underline" href="register.php">Create an account. Sign up</a>
     </div>
 
     <!-- Copyright Footer -->
     <footer class="text-gray-500 text-sm mt-4 text-center absolute bottom-4">
         &copy; <?php echo date("Y"); ?> Barangay Pet Animal Welfare Protection System. All Rights Reserved.
     </footer>
-
-    <script>
-        window.onload = function() {
-            document.getElementById('loginForm').reset();
-        };
-    </script>
 </body>
-</html>
+</html>  

@@ -5,34 +5,38 @@ include('admin/dbconn/config.php');
 // Initialize error array
 $error = [];
 
-// Generate a CSRF token if it doesn’t exist
-if (empty($_SESSION['csrf_token'])) {
-    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-}
-
 if (isset($_POST['createAccount'])) {
-    // Check the CSRF token
-    if (hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
-        // CSRF token is valid, proceed with account creation
-        $username = $_POST['username'];
-        $email = $_POST['email'];
-        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-        $role = $_POST['role']; // Retrieve role from POST data
+    // Sanitize and validate user inputs
+    $username = htmlspecialchars(trim($_POST['username']));
+    $email = htmlspecialchars(trim($_POST['email']));
+    $role = 'user'; // Set role as "user" by default
+    $password = password_hash(trim($_POST['password']), PASSWORD_DEFAULT);
 
-        // Prepare and execute the statement
+    // Check if username or email already exists
+    $checkStmt = $conn->prepare("SELECT id FROM users WHERE username = ? OR email = ?");
+    $checkStmt->bind_param("ss", $username, $email);
+    $checkStmt->execute();
+    $checkStmt->store_result();
+
+    if ($checkStmt->num_rows > 0) {
+        $error[] = "Username or email already exists.";
+    } else {
+        // Prepare and execute insert statement
         $stmt = $conn->prepare("INSERT INTO users (username, email, pwd, role) VALUES (?, ?, ?, ?)");
-        if ($stmt && $stmt->execute([$username, $email, $password, $role])) {
+        $stmt->bind_param("ssss", $username, $email, $password, $role);
+        
+        if ($stmt->execute()) {
             echo "<script>
-            alert('Account created successfully');
-            window.location.href = 'index.php';
-            </script>";
+                alert('Account created successfully');
+                window.location.href = 'index.php';
+                </script>";
         } else {
             $error[] = "Error creating account. Please try again later.";
-            // Log the error instead of displaying it in production
         }
-    } else {
-        $error[] = "Invalid CSRF token.";
+        
+        $stmt->close();
     }
+    $checkStmt->close();
 }
 ?>
 
@@ -85,10 +89,6 @@ if (isset($_POST['createAccount'])) {
         <?php endif; ?>
 
         <form action="" method="POST">
-            <!-- CSRF Token -->
-            <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
-
-            <!-- Username -->
             <div class="mb-4">
                 <label class="block text-gray-700" for="createUsername">Username</label>
                 <input class="border rounded-lg w-full p-2" type="text" id="createUsername" name="username" required>
@@ -100,10 +100,8 @@ if (isset($_POST['createAccount'])) {
                 <input class="border rounded-lg w-full p-2" type="email" id="createEmail" name="email" required>
             </div>
 
-            <!-- Role -->
-            <div class="mb-4">
-                <input type="hidden" name="role" value="user">
-            </div>
+            <!-- Role (Hidden) -->
+            <input type="hidden" name="role" value="user">
 
             <!-- Password -->
             <div class="mb-4">
