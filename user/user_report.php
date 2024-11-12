@@ -167,11 +167,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <main id="mainContent" class="p-8">
         <div class="flex justify-center items-center w-full">
             <form action="" method="POST" class="bg-white p-8 rounded-lg shadow-md w-full" enctype="multipart/form-data">
-<<<<<<< HEAD
             <i class="fas fa-paw text-3xl text-blue-500 mb-2"></i><h2 class="text-2xl font-bold mb-6 text-center">Report Form</h2>
-=======
-                <h2 class="text-2xl font-bold mb-6 text-center">Report Form</h2>
->>>>>>> 613bf9cbb8b003106be1579d4b6707d73c148df4
                 <div class="grid grid-cols-2 gap-4">
 
                     <!-- Report Party Field -->
@@ -260,10 +256,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </main>
 </div>
-<<<<<<< HEAD
 <script src="disc/js/script.js"></script>
-=======
-
->>>>>>> 613bf9cbb8b003106be1579d4b6707d73c148df4
 </body>
 </html>
