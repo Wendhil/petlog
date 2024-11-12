@@ -51,6 +51,8 @@
       </a>
 
       <span class="sidebar-text"><h1 class="font-bold">Settings</h1></span>
+
+
     </nav>
 </div>
 

@@ -12,6 +12,7 @@ if (isset($_POST['createAccount'])) {
     $role = 'user'; // Set role as "user" by default
     $password = password_hash(trim($_POST['password']), PASSWORD_DEFAULT);
 
+<<<<<<< HEAD
     // Validate email format
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $error[] = "Please enter a valid email address.";
@@ -48,6 +49,36 @@ if (isset($_POST['createAccount'])) {
 ?>
 
 
+=======
+    // Check if username or email already exists
+    $checkStmt = $conn->prepare("SELECT id FROM users WHERE username = ? OR email = ?");
+    $checkStmt->bind_param("ss", $username, $email);
+    $checkStmt->execute();
+    $checkStmt->store_result();
+
+    if ($checkStmt->num_rows > 0) {
+        $error[] = "Username or email already exists.";
+    } else {
+        // Prepare and execute insert statement
+        $stmt = $conn->prepare("INSERT INTO users (username, email, pwd, role) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("ssss", $username, $email, $password, $role);
+        
+        if ($stmt->execute()) {
+            echo "<script>
+                alert('Account created successfully');
+                window.location.href = 'index.php';
+                </script>";
+        } else {
+            $error[] = "Error creating account. Please try again later.";
+        }
+        
+        $stmt->close();
+    }
+    $checkStmt->close();
+}
+?>
+
+>>>>>>> 613bf9cbb8b003106be1579d4b6707d73c148df4
 <!DOCTYPE html>
 <html lang="en">
 <head>

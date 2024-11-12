@@ -16,6 +16,7 @@ checkAccess('user');
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="disc/css/style.css">
 </head>
+<<<<<<< HEAD
 <style>
    body {
             font-family: 'Poppins', sans-serif;
@@ -24,6 +25,9 @@ checkAccess('user');
         }
 </style>
 <body class="flex bg-[#90e0ef]">
+=======
+<body class="flex bg-gray-300">
+>>>>>>> 613bf9cbb8b003106be1579d4b6707d73c148df4
 
   <!-- Sidebar -->
 <?php

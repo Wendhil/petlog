@@ -142,6 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&display=swap" rel="stylesheet">
 </head>
+<<<<<<< HEAD
 
 <style>
      body {
@@ -153,6 +154,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </style>
 
 <body class="flex bg-[#90e0ef]">
+=======
+<body class="flex bg-gray-300">
+>>>>>>> 613bf9cbb8b003106be1579d4b6707d73c148df4
 
 <!-- Sidebar -->
 <?php include('disc/partials/sidebar.php'); ?>
@@ -167,7 +171,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <main id="mainContent" class="p-8">
         <div class="flex justify-center items-center w-full">
             <form action="" method="POST" class="bg-white p-8 rounded-lg shadow-md w-full" enctype="multipart/form-data">
+<<<<<<< HEAD
             <i class="fas fa-paw text-3xl text-blue-500 mb-2"></i><h2 class="text-2xl font-bold mb-6 text-center">Report Form</h2>
+=======
+                <h2 class="text-2xl font-bold mb-6 text-center">Report Form</h2>
+>>>>>>> 613bf9cbb8b003106be1579d4b6707d73c148df4
                 <div class="grid grid-cols-2 gap-4">
 
                     <!-- Report Party Field -->
@@ -256,6 +264,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </main>
 </div>
+<<<<<<< HEAD
 <script src="disc/js/script.js"></script>
+=======
+
+>>>>>>> 613bf9cbb8b003106be1579d4b6707d73c148df4
 </body>
 </html>
