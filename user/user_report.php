@@ -142,7 +142,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&display=swap" rel="stylesheet">
 </head>
-<<<<<<< HEAD
 
 <style>
      body {
@@ -154,9 +153,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </style>
 
 <body class="flex bg-[#90e0ef]">
-=======
-<body class="flex bg-gray-300">
->>>>>>> 613bf9cbb8b003106be1579d4b6707d73c148df4
 
 <!-- Sidebar -->
 <?php include('disc/partials/sidebar.php'); ?>
