@@ -1,7 +1,4 @@
 
-
-
-<<<<<<< HEAD
 <!-- Font and Icon CSS Links -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -95,16 +92,3 @@
     // Attach the closeModal function to the Cancel button
     document.getElementById('cancelBtn').onclick = closeModal;
 </script>
-=======
-<header class="bg-blue-600 shadow p-4 m-2 flex items-center justify-between rounded-lg">
-      <button id="sidebarToggle" class="text-white focus:outline-none ">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
-      <div class="flex gap-2 text-white">
-        <h2>User</h2>
-        <a href="../logout.php">Logout</a>
-      </div>
-    </header>
->>>>>>> 613bf9cbb8b003106be1579d4b6707d73c148df4

@@ -87,10 +87,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 613bf9cbb8b003106be1579d4b6707d73c148df4
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -104,7 +100,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
-<<<<<<< HEAD
 <style>
    body {
             font-family: 'Poppins', sans-serif;
@@ -113,9 +108,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 </style>
 <body class="flex bg-[#90e0ef]">
-=======
-<body class="flex">
->>>>>>> 613bf9cbb8b003106be1579d4b6707d73c148df4
 
   <!-- Sidebar -->
   <?php include ('disc/partials/sidebar.php'); ?>
@@ -128,11 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <!-- Main Content Area -->
     <main id="mainContent" class="p-8">
       <form action="" method="POST" class="bg-white p-8 rounded-lg shadow-md w-full">
-<<<<<<< HEAD
       <i class="fas fa-paw text-3xl text-blue-500 mb-2"></i> <h2 class="text-2xl font-bold mb-6 text-center">Adoption Form</h2>
-=======
-        <h2 class="text-2xl font-bold mb-6 text-center">Adoption Form</h2>
->>>>>>> 613bf9cbb8b003106be1579d4b6707d73c148df4
         <div class="grid grid-cols-2">
           <div class="">
             <div class="mb-4 mr-4">
