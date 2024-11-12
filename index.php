@@ -108,11 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body class="flex flex-col items-center justify-center h-screen background-img relative">
     <div class="absolute inset-0 overlay"></div>
-<<<<<<< HEAD
     <div class="login-card p-5 rounded-lg w-full max-w-md relative z-10 sm:w-11/12 md:w-9/12 lg:w-1/3">
-=======
-    <div class="login-card p-8 rounded-lg w-full max-w-md relative z-10">
->>>>>>> 613bf9cbb8b003106be1579d4b6707d73c148df4
         <div class="flex justify-center mb-4">
             <img src="admin/img/barangay.png" alt="Government Logo" class="h-20 w-auto">
         </div>
@@ -151,9 +147,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         &copy; <?php echo date("Y"); ?> Barangay Pet Animal Welfare Protection System. All Rights Reserved.
     </footer>
 </body>
-<<<<<<< HEAD
 </html>
 
-=======
-</html>  
->>>>>>> 613bf9cbb8b003106be1579d4b6707d73c148df4
