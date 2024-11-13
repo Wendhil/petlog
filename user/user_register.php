@@ -1,7 +1,9 @@
 <?php
-include('dbconn/config.php');
-include('dbconn/authentication.php');
+include('../dbconn/config.php');
+include('../dbconn/authentication.php');
 checkAccess('user'); 
+
+$showModal = false; // To control modal visibility in HTML
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $error = array();
@@ -88,10 +90,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->bind_param("ssssssss", $ownerName, $petName, $petAge, $petBreed, $address, $petImagePath, $vaccineRecordPath, $additionalInfo);
 
         if ($stmt->execute()) {
-            echo "<script>
-            alert('Registration successfully submitted');
-            window.location.href = 'user_register.php';
-            </script>";
+          $showModal = true;
+            unset($_POST);
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
@@ -196,6 +196,41 @@ $conn->close();
     </main>
   </div>
 
-  <script src="disc/js/script.js"></script>
+  <?php if ($showModal): ?>
+<div id="qrCodeModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+    <div class="bg-white p-6 rounded shadow-lg text-center">
+        <h2 class="text-xl font-bold mb-4">Registration Successful!</h2>
+        <p>Scan or download the QR Code below:</p>
+        <img id="qrCodeImage" src="../qrUpload/14_qr.png" alt="QR Code" class="mx-auto my-4 w-48 h-48">
+        
+        <!-- Buttons -->
+        <div class="flex justify-center space-x-4">
+            <!-- Download QR Code Button -->
+            <a href="#" 
+               class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+                Download QR Code
+            </a>
+            <!-- View Profile Button -->
+            <a href="#" 
+               class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                View Profile
+            </a>
+            <!-- Close Modal Button -->
+            <button id="closeModal" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
+                Close
+            </button>
+        </div>
+    </div>
+</div>
+<script src="disc/js/script.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Close Modal Functionality
+    document.getElementById('closeModal').addEventListener('click', function () {
+        document.getElementById('qrCodeModal').style.display = 'none';
+    });
+  });
+</script>
+<?php endif; ?>
 </body>
 </html>

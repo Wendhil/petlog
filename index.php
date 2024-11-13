@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('admin/dbconn/config.php');
+include('dbconn/config.php');
 
 // Check if the user is already logged in
 if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (empty($error)) {
         // Check if the account exists
         $stmt = $conn->prepare('SELECT id, username, pwd, role FROM users WHERE username=? OR email=?');
-        $stmt->bind_param('ss', $umail, $umail );
+        $stmt->bind_param('ss', $umail, $umail);
         $stmt->execute();
         $stmt->store_result();
 
