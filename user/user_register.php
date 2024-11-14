@@ -10,8 +10,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $error = array();
     $allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
-    $targetDir = "stored/pet_image/";
-    $vaccineDir = "stored/vaccine_record/";
+    $targetDir = "../stored/pet_image/";
+    $vaccineDir = "../stored/vaccine_record/";
 
     // Validate inputs
     if (empty($_POST['owner_name'])) {
@@ -102,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           $registrationID = $stmt->insert_id; // get the last inserted ID (assuming it's auto-incremented)
           
           // URL for the pet's profile (make sure the URL is accessible)
-          $profileUrl = "Pet_Profiling.php?id=" . $registrationID; // Example URL with registration ID
+          $profileUrl = "../Pet_Profiling.php?id=" . $registrationID; // Example URL with registration ID
 
          // Generate the QR code and save it to a file
 $qrCodeFile = "qrUpload/pet_" . $registrationID . "_qr.png"; // Set the QR code file path
