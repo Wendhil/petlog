@@ -105,11 +105,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           $profileUrl = "../Pet_Profiling.php?id=" . $registrationID; // Example URL with registration ID
 
          // Generate the QR code and save it to a file
-$qrCodeFile = "qrUpload/pet_" . $registrationID . "_qr.png"; // Set the QR code file path
+$qrCodeFile = "../qrUpload/pet_" . $registrationID . "_qr.png"; // Set the QR code file path
 
 // Make sure the qrUpload folder exists and is writable
-if (!file_exists("qrUpload")) {
-    mkdir("qrUpload", 0777, true); // Create the folder if it doesn't exist
+if (!file_exists("../qrUpload")) {
+    mkdir("../qrUpload", 0777, true); // Create the folder if it doesn't exist
 }
 
 QRcode::png($profileUrl, $qrCodeFile, QR_ECLEVEL_L, 10);
