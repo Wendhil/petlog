@@ -150,12 +150,12 @@ $conn->close();
 <body class="flex bg-[#90e0ef]">
 
   <!-- Sidebar -->
-  
+ <?php include ('disc/partials/sidebar.php'); ?>  
 
   <!-- Main Content with Navbar -->
   <div class="flex-1 flex flex-col">
     <!-- Top Navbar -->
-  
+    <?php include('disc/partials/navbar.php'); ?>
 
     <!-- Main Content Area -->
     <main id="mainContent" class="p-8">
@@ -241,7 +241,7 @@ $conn->close();
                 Download QR Code
             </a>
             <!-- View Profile Button -->
-            <a href="Pet_Profiling.php?id=<?php echo $registrationID; ?>" 
+             <a href="Pet_profiling.php?id=<?php echo $registrationID; ?>" 
                target='_blank' 
                class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
                 View Profile
