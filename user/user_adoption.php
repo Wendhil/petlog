@@ -4,6 +4,7 @@ include('../dbconn/authentication.php');
 checkAccess('user'); 
 $error = array(); // Array to store validation errors
 
+$showModal = false; // To control modal visibility in HTML
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Validate inputs
     if (empty($_POST['name'])) {
@@ -67,11 +68,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->bind_param("ssssssss", $name, $email, $phone, $address, $petName, $petType, $reason, $experience);
 
         if ($stmt->execute()) {
-            echo "<script>
-                    alert('Adoption application successfully submitted');
-                    window.location.href = 'user_adoption.php';
-                  </script>";
-            exit();
+          $showModal = true;
+            unset($_POST);
         } else {
             echo "<script>
                     alert('Error: Could not submit the application');
@@ -190,6 +188,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </main>
   </div>
 
-  <script src="disc/js/script.js"></script>
+  <?php if ($showModal): ?>
+<div id="successModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+    <div class="bg-white p-6 rounded shadow-lg text-center">
+        <h2 class="text-xl font-bold mb-4">Adoption Successful!</h2>
+        <!-- Buttons -->
+        <div class="flex justify-center space-x-4">
+            <button id="closeModal" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
+                Close
+            </button>
+        </div>
+    </div>
+</div>
+<script src="disc/js/script.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Close Modal Functionality
+    document.getElementById('closeModal').addEventListener('click', function () {
+        document.getElementById('successModal').style.display = 'none';
+    });
+  });
+</script>
+<?php endif; ?>
 </body>
 </html>
