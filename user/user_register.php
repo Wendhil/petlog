@@ -1,6 +1,9 @@
 <?php
-include('dbconn/config.php'); 
+include('../dbconn/config.php');
+include('../dbconn/authentication.php');
+checkAccess('user');
 include('phpqrcode/qrlib.php');
+
 
 $showModal = false; // To control modal visibility in HTML
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -99,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           $registrationID = $stmt->insert_id; // get the last inserted ID (assuming it's auto-incremented)
           
           // URL for the pet's profile (make sure the URL is accessible)
-          $profileUrl = "../Pet_Profiling.php?id=" . $registrationID; // Example URL with registration ID
+          $profileUrl = "Pet_Profiling.php?id=" . $registrationID; // Example URL with registration ID
 
          // Generate the QR code and save it to a file
 $qrCodeFile = "qrUpload/pet_" . $registrationID . "_qr.png"; // Set the QR code file path
@@ -241,7 +244,7 @@ $conn->close();
                 Download QR Code
             </a>
             <!-- View Profile Button -->
-             <a href="../Pet_profiling.php?id=<?php echo $registrationID; ?>" 
+             <a href="Pet_profiling.php?id=<?php echo $registrationID; ?>" 
                target='_blank' 
                class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
                 View Profile
