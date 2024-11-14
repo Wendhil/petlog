@@ -53,7 +53,6 @@ checkAccess('admin');
                 <th class="py-2 px-4 border text-center ">Email</th>
                 <th class="py-2 px-4 border text-center ">Species</th>
                 <th class="py-2 px-4 border text-center ">Breed</th>
-                <th class="py-2 px-4 border text-center ">Age</th>
                 <th class="py-2 px-4 border text-center ">Number of Involved</th>
                 <th class="py-2 px-4 border text-center ">Type of Abuse</th>
                 <th class="py-2 px-4 border text-center ">Description</th>
@@ -77,7 +76,6 @@ checkAccess('admin');
             echo "<td class='py-2 px-2  text-center '>" . htmlspecialchars($row['email']) . "</td>";
             echo "<td class='py-2 px-2  text-center '>" . htmlspecialchars($row['species']) . "</td>";
             echo "<td class='py-2 px-2  text-center '>" . htmlspecialchars($row['breed']) . "</td>";
-            echo "<td class='py-2 px-2  text-center '>" . htmlspecialchars($row['age']) . "</td>";
             echo "<td class='py-2 px-2  text-center '>" . htmlspecialchars($row['numabuse']) . "</td>";
             echo "<td class='py-2 px-2  text-center '>" . htmlspecialchars($row['typeabuse']) . "</td>";
             echo "<td class='py-2 px-2  text-center '>" . htmlspecialchars($row['descript']) . "</td>";

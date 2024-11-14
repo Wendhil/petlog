@@ -200,7 +200,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </div>
 </div>
-<script src="disc/js/script.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     // Close Modal Functionality
@@ -210,5 +209,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   });
 </script>
 <?php endif; ?>
+<script src="disc/js/script.js"></script>
 </body>
 </html>

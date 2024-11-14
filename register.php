@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('admin/dbconn/config.php');
+include('dbconn/config.php');
 
 // Initialize error array
 $error = [];
