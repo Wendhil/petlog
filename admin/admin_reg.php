@@ -1,9 +1,10 @@
-  <?php
+<?php
 include('../dbconn/config.php');
 include('../dbconn/authentication.php');
-  checkAccess('admin');
+checkAccess('admin');
 
-  if (isset($_POST['updateReg'])) {
+// Handle Update Registration
+if (isset($_POST['updateReg'])) {
     $id = intval($_POST['id']); // Get the record ID
     $allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
     $targetDir = "../stored/pet_image";
@@ -11,44 +12,59 @@ include('../dbconn/authentication.php');
 
     // Get input values
     $ownerName = htmlspecialchars($_POST['owner_name']);
+    $email = htmlspecialchars($_POST['email']);
     $petName = htmlspecialchars($_POST['pet_name']);
     $petAge = htmlspecialchars($_POST['pet_age']);
     $petBreed = htmlspecialchars($_POST['pet_breed']);
     $address = htmlspecialchars($_POST['address']);
     $additionalInfo = htmlspecialchars($_POST['additional_info']);
 
+    // Fetch existing data to keep the current image if no new image is uploaded
+    $sql = "SELECT pet_image, pet_vaccine FROM register WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $existingData = $result->fetch_assoc();
+    } else {
+        echo "Record not found!";
+        exit;
+    }
+
     // Handle file uploads with a helper function
-    function handleFileUpload($fileInputName, $allowedTypes, $targetDir) {
+    function handleFileUpload($fileInputName, $allowedTypes, $targetDir, $existingFile = null) {
         if (isset($_FILES[$fileInputName]) && $_FILES[$fileInputName]['error'] === 0) {
             $fileType = mime_content_type($_FILES[$fileInputName]['tmp_name']);
             $fileSize = $_FILES[$fileInputName]['size'];
             if (in_array($fileType, $allowedTypes) && $fileSize <= 2 * 1024 * 1024) { // 2MB limit
                 $fileName = basename($_FILES[$fileInputName]['name']);
                 $sanitizedFile = preg_replace("/[^a-zA-Z0-9,\-_]/", "", $fileName); // Sanitize filename
-                $targetFile = $targetDir . $sanitizedFile;
+                $targetFile = $targetDir . DIRECTORY_SEPARATOR . $sanitizedFile;
 
                 if (move_uploaded_file($_FILES[$fileInputName]['tmp_name'], $targetFile)) {
                     return $targetFile;
                 }
             }
         }
-        return null;
+        return $existingFile;
     }
 
     // Handle the pet image upload
-    $petImagePath = handleFileUpload('pet_image', $allowedTypes, $targetDir) ?: $existingData['pet_image'];
+    $petImagePath = handleFileUpload('pet_image', $allowedTypes, $targetDir, $existingData['pet_image']);
 
     // Handle the vaccine record upload
-    $vaccineRecordPath = handleFileUpload('vaccine_record', $allowedTypes, $vaccineDir) ?: $existingData['pet_vaccine'];
+    $vaccineRecordPath = handleFileUpload('vaccine_record', $allowedTypes, $vaccineDir, $existingData['pet_vaccine']);
 
     // Update the database
-    $sql = "UPDATE register SET owner = ?, pet = ?, age = ?, breed = ?, address = ?, pet_image = ?, pet_vaccine = ?, additional_info = ? WHERE id = ?";
+    $sql = "UPDATE register SET owner = ?, email = ?, pet = ?, age = ?, breed = ?, address = ?, pet_image = ?, pet_vaccine = ?, additional_info = ? WHERE id = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssssssssi", $ownerName, $petName, $petAge, $petBreed, $address, $petImagePath, $vaccineRecordPath, $additionalInfo, $id);
+    $stmt->bind_param("ssssssssi", $ownerName, $email, $petName, $petAge, $petBreed, $address, $petImagePath, $vaccineRecordPath, $additionalInfo, $id);
 
     if ($stmt->execute()) {
         echo "<script>
-        alert('Registered updated successfully');
+        alert('Registration updated successfully');
         window.location.href = 'admin_reg.php';
         </script>";
     } else {
@@ -57,11 +73,8 @@ include('../dbconn/authentication.php');
     $stmt->close();
 }
 
-
-
-
-  // Delete record
-  if (isset($_GET['id'])) {
+// Handle Delete Record
+if (isset($_GET['id'])) {
     $id = intval($_GET['id']); // Sanitize the input
 
     // Prepare the delete statement
@@ -70,16 +83,17 @@ include('../dbconn/authentication.php');
 
     if ($stmt->execute()) {
         echo "<script>
-        alert('Registered deleted successfully');
+        alert('Registration deleted successfully');
         window.location.href = 'admin_reg.php';
         </script>";
     } else {
         echo "Error: " . $stmt->error;
     }
     $stmt->close();
-  }
+}
 
-  ?>
+?>
+
   <!DOCTYPE html>
   <html lang="en">
   <head>
@@ -109,6 +123,7 @@ include('../dbconn/authentication.php');
                   <tr class="bg-[#90e0ef]">
                     <th class="py-2 px-2 border text-center">ID</th>
                     <th class="py-2 px-2 border text-center">Owner Name</th>
+                    <th class="py-2 px-2 border text-center">Email</th>
                     <th class="py-2 px-2 border text-center">Pet Name</th>
                     <th class="py-2 px-2 border text-center">Pet Age</th>
                     <th class="py-2 px-2 border text-center">Pet Breed</th>
@@ -130,6 +145,7 @@ include('../dbconn/authentication.php');
                           echo "<tr>"; 
                           echo "<td class='py-1 px-1 text-center'>" . $row['id'] . "</td>";
                           echo "<td class='py-1 px-1 text-center'>" . $row['owner'] . "</td>";
+                          echo "<td class='py-1 px-1 text-center'>" . $row['email'] . "</td>";
                           echo "<td class='py-2 px-2 text-center'>" . $row['pet'] . "</td>";
                           echo "<td class='py-2 px-2 text-center'>" . $row['age'] . "</td>";
                           echo "<td class='py-2 px-2 text-center'>" . $row['breed'] . "</td>";
@@ -167,6 +183,11 @@ include('../dbconn/authentication.php');
                 <div>
                     <label for="updateOwnerName" class="block mb-2">Owner Name</label>
                     <input type="text" id="updateOwnerName" name="owner_name" class="border w-full p-2" required>
+                </div>
+
+                <div>
+                    <label for="updateEmail" class="block mb-2">Email</label>
+                    <input type="text" id="updateEmail" name="Email" class="border w-full p-2" required>
                 </div>
 
                 <div>
@@ -237,9 +258,10 @@ include('../dbconn/authentication.php');
     <script src="disc/js/script-admin.js"></script>
     <script>
 
-function openUpdateRegModal(id, owner, pet, age, breed, address, additional_info, pet_image, pet_vaccine) {
+function openUpdateRegModal(id, owner, email, pet, age, breed, address, additional_info, pet_image, pet_vaccine) {
             document.getElementById('updateRegId').value = id;
             document.getElementById('updateOwnerName').value = owner;
+            document.getElementById('updateEmail').value = email;
             document.getElementById('updatePetName').value = pet;
             document.getElementById('updatePetAge').value = age;
             document.getElementById('updatePetBreed').value = breed;

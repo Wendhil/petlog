@@ -1,17 +1,14 @@
 <?php
-include('../dbconn/config.php');
-include('../dbconn/authentication.php');
-checkAccess('user'); 
-include('../phpqrcode/qrlib.php');
+include('dbconn/config.php'); 
+include('phpqrcode/qrlib.php');
 
 $showModal = false; // To control modal visibility in HTML
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $error = array();
     $allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
-    $targetDir = "../stored/pet_image/";
-    $vaccineDir = "../stored/vaccine_record/";
+    $targetDir = "stored/pet_image/";
+    $vaccineDir = "stored/vaccine_record/";
 
     // Validate inputs
     if (empty($_POST['owner_name'])) {
@@ -19,11 +16,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         $ownerName = htmlspecialchars($_POST['owner_name']);
     }
-
+    
     if (empty($_POST['email'])) {
         $error['email'] = 'Email is required';
     } else {
-        $email = htmlspecialchars($_POST['email']);
+        $email = htmlspecialchars($_POST['email']); // Corrected variable assignment
     }
 
     if (empty($_POST['pet_name'])) {
@@ -92,35 +89,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Check for errors before database insertion
     if (empty($error)) {
         $sql = "INSERT INTO register (owner,email, pet, age, breed, address, pet_image, pet_vaccine, additional_info) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)";
 
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("sssssssss", $ownerName, $email, $petName, $petAge, $petBreed, $address, $petImagePath, $vaccineRecordPath, $additionalInfo);
 
         if ($stmt->execute()) {
-            // Generate QR code after successful insertion
-            $registrationID = $stmt->insert_id; // Get the last inserted ID (assuming it's auto-incremented)
-            
-            // URL for the pet's profile (adjust path based on directory structure)
-            $profileUrl = "Pet_profiling.php?id=" . $registrationID; // Make sure this path is correct
-            
-            // Or, if the page is in a subfolder:
-            // $profileUrl = "path/to/Pet_profiling.php?id=" . $registrationID;
+          // Generate QR code after successful insertion
+          $registrationID = $stmt->insert_id; // get the last inserted ID (assuming it's auto-incremented)
+          
+          // URL for the pet's profile (make sure the URL is accessible)
+          $profileUrl = "Pet_Profiling.php?id=" . $registrationID; // Example URL with registration ID
 
-            // Generate the QR code and save it to a file
-            $qrCodeFile = "qrUpload/pet_" . $registrationID . "_qr.png"; // Set the QR code file path
+         // Generate the QR code and save it to a file
+$qrCodeFile = "qrUpload/pet_" . $registrationID . "_qr.png"; // Set the QR code file path
 
-            // Make sure the qrUpload folder exists and is writable
-            if (!file_exists("qrUpload")) {
-                mkdir("qrUpload", 0777, true); // Create the folder if it doesn't exist
-            }
+// Make sure the qrUpload folder exists and is writable
+if (!file_exists("qrUpload")) {
+    mkdir("qrUpload", 0777, true); // Create the folder if it doesn't exist
+}
 
-            // Generate the QR code with the profile URL
-            QRcode::png($profileUrl, $qrCodeFile, QR_ECLEVEL_L, 10);
+QRcode::png($profileUrl, $qrCodeFile, QR_ECLEVEL_L, 10);
 
-            // Set $showModal to true to display the modal
-            $showModal = true;
-            unset($_POST); // Clear form data after submission
+// Set $showModal to true to display the modal
+$showModal = true;
+unset($_POST); // Clear form data after submission
 
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
@@ -131,8 +124,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 $conn->close();
-?>
 
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -157,12 +150,12 @@ $conn->close();
 <body class="flex bg-[#90e0ef]">
 
   <!-- Sidebar -->
-  <?php include ('disc/partials/sidebar.php'); ?>
+  
 
   <!-- Main Content with Navbar -->
   <div class="flex-1 flex flex-col">
     <!-- Top Navbar -->
-    <?php include('disc/partials/navbar.php'); ?>
+  
 
     <!-- Main Content Area -->
     <main id="mainContent" class="p-8">
