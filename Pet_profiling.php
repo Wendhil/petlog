@@ -1,5 +1,5 @@
 <?php
-include('../dbconn/config.php');  // Ensure your DB connection file is correct
+include('dbconn/config.php');  // Ensure your DB connection file is correct
 
 // Get user ID from the URL
 if (isset($_GET['id']) && is_numeric($_GET['id'])) {
@@ -59,13 +59,6 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 </p>
 
                     </div>
-                    <div class="flex justify-center space-x-4">
-                        <a href="index.php" 
-                           class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-                           Back to Home
-                        </a>
-                    </div>
-                </div>
             </div>
         </body>
         </html>
