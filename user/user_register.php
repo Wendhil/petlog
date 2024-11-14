@@ -102,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $registrationID = $stmt->insert_id; // Get the last inserted ID (assuming it's auto-incremented)
             
             // URL for the pet's profile (adjust path based on directory structure)
-            $profileUrl = "../Pet_profiling.php?id=" . $registrationID; // Make sure this path is correct
+            $profileUrl = "Pet_profiling.php?id=" . $registrationID; // Make sure this path is correct
             
             // Or, if the page is in a subfolder:
             // $profileUrl = "path/to/Pet_profiling.php?id=" . $registrationID;
