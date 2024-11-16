@@ -10,21 +10,14 @@ checkAccess('user');
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Barangay Animal Welfare</title>
-  <link rel="shortcut icon" href="img/logo2.png" type="image/x-icon">
+  <title>Dashboard | Barangay Animal Welfare</title>
+  <link rel="shortcut icon" href="img/barangay.png" type="image/x-icon">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="disc/css/style.css">
 </head>
-<style>
-  body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f4f7fb;
-            font-weight: bold;
-        }
-</style>
 
 <body class="flex bg-[#90e0ef] ">
 
@@ -38,17 +31,15 @@ checkAccess('user');
     <?php include('disc/partials/navbar.php'); ?>
 
     <!-- Main Content Area -->
-    <main id="mainContent" class="w-full">
-    <div class="w-full ">
+    <main id="mainContent" class=" justify-center items-center w-full">
+    <div class="justify-center items-center">
      <div class="grid grid-cols-2 p-4 mb-36 ">
-      <div class="min-w-fit">
+      <div class="">
       <img class="rounded-lg " src="img/animal_welfare.jpg" alt="animal_welfare">
       </div>
-      <div class="grid grid-cols-1 ml-4 p-4">
+      <div class="grid grid-cols-1 p-4">
         <h2 class="flex font-bold sm:text-3xl m-4 ">Barangay Animal Welfare</h2>
-        <p class="flex  m-4">Barangay Animal Welfare promotes animal well-being by encouraging responsible pet ownership, preventing abuse, addressing stray animal issues, and providing resources for pet care, all to foster a compassionate and safe community for animals and residents.</p>
-        <a href="user_adoption.php" class="flex justify-center items-center  hover:bg-blue-500 border-2 py-4 rounded-lg hover:text-white">Adoption Form</a>
-      </div>
+        <p class="flex m-4 text-gray-90">Barangay Animal Welfare promotes animal well-being by encouraging responsible pet ownership, preventing abuse, addressing stray animal issues, and providing resources for pet care, all to foster a compassionate and safe community for animals and residents.</p>
      </div>
      </div>
     

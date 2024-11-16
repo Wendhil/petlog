@@ -2,7 +2,7 @@
 include('../dbconn/config.php');
 include('../dbconn/authentication.php');
 checkAccess('user');
-include('phpqrcode/qrlib.php');
+include('../phpqrcode/qrlib.php');
 
 
 $showModal = false; // To control modal visibility in HTML
@@ -102,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           $registrationID = $stmt->insert_id; // get the last inserted ID (assuming it's auto-incremented)
           
           // URL for the pet's profile (make sure the URL is accessible)
-          $profileUrl = "../Pet_Profiling.php?id=" . $registrationID; // Example URL with registration ID
+          $profileUrl = "localhost/petlog/Pet_profiling.php?id=" . $registrationID; // Example URL with registration ID
 
          // Generate the QR code and save it to a file
 $qrCodeFile = "../qrUpload/pet_" . $registrationID . "_qr.png"; // Set the QR code file path
@@ -143,13 +143,6 @@ $conn->close();
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
-<style>
-   body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f4f7fb;
-            font-weight: bold;
-        }
-</style>
 <body class="flex bg-[#90e0ef]">
 
   <!-- Sidebar -->
@@ -244,7 +237,7 @@ $conn->close();
                 Download QR Code
             </a>
             <!-- View Profile Button -->
-             <a href="Pet_profiling.php?id=<?php echo $registrationID; ?>" 
+             <a href="../Pet_profiling.php?id=<?php echo $registrationID; ?>" 
                target='_blank' 
                class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
                 View Profile
@@ -256,7 +249,6 @@ $conn->close();
         </div>
     </div>
 </div>
-<script src="disc/js/script.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     // Close Modal Functionality
@@ -266,6 +258,6 @@ $conn->close();
   });
 </script>
 <?php endif; ?>
-
+<script src="disc/js/script.js"></script>
 </body>
 </html>

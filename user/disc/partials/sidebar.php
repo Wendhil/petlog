@@ -1,13 +1,4 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-<style>
-    .font-poppins {
-    font-family: 'Poppins', sans-serif;
-}
-  </style>
-
-<div id="sidebar" class="bg-blue-600 text-white w-64 transition-width duration-300 min-h-screen flex flex-col sidebar-expanded">
+<div id="sidebar" class="bg-blue-600 text-white w-64 transition-width duration-300 min-h-screen flex flex-col sidebar-expanded sticky top-0">
     <div class="flex justify-center ">
       <div class="flex justify-center p-4 ">
         <img width="100" height="100"  src="img/barangay.png" alt="">
@@ -32,6 +23,23 @@
       </a>
       
       <div class="relative">
+        <button onclick="toggleDropdown('RegDropdownContent', 'RegArrowIcon')" class="flex items-center justify-between p-2 w-full text-left hover:bg-blue-700 rounded transition duration-300">
+          <div class="flex items-center space-x-4">
+          <i class="fa-solid fa-users-gear"></i>
+            <span class="sidebar-text">Registration</span>
+          </div>
+          <svg id="RegArrowIcon" class="sidebar-text h-5 w-5 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div id="RegDropdownContent" class="ml-10 text-gray-200 hidden">
+       <a href="user_register.php" data-content="PetReg" class="sidebar-text block p-2 hover:bg-blue-700 rounded content-link">Pet Registration</a></span>
+       <a href="user_mypets.php" data-content="PetRegList" class="sidebar-text block p-2 hover:bg-blue-700 rounded content-link">My Pets</a></span>
+
+        </div>
+      </div>
+      
+      <div class="relative">
         <button onclick="toggleDropdown('adoptionDropdownContent', 'adoptionArrowIcon')" class="flex items-center justify-between p-2 w-full text-left hover:bg-blue-700 rounded transition duration-300">
           <div class="flex items-center space-x-4">
           <i class="fa-solid fa-user"></i>
@@ -42,22 +50,35 @@
           </svg>
         </button>
         <div id="adoptionDropdownContent" class="ml-10 text-gray-200 hidden">
-       <a href="user_petview.php" data-content="adoptionView" class="sidebar-text block p-2 hover:bg-blue-700 rounded content-link">Our animals</a></span>
-       <a href="user_adoption.php" data-content="adoptionForm" class="sidebar-text block p-2 hover:bg-blue-700 rounded content-link">Adoption Form</a></span>
+       <a href="user_petview.php" data-content="adoptionView" class="sidebar-text block p-2 hover:bg-blue-700 rounded content-link">Pet Adoption</a></span>
+       <a href="user_adoption.php" data-content="adoptionForm" class="sidebar-text block p-2 hover:bg-blue-700 rounded content-link">Open For Adoption</a></span>
+
+        </div>
+      </div>
+      
+
+      <div class="relative">
+        <button onclick="toggleDropdown('reportDropdownContent', 'reportArrowIcon')" class="flex items-center justify-between p-2 w-full text-left hover:bg-blue-700 rounded transition duration-300">
+          <div class="flex items-center space-x-4">
+          <i class="fa-solid fa-circle-exclamation"></i>
+            <span class="sidebar-text">Report</span>
+          </div>
+          <svg id="reportArrowIcon" class="sidebar-text h-5 w-5 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div id="reportDropdownContent" class="ml-10 text-gray-200 hidden">
+       <a href="#" data-content="missingreport" class="sidebar-text block p-2 hover:bg-blue-700 rounded content-link">Report Animal Missing</a></span>
+       <a href="user_reportCruelty.php" data-content="reportcruelty" class="sidebar-text block p-2 hover:bg-blue-700 rounded content-link">Report Animal Cruelty</a></span>
           <a href=""></a>
         </div>
       </div>
-
-      <a href="user_register.php" class="flex items-center space-x-4 p-2 hover:bg-blue-700 rounded content-link">
-      <i class="fa-solid fa-users-gear"></i>
-        <span class="sidebar-text">Registration Form</span>
-      </a>
-
-      <a href="user_report.php" data-content="registration" class="flex items-center space-x-4 p-2 hover:bg-blue-700 rounded content-link">
+  
+    <!--  <a href="#" data-content="registration" class="flex items-center space-x-4 p-2 hover:bg-blue-700 rounded content-link">
       <i class="fa-solid fa-circle-exclamation"></i>
-        <span class="sidebar-text">Service Report</span>
+        <span class="sidebar-text">History</span>
       </a>
-    
+-->
       
     </nav>
   </div>

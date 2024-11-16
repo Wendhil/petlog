@@ -41,32 +41,33 @@ function closePopup() {
 
  
 
- function toggleDropdown(dropdownContentId, arrowIconId) {
-  const dropdownContent = document.getElementById(dropdownContentId);
-  const arrowIcon = document.getElementById(arrowIconId);
+  function toggleDropdown(dropdownContentId, arrowIconId) {
+    // Get all dropdown contents and arrow icons
+    const allDropdownContents = document.querySelectorAll('.dropdown-content');
+    const allArrowIcons = document.querySelectorAll('.sidebar-text svg');
+  
+    // Loop through all dropdowns and close them
+    allDropdownContents.forEach((content) => {
+      if (content.id !== dropdownContentId) {
+        content.classList.add('hidden'); // Close other dropdowns
+      }
+    });
+  
+    allArrowIcons.forEach((icon) => {
+      if (icon.id !== arrowIconId) {
+        icon.classList.remove('rotate-90'); // Reset other arrow rotations
+      }
+    });
+  
+    // Toggle the current dropdown and arrow
+    const dropdownContent = document.getElementById(dropdownContentId);
+    const arrowIcon = document.getElementById(arrowIconId);
+  
+    dropdownContent.classList.toggle('hidden'); // Toggle visibility
+    arrowIcon.classList.toggle('rotate-90'); // Rotate arrow
+  }
+  //end:sidebar
 
-  // Toggle the current dropdown
-  dropdownContent.classList.toggle('hidden');
-  arrowIcon.classList.toggle('rotate-180');
-
-  // Close other dropdowns if they're open
-  const allDropdownContents = document.querySelectorAll('.dropdown-content');
-  const allArrowIcons = document.querySelectorAll('.transform');
-
-  allDropdownContents.forEach(content => {
-    if (content.id !== dropdownContentId && !content.classList.contains('hidden')) {
-      content.classList.add('hidden');
-    }
-  });
-
-  allArrowIcons.forEach(icon => {
-    if (icon.id !== arrowIconId && icon.classList.contains('rotate-180')) {
-      icon.classList.remove('rotate-180');
-    }
-  });
-}
-
-//end:sidebar
 
    // Open the modal
    function openModal() {
@@ -77,3 +78,38 @@ function closePopup() {
   function closeModal() {
     document.getElementById('adoptionModal').classList.add('hidden');
   }
+  
+
+  function adoptModal(){
+    document.getElementById('adoptModal').classList.remove('hidden');
+  }
+  
+  function closeAdoptModal(){
+    document.getElementById('adoptModal').classList.add('hidden');
+  }
+
+    // Function to show the modal
+    function showModal() {
+      document.getElementById('logoutModal').style.display = 'flex';
+  }
+
+  // Function to hide the modal
+  function closeModal() {
+      document.getElementById('logoutModal').style.display = 'none';
+  }
+
+  // Function to handle the logout logic
+  function confirmLogout() {
+      window.location.href = '../logout.php';
+  }
+
+  // Optional: Close modal when clicking outside of it
+  window.onclick = function(event) {
+      const modal = document.getElementById('logoutModal');
+      if (event.target === modal) {
+          closeModal();
+      }
+  };
+
+  // Attach the closeModal function to the Cancel button
+  document.getElementById('cancelBtn').onclick = closeModal;

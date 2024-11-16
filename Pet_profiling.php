@@ -1,5 +1,5 @@
 <?php
-include('dbconn/config.php');  // Ensure your DB connection file is correct
+include('dbconn/config.php'); // Ensure your DB connection file is correct
 
 // Get user ID from the URL
 if (isset($_GET['id']) && is_numeric($_GET['id'])) {
@@ -10,7 +10,6 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     $stmt = $conn->prepare($sql);
     
     if ($stmt === false) {
-        // Handle SQL error if preparation fails
         echo "<div class='text-center'><h1 class='text-red-600 font-bold text-lg'>SQL Error: Unable to prepare the query.</h1></div>";
         exit;
     }
@@ -23,11 +22,16 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
         // User found, fetch the user data
         $user = $result->fetch_assoc();
         
-        // Check if user has a picture, and set a default if not
-        $userImage = !empty($user['pet_image']) ? $user['pet_image'] : 'default-pet-image.jpg'; // Default image fallback
+        // Set the image path
+        $userImage = !empty($user['pet_image']) ? 'uploads/' . $user['pet_image'] : 'uploads/default-pet-image.jpg';
+
+        // Verify the image file exists
+        if (!file_exists($userImage)) {
+            $userImage = 'uploads/default-pet-image.jpg'; // Fallback if the file doesn't exist
+        }
         
         // Check if owner email exists
-        $Email = !empty($user['email']) ? $user['email'] : 'No email provided'; // Fallback if no email is available
+        $Email = !empty($user['email']) ? $user['email'] : 'No email provided';
         ?>
         <!DOCTYPE html>
         <html lang="en">
@@ -50,30 +54,28 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
                         <h1 class="text-2xl font-bold mb-2">Hello, I'm <?php echo htmlspecialchars($user['pet']); ?></h1>
                         
                         <!-- Emergency Notification Message -->
-                        <p class="text-gray-600 mb-4">In case of emergency, please notify my owner via 
-    <?php if ($Email !== 'No email provided'): ?>
-        <a href="mailto:<?php echo urlencode($Email); ?>" class="text-blue-600 hover:underline">email</a>.
-    <?php else: ?>
-        <span class="text-red-600">Email not provided</span>.<br>
-    <?php endif; ?>
-</p>
-
+                        <p class="text-gray-600 mb-4">
+                            In case of emergency, please notify my owner via 
+                            <?php if ($Email !== 'No email provided'): ?>
+                                <a href="mailto:<?php echo urlencode($Email); ?>" class="text-blue-600 hover:underline">email</a>.
+                            <?php else: ?>
+                                <span class="text-red-600">Email not provided</span>.
+                            <?php endif; ?>
+                        </p>
                     </div>
+                </div>
             </div>
         </body>
         </html>
         <?php
     } else {
-        // If no user found
         echo "<div class='text-center'><h1 class='text-red-600 font-bold text-lg'>User not found!</h1></div>";
     }
 
-    // Clean up and close the statement
-    $stmt->close();
+    $stmt->close(); // Close the statement
 } else {
-    // Invalid or missing ID in the URL
     echo "<div class='text-center'><h1 class='text-red-600 font-bold text-lg'>Invalid request!</h1></div>";
 }
 
-$conn->close();  // Close the database connection
+$conn->close(); // Close the database connection
 ?>

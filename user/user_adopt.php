@@ -2,6 +2,7 @@
 include('../dbconn/config.php');
 include('../dbconn/authentication.php');
 checkAccess('user'); 
+
 $error = array(); // Array to store validation errors
 
 $showModal = false; // To control modal visibility in HTML
@@ -98,16 +99,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body class="flex bg-[#90e0ef]">
 
   <!-- Sidebar -->
-  <?php// include ('disc/partials/sidebar.php'); ?>
+  <?php include ('disc/partials/sidebar.php'); ?>
 
   <!-- Main Content with Navbar -->
   <div class="flex-1 flex flex-col">
     <!-- Top Navbar -->
-    <?php //include('disc/partials/navbar.php'); ?>
+    <?php include('disc/partials/navbar.php'); ?>
 
     <!-- Main Content Area -->
     <main id="mainContent" class="p-8">
