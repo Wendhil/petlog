@@ -130,7 +130,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Report Cruelty | Barangay Animal Welfare</title>
-    <link rel="shortcut icon" href="img/barangay.png" type="image/x-icon">
+    <link rel="shortcut icon" href="img/barangay.png"    type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="disc/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -252,4 +252,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <script src="disc/js/script.js"></script>
 </body>
 </html>
-zz

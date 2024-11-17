@@ -2,44 +2,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-<style>
-    /* Modal Styles */
-    .modal-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-        z-index: 999; /* Ensures it appears above other content */
-        display: none; /* Hide by default */
-        align-items: center;
-        justify-content: center;
-    }
-
-    .modal-content {
-        background-color: white;
-        padding: 20px;
-        border-radius: 8px;
-        max-width: 400px;
-        width: 90%;
-        z-index: 1000; /* Ensure modal content is above the overlay */
-        text-align: center;
-    }
-
-    /* Header Styles */
-    .header {
-        background-color: #2563eb;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        padding: 1rem;
-        margin: 0.5rem;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        border-radius: 0.5rem;
-    }
-</style>
-
 <!-- Header with Logout Button -->
 <header class="header">
     <button id="sidebarToggle" class="text-white focus:outline-none">
@@ -55,15 +17,19 @@
     </div>
 </header>
 
-<!-- Modal for Logout Confirmation -->
-<div class="modal-overlay" id="logoutModal">
-    <div class="modal-content">
-        <p>Are you sure you want to logout?</p>
-        <button id="cancelBtn" class="bg-gray-300 p-2 rounded-md mr-2">Cancel</button>
-        <button onclick="confirmLogout()" class="bg-red-500 text-white p-2 rounded-md">Confirm Logout</button>
+<div id="logoutModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 hidden">
+    <div class="bg-white p-12 rounded-lg shadow-lg text-center">
+        <p class="text-lg font-semibold mb-4">Are you sure you want to logout?</p>
+        <div class="flex justify-center">
+            <button id="cancelBtn" class="bg-gray-300 hover:bg-gray-400 text-black p-2 rounded-md mr-2">
+                Cancel
+            </button>
+            <button onclick="confirmLogout()" class="bg-red-500 hover:bg-red-600 text-white p-2 rounded-md">
+                Confirm Logout
+            </button>
+        </div>
     </div>
 </div>
-
 <script>
     // Function to show the modal
     function showModal() {

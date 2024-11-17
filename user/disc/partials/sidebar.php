@@ -1,3 +1,8 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" 
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" 
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
 <div id="sidebar" class="bg-blue-600 text-white w-64 transition-width duration-300 min-h-screen flex flex-col sidebar-expanded sticky top-0">
     <div class="flex justify-center ">
       <div class="flex justify-center p-4 ">
@@ -64,7 +69,7 @@
             <span class="sidebar-text">Report</span>
           </div>
           <svg id="reportArrowIcon" class="sidebar-text h-5 w-5 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-zzzzlinejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
           </svg>
         </button>
         <div id="reportDropdownContent" class="ml-10 text-gray-200 hidden">
