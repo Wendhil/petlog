@@ -102,16 +102,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body class="flex bg-[#90e0ef]">
 
   <!-- Sidebar -->
-  <?php// include ('disc/partials/sidebar.php'); ?>
+  <?php include ('disc/partials/sidebar.php'); ?>
 
   <!-- Main Content with Navbar -->
   <div class="flex-1 flex flex-col">
     <!-- Top Navbar -->
-    <?php //include('disc/partials/navbar.php'); ?>
+    <?php include('disc/partials/navbar.php'); ?>
 
     <!-- Main Content Area -->
     <main id="mainContent" class="p-8">
       <form action="" method="POST" class="bg-white p-8 rounded-lg shadow-md w-full">
+      
       <i class="fas fa-paw text-3xl text-blue-500 mb-2"></i> <h2 class="text-2xl font-bold mb-6 text-center">Adoption Form</h2>
         <div class="grid grid-cols-2">
           <div class="">

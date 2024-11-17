@@ -64,13 +64,12 @@
             <span class="sidebar-text">Report</span>
           </div>
           <svg id="reportArrowIcon" class="sidebar-text h-5 w-5 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            <path stroke-linecap="round" stroke-zzzzlinejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
           </svg>
         </button>
         <div id="reportDropdownContent" class="ml-10 text-gray-200 hidden">
-       <a href="#" data-content="missingreport" class="sidebar-text block p-2 hover:bg-blue-700 rounded content-link">Report Animal Missing</a></span>
+       <a href="user_reportMissing.php" data-content="missingreport" class="sidebar-text block p-2 hover:bg-blue-700 rounded content-link">Report Animal Missing</a></span>
        <a href="user_reportCruelty.php" data-content="reportcruelty" class="sidebar-text block p-2 hover:bg-blue-700 rounded content-link">Report Animal Cruelty</a></span>
-          <a href=""></a>
         </div>
       </div>
   

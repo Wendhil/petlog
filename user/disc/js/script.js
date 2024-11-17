@@ -68,48 +68,4 @@ function closePopup() {
   }
   //end:sidebar
 
-
-   // Open the modal
-   function openModal() {
-    document.getElementById('adoptionModal').classList.remove('hidden');
-  }
-
-  // Close the modal
-  function closeModal() {
-    document.getElementById('adoptionModal').classList.add('hidden');
-  }
   
-
-  function adoptModal(){
-    document.getElementById('adoptModal').classList.remove('hidden');
-  }
-  
-  function closeAdoptModal(){
-    document.getElementById('adoptModal').classList.add('hidden');
-  }
-
-    // Function to show the modal
-    function showModal() {
-      document.getElementById('logoutModal').style.display = 'flex';
-  }
-
-  // Function to hide the modal
-  function closeModal() {
-      document.getElementById('logoutModal').style.display = 'none';
-  }
-
-  // Function to handle the logout logic
-  function confirmLogout() {
-      window.location.href = '../logout.php';
-  }
-
-  // Optional: Close modal when clicking outside of it
-  window.onclick = function(event) {
-      const modal = document.getElementById('logoutModal');
-      if (event.target === modal) {
-          closeModal();
-      }
-  };
-
-  // Attach the closeModal function to the Cancel button
-  document.getElementById('cancelBtn').onclick = closeModal;

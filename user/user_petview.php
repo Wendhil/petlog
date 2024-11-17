@@ -110,7 +110,9 @@ checkAccess('user');
           </button>
         </div>
       </div>
-    </div>    <div class="card bg-white shadow-md rounded-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl">
+    </div>    
+    
+    <div class="card bg-white shadow-md rounded-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl">
       <img src="../stored/pet_image/cat3.jpg" alt="Animal" class="w-full h-45 object-cover">
       <div class="p-4">
         <h2 class="font-bold text-lg text-center mb-2">Jhonny</h2>
@@ -121,7 +123,9 @@ checkAccess('user');
           </button>
         </div>
       </div>
-    </div>    <div class="card bg-white shadow-md rounded-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl">
+    </div>    
+    
+    <div class="card bg-white shadow-md rounded-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl">
       <img src="../stored/pet_image/dog3.jpg" alt="Animal" class="w-full h-45 object-cover">
       <div class="p-4">
         <h2 class="font-bold text-lg text-center mb-2">miles</h2>
@@ -136,30 +140,14 @@ checkAccess('user');
     <!-- Add more cards as needed -->
   </div>
  
-  <!-- Modal -->
-  <div id="adoptionModal" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 hidden">
-    <div class="bg-white rounded-lg w-96 p-6 shadow-lg">
-      <h2 class="text-2xl font-bold mb-4">Adopt Animal Name</h2>
-      <p class="text-gray-600 mb-4">Here's some more detailed information about this animal, including its age, breed, and personality traits.</p>
-      <p class="text-gray-600 mb-4">Type: Dog</p>
-      <p class="text-gray-600 mb-4">Age: 2 years</p>
-      <p class="text-gray-600 mb-4">Breed: Labrador</p>
-      <div class="flex justify-end">
-        <button onclick="closeModal()" class="bg-red-600 text-white px-4 py-2 rounded mr-2 hover:bg-red-700 transition duration-300">Close</button>
-        <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition duration-300"><a href="user_adoption.php">Proceed to Adopt</a></button>
-      </div>
-    </div>
-  </div>
-
-
     <!-- Modal -->
     <div id="adoptionModal" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 hidden">
     <div class="bg-white rounded-lg w-96 p-6 shadow-lg">
-      <h2 class="text-2xl font-bold mb-4">Adopt Animal Name</h2>
-      <p class="text-gray-600 mb-4">Here's some more detailed information about this animal, including its age, breed, and personality traits.</p>
-      <p class="text-gray-600 mb-4">Type: Dog</p>
-      <p class="text-gray-600 mb-4">Age: 2 years</p>
-      <p class="text-gray-600 mb-4">Breed: Labrador</p>
+      <h2 class="text-2xl font-bold mb-4">Name</h2>
+      <p class="text-gray-600 mb-4">Information.</p>
+      <p class="text-gray-600 mb-4">Type: </p>
+      <p class="text-gray-600 mb-4">Age: </p>
+      <p class="text-gray-600 mb-4">Breed: </p>
       <div class="flex justify-end">
         <button onclick="closeModal()" class="bg-red-600 text-white px-4 py-2 rounded mr-2 hover:bg-red-700 transition duration-300">Close</button>
         <a href="user_adopt.php" target="_blank" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition duration-300 inline-block">
@@ -173,8 +161,21 @@ checkAccess('user');
 </div>   
     </main>
   </div>
-
   <script src="disc/js/script.js"></script>
+  <script>
+  // Open the modal
+  function openModal() {
+    document.getElementById('adoptionModal').classList.remove('hidden');
+  }
+
+  // Close the modal
+  function closeModal(event = null) {
+    // Close modal only if clicked on the background or when triggered directly
+    if (!event || event.target.id === 'adoptionModal') {
+      document.getElementById('adoptionModal').classList.add('hidden');
+    }
+  }
+</script>
 </body>
 </html>
 

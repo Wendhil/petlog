@@ -153,7 +153,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <main id="mainContent" class="p-8">
         <div class="flex justify-center items-center w-full">
             <form action="" method="POST" class="bg-white p-8 rounded-lg shadow-md w-full" enctype="multipart/form-data">
-            <i class="fas fa-paw text-3xl text-blue-500 mb-2"></i><h2 class="text-2xl font-bold mb-6 text-center">Report Cruelty</h2>
+            <i class="fas fa-paw text-3xl text-blue-500 mb-2"></i><h2 class="text-2xl font-bold mb-6 text-center">LOST AND FOUND PETS</h2>
                 <div class="grid grid-cols-2 gap-4">
 
                     <!-- Report Party Field -->
@@ -163,26 +163,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <?php if (isset($error['report_party'])) echo "<span class='text-red-500 text-sm'>" . $error['report_party'] . "</span>"; ?>
                     </div>
 
+                      <!-- Email Field -->
+                      <div>
+                        <label class="block text-gray-700" for="email">Email</label>
+                        <input class="w-full p-2 border border-gray-300 rounded mt-1" name="email" type="email" value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>" >
+                        <?php if (isset($error['email'])) echo "<span class='text-red-500 text-sm'>" . $error['email'] . "</span>"; ?>
+                    </div>
+
+
                     <!-- Phone Field -->
                     <div>
                         <label class="block text-gray-700" for="phone">Phone</label>
                         <input class="w-full p-2 border border-gray-300 rounded mt-1" name="phone" type="tel" value="<?php echo isset($_POST['phone']) ? htmlspecialchars($_POST['phone']) : ''; ?>" >
                         <?php if (isset($error['phone'])) echo "<span class='text-red-500 text-sm'>" . $error['phone'] . "</span>"; ?>
                     </div>
-
-                    <!-- Email Field -->
-                    <div>
-                        <label class="block text-gray-700" for="email">Email</label>
-                        <input class="w-full p-2 border border-gray-300 rounded mt-1" name="email" type="email" value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>" >
-                        <?php if (isset($error['email'])) echo "<span class='text-red-500 text-sm'>" . $error['email'] . "</span>"; ?>
-                    </div>
-
-                    <!-- Species Field -->
-                    <div>
-                        <label class="block text-gray-700" for="species">Species</label>
-                        <input class="w-full p-2 border border-gray-300 rounded mt-1" name="species" type="text" value="<?php echo isset($_POST['species']) ? htmlspecialchars($_POST['species']) : ''; ?>" >
-                        <?php if (isset($error['species'])) echo "<span class='text-red-500 text-sm'>" . $error['species'] . "</span>"; ?>
-                    </div>
+         
 
                     <!-- Breed Field -->
                     <div>
@@ -190,39 +185,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <input class="w-full p-2 border border-gray-300 rounded mt-1" name="breed" type="text" value="<?php echo isset($_POST['breed']) ? htmlspecialchars($_POST['breed']) : ''; ?>" >
                         <?php if (isset($error['breed'])) echo "<span class='text-red-500 text-sm'>" . $error['breed'] . "</span>"; ?>
                     </div>
-
-               
-                    <!-- Number of Abuse Field -->
+ 
                     <div>
-                        <label class="block text-gray-700" for="number">Number of Abuses</label>
-                        <input class="w-full p-2 border border-gray-300 rounded mt-1" name="number" type="number" value="<?php echo isset($_POST['number']) ? htmlspecialchars($_POST['number']) : ''; ?>" >
-                        <?php if (isset($error['number'])) echo "<span class='text-red-500 text-sm'>" . $error['number'] . "</span>"; ?>
+                        <label class="block text-gray-700" for="breed">Place Lost/Found</label>
+                        <input class="w-full p-2 border border-gray-300 rounded mt-1" name="breed" type="text" value="<?php echo isset($_POST['breed']) ? htmlspecialchars($_POST['breed']) : ''; ?>" >
+                        <?php if (isset($error['breed'])) echo "<span class='text-red-500 text-sm'>" . $error['breed'] . "</span>"; ?>
                     </div>
-
-                    <!-- Nature of Abuse Field -->
+               
+                    <!-- Gender -->
                    <div>
-            <label class="block text-gray-700" for="abuse_nature">Nature of Abuse</label>
+            <label class="block text-gray-700" for="gender">Gender</label>
             <select class="w-full p-2 border border-gray-300 rounded mt-1" name="abuse_nature" >
-                <option value="">Select Nature of Abuse</option>
-                <option value="Physical Abuse" <?php echo (isset($_POST['abuse_nature']) && $_POST['abuse_nature'] == 'Physical Abuse') ? 'selected' : ''; ?>>Physical Abuse</option>
-                <option value="Emotional Abuse" <?php echo (isset($_POST['abuse_nature']) && $_POST['abuse_nature'] == 'Emotional Abuse') ? 'selected' : ''; ?>>Emotional Abuse</option>
-                <option value="Neglect" <?php echo (isset($_POST['abuse_nature']) && $_POST['abuse_nature'] == 'Neglect') ? 'selected' : ''; ?>>Neglect</option>
-                <option value="Abandonment" <?php echo (isset($_POST['abuse_nature']) && $_POST['abuse_nature'] == 'Abandonment') ? 'selected' : ''; ?>>Abandonment</option>
-                <option value="Other" <?php echo (isset($_POST['abuse_nature']) && $_POST['abuse_nature'] == 'Other') ? 'selected' : ''; ?>>Other</option>
+                <option value="">Select</option>
+                <option value="male" <?php echo (isset($_POST['male']) && $_POST['male'] == 'male') ? 'selected' : ''; ?>>Male</option>
+                <option value="female" <?php echo (isset($_POST['female']) && $_POST['female'] == 'female') ? 'selected' : ''; ?>>Female</option>
+                <option value="unsure" <?php echo (isset($_POST['unsure']) && $_POST['unsre'] == 'unsure') ? 'selected' : ''; ?>>Unsure</option>
             </select>
-            <?php if (isset($error['abuse_nature'])) echo "<span class='text-red-500 text-sm'>" . $error['abuse_nature'] . "</span>"; ?>
-        </div>
+            <?php if (isset($error['gender'])) echo "<span class='text-red-500 text-sm'>" . $error['gender'] . "</span>"; ?>
 
-                    <!-- Incident Description Field -->
-                    <div class="col-span-2">
+                    
+                  </div>
+                  <div>
                         <label class="block text-gray-700" for="description">Description</label>
                         <textarea class="w-full p-2 border border-gray-300 rounded mt-1" name="description" ><?php echo isset($_POST['description']) ? htmlspecialchars($_POST['description']) : ''; ?></textarea>
                         <?php if (isset($error['description'])) echo "<span class='text-red-500 text-sm'>" . $error['description'] . "</span>"; ?>
                     </div>
-
-                    <!-- Evidence File Upload -->
-                    <div class="col-span-2">
-                        <label class="block text-gray-700" for="imgInput">Evidence Upload</label>
+                    <!-- photo Upload -->
+                    <div>
+                        <label class="block text-gray-700" for="imgInput">Photo Upload</label>
                         <input class="w-full p-2 border border-gray-300 rounded mt-1" name="imgInput" type="file" >
                         <?php if (isset($error['imgInput'])) echo "<span class='text-red-500 text-sm'>" . $error['imgInput'] . "</span>"; ?>
                     </div>
@@ -230,7 +220,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
 
                 <div class="flex justify-center mt-6">
-                    <button type="submit" class="bg-blue-600 text-white p-2 rounded">Submit Report</button>
+                    <button type="submit" class="bg-blue-600 text-white p-2 rounded">Submit</button>
                 </div>
             </form>
         </div>
@@ -241,7 +231,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <?php if ($showModal): ?>
 <div id="successModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
     <div class="bg-white p-6 rounded shadow-lg text-center">
-        <h2 class="text-xl font-bold mb-4">Report Successful!</h2>
+        <h2 class="text-xl font-bold mb-4">Successful submitted!</h2>
         <!-- Buttons -->
         <div class="flex justify-center space-x-4">
             <button id="closeModal" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
@@ -262,3 +252,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <script src="disc/js/script.js"></script>
 </body>
 </html>
+zz
