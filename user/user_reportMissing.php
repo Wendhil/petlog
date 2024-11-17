@@ -18,12 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $reportParty = htmlspecialchars($_POST['report_party']);
     }
 
-    if (empty($_POST['phone'])) {
-        $error['phone'] = "Phone is required";
-    } else {
-        $phone = htmlspecialchars($_POST['phone']);
-    }
-
     if (empty($_POST['email'])) {
         $error['email'] = "Email is required";
     } else {
@@ -35,11 +29,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 
-    if (empty($_POST['species'])) {
-        $error['species'] = "Species is required";
+    if (empty($_POST['phone'])) {
+        $error['phone'] = "Phone is required";
     } else {
-        $species = htmlspecialchars($_POST['species']);
+        $phone = htmlspecialchars($_POST['phone']);
     }
+
 
     if (empty($_POST['breed'])) {
         $error['breed'] = "Breed is required";
@@ -47,22 +42,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $breed = htmlspecialchars($_POST['breed']);
     }
 
-    if (empty($_POST['number'])) {
-        $error['number'] = "Number is required";
+    if (empty($_POST['place'])) {
+        $error['place'] = "this is required";
     } else {
-        $number = htmlspecialchars($_POST['number']);
+        $place = htmlspecialchars($_POST['place']);
     }
 
-    if (empty($_POST['abuse_nature'])) {
-        $error['abuse_nature'] = "Nature of Abuse is required";
+    if (empty($_POST['gender'])) {
+        $error['gender'] = "this is required";
     } else {
-        $abuse_nature = htmlspecialchars($_POST['abuse_nature']);
+        $gender = htmlspecialchars($_POST['gender']);
     }
+
 
     if (empty($_POST['description'])) {
         $error['description'] = "Description is required";
     } else {
-        $incidentDescription = htmlspecialchars($_POST['description']);
+        $descript = htmlspecialchars($_POST['description']);
     }
 
     // Handle file upload
@@ -79,8 +75,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         elseif ($fileSize > 2 * 1024 * 1024) {
             $error['imgInput'] = "File size should not exceed 2MB";
         } else {
-            $evidenceFile = basename($_FILES['imgInput']['name']);
-            $targetDir = "../stored/reportEvidence/";
+            $photoFile = basename($_FILES['imgInput']['name']);
+            $targetDir = "../stored/pet_image/";
 
             // Ensure the target directory exists
             if (!is_dir($targetDir)) {
@@ -88,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
 
             // Sanitize the filename and prepare the target file path
-            $targetFile = $targetDir . preg_replace("/[^a-zA-Z0-9.\-_]/", "", $evidenceFile); 
+            $targetFile = $targetDir . preg_replace("/[^a-zA-Z0-9.\-_]/", "", $photoFile); 
 
             // Move the uploaded file to the target directory
             if (!move_uploaded_file($_FILES['imgInput']['tmp_name'], $targetFile)) {
@@ -101,22 +97,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Check if there are no errors before inserting into the database
     if (empty($error)) {
-        $sql = "INSERT INTO reports (name, phone, email, species, breed, numabuse, typeabuse, descript, evidence) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO Missing (m_name, m_mail, m_phone, m_breed, m_place, m_descript, m_photo) 
+        VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-        // Bind parameters
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sssssssss", $reportParty, $phone, $email, $species, $breed, $number, $abuse_nature, $incidentDescription, $targetFile);
+       $stmt = $conn->prepare($sql);
 
-        // Execute and check for success
-        if ($stmt->execute()) {
-            $showModal = true;
-            unset($_POST);
-        } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+         if (!$stmt) {
+           die("Error preparing statement: " . $conn->error);
         }
 
+          $stmt->bind_param("sssssss", $reportParty, $email, $phone, $breed, $place, $descript, $targetFile);
+
+// Execute and check for success
+           if ($stmt->execute()) {
+          $showModal = true;
+           unset($_POST);
+          } else {
+             echo "Error executing query: " . $stmt->error;
+           }
+
         $stmt->close();
+
     }
 
     $conn->close();
@@ -187,15 +188,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
  
                     <div>
-                        <label class="block text-gray-700" for="breed">Place Lost/Found</label>
-                        <input class="w-full p-2 border border-gray-300 rounded mt-1" name="breed" type="text" value="<?php echo isset($_POST['breed']) ? htmlspecialchars($_POST['breed']) : ''; ?>" >
-                        <?php if (isset($error['breed'])) echo "<span class='text-red-500 text-sm'>" . $error['breed'] . "</span>"; ?>
+                        <label class="block text-gray-700" for="place">Place Lost/Found</label>
+                        <input class="w-full p-2 border border-gray-300 rounded mt-1" name="place" type="text" value="<?php echo isset($_POST['place']) ? htmlspecialchars($_POST['place']) : ''; ?>" >
+                        <?php if (isset($error['place'])) echo "<span class='text-red-500 text-sm'>" . $error['place'] . "</span>"; ?>
                     </div>
                
                     <!-- Gender -->
                    <div>
             <label class="block text-gray-700" for="gender">Gender</label>
-            <select class="w-full p-2 border border-gray-300 rounded mt-1" name="abuse_nature" >
+            <select class="w-full p-2 border border-gray-300 rounded mt-1" name="gender" >
                 <option value="">Select</option>
                 <option value="male" <?php echo (isset($_POST['male']) && $_POST['male'] == 'male') ? 'selected' : ''; ?>>Male</option>
                 <option value="female" <?php echo (isset($_POST['female']) && $_POST['female'] == 'female') ? 'selected' : ''; ?>>Female</option>
