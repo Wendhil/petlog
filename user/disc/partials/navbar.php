@@ -5,11 +5,22 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
     </button>
-    <div class="relative">
-        <button id="logoutBtn" class="flex items-center gap-2 text-white hover:bg-blue-700 rounded-lg p-1 focus:outline-none transition duration-200 ease-in-out" onclick="showModal()">
+    <div class="relative flex">
+      <div class="flex items-center p-1 mr-4 gap-2 text-white">
+      <i class="fa-solid fa-bell"></i>
+      <span class="float-l absolute top-0 left-0 inline-flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-500 rounded-full">
+        99+
+      </span>
+      </div>
+      <div class="flex items-center p-1 mr-4 gap-2 text-white ">
+      <i class="fa-regular fa-user"></i>
+      </div>
+      <div class="">
+      <button id="logoutBtn" class="flex items-center gap-2 text-white hover:bg-blue-700 rounded-lg p-1 focus:outline-none transition duration-200 ease-in-out" onclick="showModal()">
             <i class="fas fa-sign-out-alt"></i>
-            <span class="hidden md:block">Logout</span> <!-- Show text only on larger screens -->
+            <span class="hidden md:block"></span> <!-- Show text only on larger screens -->
         </button>
+      </div>
     </div>
 </header>
 

@@ -55,8 +55,12 @@
           </svg>
         </button>
         <div id="adoptionDropdownContent" class="ml-10 text-gray-200 hidden">
-       <a href="user_petview.php" data-content="adoptionView" class="sidebar-text block p-2 hover:bg-blue-700 rounded content-link">Pet Adoption</a></span>
+
+        <a href="user_petview.php" data-content="adoptionView" class="sidebar-text block p-2 hover:bg-blue-700 rounded content-link">Pet Adoption</a></span>
+
        <a href="user_adoption.php" data-content="adoptionForm" class="sidebar-text block p-2 hover:bg-blue-700 rounded content-link">Open For Adoption</a></span>
+       
+       <a href="user_adoption.php" data-content="adoptionForm" class="sidebar-text block p-2 hover:bg-blue-700 rounded content-link">List Of Adoption</a></span>
 
         </div>
       </div>
@@ -75,6 +79,26 @@
         <div id="reportDropdownContent" class="ml-10 text-gray-200 hidden">
        <a href="user_reportMissing.php" data-content="missingreport" class="sidebar-text block p-2 hover:bg-blue-700 rounded content-link">Report Animal Missing</a></span>
        <a href="user_reportCruelty.php" data-content="reportcruelty" class="sidebar-text block p-2 hover:bg-blue-700 rounded content-link">Report Animal Cruelty</a></span>
+        </div>
+      </div>
+      
+      <div class="relative">
+        <button onclick="toggleDropdown('SettingDropdownContent', 'SettingArrowIcon')" class="flex items-center justify-between p-2 w-full text-left hover:bg-blue-700 rounded transition duration-300">
+          <div class="flex items-center space-x-4">
+          <i class="fa-solid fa-gear"></i>
+            <span class="sidebar-text">Settings</span>
+          </div>
+          <svg id="SettingArrowIcon" class="sidebar-text h-5 w-5 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div id="SettingDropdownContent" class="ml-10 text-gray-200 hidden">
+       <a href="#" data-content="missingreport" class="sidebar-text block p-2 hover:bg-blue-700 rounded content-link">
+        Change Profile
+       </a></span>
+       <a href="#" data-content="reportcruelty" class="sidebar-text block p-2 hover:bg-blue-700 rounded content-link">
+        Change Password
+       </a></span>
         </div>
       </div>
   
