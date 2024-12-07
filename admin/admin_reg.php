@@ -97,12 +97,7 @@ if (isset($_GET['id'])) {
   <!DOCTYPE html>
   <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Barangay Animal Welfare</title>
-    <link rel="shortcut icon" href="img/barangay.png" type="image/x-icon">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="disc/css/style.css">
+  <?php include('disc/partials/admin_header.php')?>
   </head>
   <body class="flex bg-[#90e0ef] font-poppins ">
 

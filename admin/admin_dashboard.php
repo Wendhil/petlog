@@ -47,16 +47,8 @@ for ($i = 0; $i < count($abuseTypes); $i++) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Barangay Animal Welfare</title>
-  <link rel="shortcut icon" href="img/barangay.png" type="image/x-icon">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="disc/css/style.css">
-  <link rel="stylesheet" href="css/style.css">
-  <script src="https://cdn.tailwindcss.com"></script>
+
+<?php include('disc/partials/admin_header.php'); ?>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
 
@@ -80,23 +72,23 @@ for ($i = 0; $i < count($abuseTypes); $i++) {
    <!-- Total Number of Pets Box -->
    <div class="bg-[#f6fff8] shadow-md rounded-lg p-2 w-full sm:w-1/2 text-center">
      <i class="fas fa-paw text-3xl text-blue-500 mb-2"></i> <!-- Paw icon for pets -->
-     <h2 class="text-lg font-bold mb-2">Total Pet Information</h2>
+     <h2 class="text-lg font-poppins font-semibold mb-2">Total Pet Information</h2>
      <p class="text-lg">Total Number of Pets:</p>
-     <span class="text-2xl font-bold"><?php echo $totalPets; ?></span>
+     <span class="text-2xl font-poppins font-semibold"><?php echo $totalPets; ?></span>
    </div>
 
    <!-- Total Breeds Box -->
    <div class="bg-[#f6fff8] shadow-md rounded-lg p-2 w-full sm:w-1/2 text-center">
      <i class="fas fa-dog text-3xl text-green-500 mb-2"></i> <!-- Dog icon for breeds -->
-     <h2 class="text-lg font-bold mb-2">Total Breeds</h2>
+     <h2 class="text-lg font-poppins font-semibold mb-2">Total Breeds</h2>
      <p class="text-lg">Total Breeds:</p>
-     <span class="text-2xl font-bold"><?php echo count($breedNames); ?></span>
+     <span class="text-2xl font-poppins font-semibold"><?php echo count($breedNames); ?></span>
    </div>
 </div>
 
     <!-- Combined Charts Box -->
     <div class="bg-[#f6fff8] rounded-lg shadow-md p-3 mb-4">
-      <h2 class="text-lg font-bold mb-4">Animal Data Distribution</h2>
+      <h2 class="text-lg font-poppins font-semibold mb-4">Animal Data Distribution</h2>
       <div class="chart-container">
         <canvas id="combinedChart"></canvas>
       </div>
