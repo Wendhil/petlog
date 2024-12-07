@@ -1,22 +1,38 @@
-<!-- Font and Icon CSS Links -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 <!-- Header with Logout Button -->
-<header class="header">
+<header class="header flex bg-[#23385C] shadow-md p-4 m-4 item-center justify-between rounded-lg">
     <button id="sidebarToggle" class="text-white focus:outline-none">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
     </button>
-    <div class="relative">
-        <button id="logoutBtn" class="flex items-center gap-2 text-white hover:bg-blue-700 rounded-lg p-1 focus:outline-none transition duration-200 ease-in-out" onclick="showModal()">
+    <div class="relative flex">
+      <div class="flex items-center p-1 mr-4 gap-2 text-white">
+      <i class="fa-solid fa-bell"></i>
+      <span class="float-l absolute top-0 left-0 inline-flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-500 rounded-full">
+        99+
+      </span>
+      </div>
+      <div class="flex items-center p-1 mr-4 gap-2 text-white ">
+      <i class="fa-regular fa-user"></i>
+      </div>
+      <div class="">
+      <button id="logoutBtn" class="flex items-center gap-2 text-white hover:bg-blue-700 rounded-lg p-1 focus:outline-none transition duration-200 ease-in-out" onclick="showModal()">
             <i class="fas fa-sign-out-alt"></i>
-            <span class="hidden md:block">Logout</span> <!-- Show text only on larger screens -->
+            <span class="hidden md:block"></span> <!-- Show text only on larger screens -->
         </button>
+      </div>
     </div>
 </header>
 
+<!-- Modal for Logout Confirmation 
+<div class="modal-overlay" id="logoutModal">
+    <div class="modal-content">
+        <p>Are you sure you want to logout?</p>
+        <button id="cancelBtn" class="bg-gray-300 p-2 rounded-md mr-2">Cancel</button>
+        <button onclick="confirmLogout()" class="bg-red-500 text-white p-2 rounded-md">Confirm Logout</button>
+    </div>
+</div>
+-->
 <div id="logoutModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 hidden">
     <div class="bg-white p-12 rounded-lg shadow-lg text-center">
         <p class="text-lg font-semibold mb-4">Are you sure you want to logout?</p>
@@ -30,6 +46,8 @@
         </div>
     </div>
 </div>
+
+  
 <script>
     // Function to show the modal
     function showModal() {

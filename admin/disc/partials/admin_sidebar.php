@@ -11,7 +11,7 @@
 
   </style>
 
-<div id="sidebar" class="bg-blue-600 text-white w-64 transition-width duration-300 min-h-screen flex flex-col sidebar-expanded font-poppins">
+<div id="sidebar" class="bg-[#23385C] text-white w-64 transition-width duration-300 min-h-screen flex flex-col sidebar-expanded font-poppins">
     <div class="flex justify-center ">
       <div class="flex justify-center p-4 ">
         <img width="100" height="100" src="img/barangay.png" alt="">

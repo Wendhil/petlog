@@ -3,7 +3,7 @@
  define('DB_USER','bpa_db');
  define('DB_PASSWORD','oLtxJc8lIy+djioy');
  define('DB_NAME','bpa_system');
-
+ 
    $conn = new mysqli(DB_HOST,DB_USER, DB_PASSWORD, DB_NAME);
 
    if($conn->connect_error){
