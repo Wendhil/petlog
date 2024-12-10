@@ -50,16 +50,8 @@ for ($i = 0; $i < count($abuseTypes); $i++) {
 
 <?php include('disc/partials/admin_header.php'); ?>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <style>
-
-    .chart-container {
-      width: 800px;
-      height: 400px;
-      margin: auto;
-    }
-  </style>
 </head>
-<body class="flex bg-[#90e0ef] font-poppins">
+<body class="flex bg-[#0077b6] font-poppins">
 
   <!-- Sidebar -->
   <?php include('disc/partials/admin_sidebar.php'); ?>
