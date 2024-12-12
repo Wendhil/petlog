@@ -56,11 +56,12 @@ for ($i = 0; $i < count($abuseTypes); $i++) {
   <!-- Sidebar -->
   <?php include('disc/partials/admin_sidebar.php'); ?>
 
-  <div class="w-full mx-4">
+  <div class="w-full">
     <?php include('disc/partials/admin_navbar.php'); ?>
 
-    <!-- Pet Information Summary -->
-    <div class="flex gap-2 mb-3">
+<div class="p-4 m-4">
+      <!-- Pet Information Summary -->
+      <div class="flex gap-2 mb-3">
    <!-- Total Number of Pets Box -->
    <div class="bg-[#f6fff8] shadow-md rounded-lg p-2 w-full sm:w-1/2 text-center">
      <i class="fas fa-paw text-3xl text-blue-500 mb-2"></i> <!-- Paw icon for pets -->
@@ -78,8 +79,8 @@ for ($i = 0; $i < count($abuseTypes); $i++) {
    </div>
 </div>
 
-    <!-- Combined Charts Box -->
-    <div class="bg-[#f6fff8] rounded-lg shadow-md p-3 mb-4">
+ <!-- Combined Charts Box -->
+ <div class="bg-[#f6fff8] rounded-lg shadow-md p-3 mb-4">
       <h2 class="text-lg font-poppins font-semibold mb-4">Animal Data Distribution</h2>
       <div class="chart-container">
         <canvas id="combinedChart"></canvas>
@@ -87,6 +88,7 @@ for ($i = 0; $i < count($abuseTypes); $i++) {
     </div>
   </div>
 
+</div>
   <script>
     // Combined Animal Data Distribution Chart
     const combinedCtx = document.getElementById('combinedChart').getContext('2d');
