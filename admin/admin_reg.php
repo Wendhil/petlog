@@ -105,10 +105,72 @@ if (isset($_GET['id'])) {
     <?php include('disc/partials/admin_sidebar.php'); ?>
 
     <!-- Main Content with Navbar -->
-    <div class="flex-1 mx-4">
+    <div class="w-full">
       <?php include('disc/partials/admin_navbar.php'); ?>
+    
+      <div class="bg-white rounded-lg p-4 m-4">
 
-      <main id="mainContent" class="w-full">
+ 
+<h2 class=" flex justify-center font-poppins font-bold">REGISTERED MANAGEMENT</h2>
+<div class="flex justify-between my-4">
+<span></span>
+<input class="border p-1 rounded-lg" type="text" placeholder="Search...">
+</div>
+<table class="w-full">
+          <thead>
+            <tr class="bg-[#90e0ef]">
+                    <th class="text-sm text-center px-2">ID</th>
+                    <th class="text-sm text-center px-2">Owner Name</th>
+                    <th class="text-sm text-center px-2">Email</th>
+                    <th class="text-sm text-center px-2">Pet Name</th>
+                    <th class="text-sm text-center px-2">Pet Age</th>
+                    <th class="text-sm text-center px-2">Pet Breed</th>
+                    <th class="text-sm text-center px-2">Address</th>
+                    <th class="text-sm text-center px-2">Pet Image</th>
+                    <th class="text-sm text-center px-2">Vaccine Record</th>
+                    <th class="text-sm text-center px-2">Additional Info</th>
+                    <th class="text-sm text-center px-2">Time and Date</th>
+                    <th class="text-sm text-center px-2">Actions</th>
+                  </tr>
+          
+            </tr>
+          </thead>
+          <tbody>
+          <?php
+                  $sql = "SELECT * FROM register";
+                  $result = $conn->query($sql);
+
+                  if ($result->num_rows > 0) {
+                      while ($row = $result->fetch_assoc()) {
+                          echo "<tr>"; 
+                          echo "<td class='text-sm text-center px-2'>" . $row['id'] . "</td>";
+                          echo "<td class='text-sm text-center px-2'>" . $row['owner'] . "</td>";
+                          echo "<td class='text-sm text-center px-2'>" . $row['email'] . "</td>";
+                          echo "<td class='text-sm text-center px-2'>" . $row['pet'] . "</td>";
+                          echo "<td class='text-sm text-center px-2'>" . $row['age'] . "</td>";
+                          echo "<td class='text-sm text-center px-2'>" . $row['breed'] . "</td>";
+                          echo "<td class='text-sm text-center px-2'>" . $row['address'] . "</td>";
+                          echo "<td class='text-sm text-center px-2'><a href='" . $row['pet_image'] . "' target='_blank'><img src='" . $row['pet_image'] . "' alt='Pet Image' class='w-16 h-16 object-cover rounded'></a></td>";
+                          echo "<td class='text-sm text-center px-2'><a href='" . $row['pet_vaccine'] . "' target='_blank'><img src='". $row['pet_vaccine'] . "' alt='Pet vaccine' class='w-16 h-16 object-cover rounded'></a></td>";
+                          echo "<td class='text-sm text-center px-2'>" . $row['additional_info'] . "</td>";
+                          echo "<td class='text-sm text-center px-2'>" . $row['created_at'] . "</td>";
+                          echo "<td class='text-sm text-center px-2 flex justify-center space-x-2'>";
+                          echo " <a href='#' onclick=\"openUpdateRegModal('{$row['id']}', '{$row['owner']}', '{$row['pet']}', '{$row['age']}', '{$row['breed']}', '{$row['address']}', '{$row['additional_info']}', '{$row['pet_image']}', '{$row['pet_vaccine']}')\" class='bg-yellow-500 text-white px-2 py-1 rounded-lg hover:bg-yellow-600'>Update</a>";
+                          echo "<a href='#' onclick=\"openRegDeleteModal('" . $row['id'] . "')\" class='bg-red-500 text-white px-2 py-1 rounded-lg hover:bg-red-600'>Delete</a>";
+                          echo "</td>";
+                          echo"</tr>";
+
+                      }
+                  } else {
+                      echo "<tr><td colspan='12' class='py-2 px-4 border text-center'>No users found</td></tr>";
+                  }
+                  ?>
+          </tbody>
+        </table>
+</div>
+
+
+     <!-- <main id="mainContent" class="w-full">
         <div class="flex justify-center bg-white shadow-md rounded-lg p-2">
           <div class="w-full overflow-x-auto">
             <h2 class="text-xl font-bold mb-4 text-center">Registration Pet Management</h2>
@@ -116,18 +178,18 @@ if (isset($_GET['id'])) {
               <table class="min-w-full border border-gray-300 table-auto">
                 <thead>
                   <tr class="bg-[#90e0ef]">
-                    <th class="py-2 px-2 border text-center">ID</th>
-                    <th class="py-2 px-2 border text-center">Owner Name</th>
-                    <th class="py-2 px-2 border text-center">Email</th>
-                    <th class="py-2 px-2 border text-center">Pet Name</th>
-                    <th class="py-2 px-2 border text-center">Pet Age</th>
-                    <th class="py-2 px-2 border text-center">Pet Breed</th>
-                    <th class="py-2 px-2 border text-center">Address</th>
-                    <th class="py-2 px-2 border text-center">Pet Image</th>
-                    <th class="py-2 px-2 border text-center">Vaccine Record</th>
-                    <th class="py-2 px-2 border text-center">Additional Info</th>
-                    <th class="py-2 px-2 border text-center">Time and Date</th>
-                    <th class="py-2 px-2 border text-center">Actions</th>
+                    <th class="text-sm text-center px-2">ID</th>
+                    <th class="text-sm text-center px-2">Owner Name</th>
+                    <th class="text-sm text-center px-2">Email</th>
+                    <th class="text-sm text-center px-2">Pet Name</th>
+                    <th class="text-sm text-center px-2">Pet Age</th>
+                    <th class="text-sm text-center px-2">Pet Breed</th>
+                    <th class="text-sm text-center px-2">Address</th>
+                    <th class="text-sm text-center px-2">Pet Image</th>
+                    <th class="text-sm text-center px-2">Vaccine Record</th>
+                    <th class="text-sm text-center px-2">Additional Info</th>
+                    <th class="text-sm text-center px-2">Time and Date</th>
+                    <th class="text-sm text-center px-2">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -138,18 +200,18 @@ if (isset($_GET['id'])) {
                   if ($result->num_rows > 0) {
                       while ($row = $result->fetch_assoc()) {
                           echo "<tr>"; 
-                          echo "<td class='py-1 px-1 text-center'>" . $row['id'] . "</td>";
-                          echo "<td class='py-1 px-1 text-center'>" . $row['owner'] . "</td>";
-                          echo "<td class='py-1 px-1 text-center'>" . $row['email'] . "</td>";
-                          echo "<td class='py-2 px-2 text-center'>" . $row['pet'] . "</td>";
-                          echo "<td class='py-2 px-2 text-center'>" . $row['age'] . "</td>";
-                          echo "<td class='py-2 px-2 text-center'>" . $row['breed'] . "</td>";
-                          echo "<td class='py-2 px-2 text-center'>" . $row['address'] . "</td>";
-                          echo "<td class='py-2 px-2 text-center'><a href='" . $row['pet_image'] . "' target='_blank'><img src='" . $row['pet_image'] . "' alt='Pet Image' class='w-16 h-16 object-cover rounded'></a></td>";
-                          echo "<td class='py-2 px-2 text-center'><a href='" . $row['pet_vaccine'] . "' target='_blank'><img src='". $row['pet_vaccine'] . "' alt='Pet vaccine' class='w-16 h-16 object-cover rounded'></a></td>";
-                          echo "<td class='py-2 px-2 text-center'>" . $row['additional_info'] . "</td>";
-                          echo "<td class='py-2 px-2 text-center'>" . $row['created_at'] . "</td>";
-                          echo "<td class='py-2 px-2 text-center flex justify-center space-x-2'>";
+                          echo "<td class='text-sm text-center px-2'>" . $row['id'] . "</td>";
+                          echo "<td class='text-sm text-center px-2'>" . $row['owner'] . "</td>";
+                          echo "<td class='text-sm text-center px-2'>" . $row['email'] . "</td>";
+                          echo "<td class='text-sm text-center px-2'>" . $row['pet'] . "</td>";
+                          echo "<td class='text-sm text-center px-2'>" . $row['age'] . "</td>";
+                          echo "<td class='text-sm text-center px-2'>" . $row['breed'] . "</td>";
+                          echo "<td class='text-sm text-center px-2'>" . $row['address'] . "</td>";
+                          echo "<td class='text-sm text-center px-2'><a href='" . $row['pet_image'] . "' target='_blank'><img src='" . $row['pet_image'] . "' alt='Pet Image' class='w-16 h-16 object-cover rounded'></a></td>";
+                          echo "<td class='text-sm text-center px-2'><a href='" . $row['pet_vaccine'] . "' target='_blank'><img src='". $row['pet_vaccine'] . "' alt='Pet vaccine' class='w-16 h-16 object-cover rounded'></a></td>";
+                          echo "<td class='text-sm text-center px-2'>" . $row['additional_info'] . "</td>";
+                          echo "<td class='text-sm text-center px-2'>" . $row['created_at'] . "</td>";
+                          echo "<td class='text-sm text-center px-2 flex justify-center space-x-2'>";
                           echo " <a href='#' onclick=\"openUpdateRegModal('{$row['id']}', '{$row['owner']}', '{$row['pet']}', '{$row['age']}', '{$row['breed']}', '{$row['address']}', '{$row['additional_info']}', '{$row['pet_image']}', '{$row['pet_vaccine']}')\" class='bg-yellow-500 text-white px-2 py-1 rounded-lg hover:bg-yellow-600'>Update</a>";
                           echo "<a href='#' onclick=\"openRegDeleteModal('" . $row['id'] . "')\" class='bg-red-500 text-white px-2 py-1 rounded-lg hover:bg-red-600'>Delete</a>";
                           echo "</td>";
@@ -166,7 +228,7 @@ if (isset($_GET['id'])) {
           </div>
         </div>
       </main>
-    </div>
+    </div>-->
 
     <div id="updateRegModal" class="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center z-50 hidden">
     <div class="bg-white rounded-lg w-3/4 p-6">

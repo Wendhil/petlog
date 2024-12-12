@@ -85,84 +85,76 @@ if (isset($_GET['adopt_id'])) {
 <head>
   <?php include('disc/partials/admin_header.php')?>
 </head>
-<body class="flex bg-[#90e0ef] font-poppins">
+<body class=" flex bg-[#90e0ef] font-poppins">
 
   <!-- Sidebar -->
   <?php include('disc/partials/admin_sidebar.php'); ?>
 
   <!-- Main Content with Navbar -->
-  <div class="w-full mx-4">
-    
-    <!-- Top Navbar -->
+  <div class="w-full">
+  <!-- Top Navbar -->
     <?php include('disc/partials/admin_navbar.php'); ?>
-
+    
     <!-- Main Content Area -->
-    <main id="mainContent" class="w-full">
-      <div class="flex justify-center bg-white shadow-md rounded-lg p-2">
-        <div class="w-full overflow-x-auto">
-          <h2 class="text-xl font-bold mb-6 text-center">
-            <i class="fas fa-user w-5 h-5 mr-2"></i>Adoption Management
-          </h2>
-          <div class="flex justify-between py-2">
-            <div class="">
-              <input class="border p-2 rounded-lg" type="text" placeholder="Search...">
-              <button class="bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600">Search</button>
-            </div>
-          </div>
-          <table class="min-w-full">
-            <thead>
-              <tr class="bg-[#90e0ef]">
-                <th class="px-4 py-2 text-center">ID</th>
-                <th class="px-4 py-2 text-center">Name</th>
-                <th class="px-4 py-2 text-center">Email</th>
-                <th class="px-4 py-2 text-center">Phone</th>
-                <th class="px-4 py-2 text-center">Address</th>
-                <th class="px-4 py-2 text-center">Pet Name</th>
-                <th class="px-4 py-2 text-center">Pet Type</th>
-                <th class="px-4 py-2 text-center">Reason</th>
-                <th class="px-4 py-2 text-center">Experience</th>
-                <th class="px-4 py-2 text-center">Time and Date</th> 
-                <th class="px-4 py-2 text-center">Action</th>
-            
-              </tr>
-            </thead>
-            <tbody>
-              <?php
-              // Fetch user data from the database
-              $sql = "SELECT * FROM adoption"; // Adjust 'adoption' to your actual table name
-              $result = $conn->query($sql);
+<div class="bg-white rounded-lg p-4 m-4">
+<h2 class=" flex justify-center font-poppins font-bold">ADOPTION MANAGEMENT</h2>
+<div class="flex justify-between my-4">
+<span></span>
+<input class="border p-1 rounded-lg" type="text" placeholder="Search...">
+</div>
+<table class="w-full">
+          <thead>
+            <tr class="bg-[#90e0ef]">
+              <th class="text-sm text-center my-4 px-2">ID</th>
+              <th class="text-sm text-center my-4 px-2">Name</th>
+              <th class="text-sm text-center my-4 px-2">Email</th>
+              <th class="text-sm text-center my-4 px-2">Phone</th>
+              <th class="text-sm text-center my-4 px-2">Address</th>
+              <th class="text-sm text-center my-4 px-2">Pet Name</th>
+              <th class="text-sm text-center my-4 px-2">Pet Type</th>
+              <th class="text-sm text-center my-4 px-2">Reason</th>
+              <th class="text-sm text-center my-4 px-2">Experience</th>
+              <th class="text-sm text-center my-4 px-2">Time and Date</th> 
+              <th class="text-sm text-center my-4 px-2">Action</th>
+          
+            </tr>
+          </thead>
+          <tbody>
+            <?php
+            // Fetch user data from the database
+            $sql = "SELECT * FROM adoption"; // Adjust 'adoption' to your actual table name
+            $result = $conn->query($sql);
 
-              if ($result->num_rows > 0) {
-                  // Loop through each row and output data
-                  while ($row = $result->fetch_assoc()) {
-                      echo "<tr>";
-                      echo "<td class='px-4 py-2 text-center'>" . $row['adopt_id'] . "</td>";
-                      echo "<td class='px-4 py-2 text-center'>" . $row['name'] . "</td>";
-                      echo "<td class='px-4 py-2 text-center'>" . $row['email'] . "</td>";
-                      echo "<td class='px-4 py-2 text-center'>" . $row['phone'] . "</td>";
-                      echo "<td class='px-4 py-2 text-center'>" . $row['address'] . "</td>";
-                      echo "<td class='px-4 py-2 text-center'>" . $row['pet_name'] . "</td>";
-                      echo "<td class='px-4 py-2 text-center'>" . $row['pet_type'] . "</td>";
-                      echo "<td class='px-4 py-2 text-center'>" . $row['reason'] . "</td>";
-                      echo "<td class='px-4 py-2 text-center'>" . $row['experience'] . "</td>";
-                      echo "<td class='px-4 py-2 text-center'>" . $row['created_at'] . "</td>";
-                      // Add Action Buttons
-                      echo "<td class='py-2 px-2 text-center flex justify-center space-x-2'>";
-                      echo " <a href='#' onclick=\"openUpdateRecordModal('{$row['adopt_id']}', '{$row['name']}', '{$row['email']}', '{$row['phone']}', '{$row['address']}', '{$row['pet_name']}', '{$row['pet_type']}', '{$row['reason']}', '{$row['experience']}')\" class='bg-yellow-500 text-white px-2 py-1  rounded-lg hover:bg-yellow-600'>Update</a>";
+            if ($result->num_rows > 0) {
+              
+                // Loop through each row and output data
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td class='text-sm text-center px-2'>" . $row['adopt_id'] . "</td>";
+                    echo "<td class='text-sm text-center px-2'>" . $row['name'] . "</td>";
+                    echo "<td class='text-sm text-center px-2'>" . $row['email'] . "</td>";
+                    echo "<td class='text-sm text-center px-2'>" . $row['phone'] . "</td>";
+                    echo "<td class='text-sm text-center px-2'>" . $row['address'] . "</td>";
+                    echo "<td class='text-sm text-center px-2'>" . $row['pet_name'] . "</td>";
+                    echo "<td class='text-sm text-center px-2'>" . $row['pet_type'] . "</td>";
+                    echo "<td class='text-sm text-center px-2'>" . $row['reason'] . "</td>";
+                    echo "<td class='text-sm text-center px-2'>" . $row['experience'] . "</td>";
+                    echo "<td class='text-sm text-center px-2'>" . $row['created_at'] . "</td>";
+                    // Add Action Buttons
+                    echo "<td class='py-2 px-2 text-center px-2 flex justify-center space-x-2'>";
+                    echo " <a href='#' onclick=\"openUpdateRecordModal('{$row['adopt_id']}', '{$row['name']}', '{$row['email']}', '{$row['phone']}', '{$row['address']}', '{$row['pet_name']}', '{$row['pet_type']}', '{$row['reason']}', '{$row['experience']}')\" class='bg-yellow-500 text-white px-2 py-1  rounded-lg hover:bg-yellow-600'>Update</a>";
 
-                      echo"<a href='#' onclick=\"openRecordDeleteModal('{$row['adopt_id']}')\" class='bg-red-500 text-white px-2 py-1 rounded-lg hover:bg-red-600'>Delete</a>";
-                      echo "</td>";
-                      echo "</tr>";
-                  }
-              } else {
-                  echo "<tr><td colspan='11' class='px-4 py-2 text-center'>No users found</td></tr>";
-              }
-              ?>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </main>
+                    echo"<a href='#' onclick=\"openRecordDeleteModal('{$row['adopt_id']}')\" class='bg-red-500 text-white px-2 py-1 rounded-lg hover:bg-red-600'>Delete</a>";
+                    echo "</td>";
+                    echo "</tr>";
+                }
+            } else {
+                echo "<tr><td colspan='11' class=' text-center px-2'>No users found</td></tr>";
+            }
+            ?>
+          </tbody>
+        </table>
+</div>
   </div>
     
 

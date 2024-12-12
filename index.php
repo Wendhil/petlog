@@ -139,7 +139,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <button type="submit" class="bg-blue-600 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700 transition duration-200 w-full">Login</button>
             </div>
         </form>
-        <a class="flex justify-center mt-4 text-blue-600 hover:underline" href="register.php">Create an account. Sign up</a>
+    <!--    <a class="flex justify-center mt-4 text-blue-600 hover:underline" href="register.php">Create an account. Sign up</a>
+    -->
     </div>
 
     <!-- Copyright Footer -->

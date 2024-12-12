@@ -3,7 +3,7 @@
   bg-[#23385C]
   bg-[#112F56]
 -->
-<header class="header flex   bg-[#042752] shadow-md p-4 m-4 item-center justify-between rounded-lg">
+<nav class="flex bg-[#042752] shadow-md p-4 m-4 item-center justify-between rounded-lg">
     <button id="sidebarToggle" class="text-white focus:outline-none">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -26,17 +26,8 @@
         </button>
       </div>
     </div>
-</header>
+</nav>
 
-<!-- Modal for Logout Confirmation 
-<div class="modal-overlay" id="logoutModal">
-    <div class="modal-content">
-        <p>Are you sure you want to logout?</p>
-        <button id="cancelBtn" class="bg-gray-300 p-2 rounded-md mr-2">Cancel</button>
-        <button onclick="confirmLogout()" class="bg-red-500 text-white p-2 rounded-md">Confirm Logout</button>
-    </div>
-</div>
--->
 <div id="logoutModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 hidden">
     <div class="bg-white p-12 rounded-lg shadow-lg text-center">
         <p class="text-lg font-semibold mb-4">Are you sure you want to logout?</p>

@@ -98,32 +98,28 @@ if (isset($_GET['id'])) {
   <?php include('disc/partials/admin_sidebar.php'); ?>
 
   <!-- Main Content with Navbar -->
-  <div class="w-full mx-4">
+  <div class="w-full">
     
     <!-- Top Navbar -->
     <?php include('disc/partials/admin_navbar.php'); ?>
+    
+    <div class="bg-white rounded-lg p-4 m-4">
 
-    <!-- Main Content Area -->
-    <main id="mainContent" class="">
-
-      <div class="flex justify-center bg-white shadow-md rounded-lg p-3">
-        <div class="w-full">
-          <h2 class="text-xl font-semibold mb-4 text-center"><i class="fas fa-user w-5 h-5 mr-2"></i>Account Management</h2>
-          <div class="flex justify-between py-4">
-            <div class="">
-              <input class="border p-2 rounded-lg" type="text" placeholder="Search...">
-              <button class="bg-blue-500 p-2 rounded-lg hover:text-white">Search</button>
-            </div>
-          
-          </div>
-          <table class="min-w-full border border-gray-300">
+ 
+  <h2 class=" flex justify-center font-poppins font-bold">ACCOUNT MANAGEMENT</h2>
+  <div class="flex justify-between my-4">
+  <span></span>
+  <input class="border p-1 rounded-lg" type="text" placeholder="Search...">
+  </div>
+  <table class="w-full">
             <thead>
               <tr class="bg-gray-100">
-                <th class="py-2 px-4 border text-center">ID</th>
-                <th class="py-2 px-4 border text-center">Name</th>
-                <th class="py-2 px-4 border text-center">Email</th>
-                <th class="py-2 px-4 border text-center">Role</th>
-                <th class="py-2 px-4 border text-center">Actions</th>
+              <th class="text-sm text-center p-2">ID</th>
+                <th class="text-sm text-center p-2">Name</th>
+                <th class="text-sm text-center p-2">Email</th>
+                <th class="text-sm text-center p-2">Role</th>
+                <th class="text-sm text-center p-2">Actions</th>
+            
               </tr>
             </thead>
             <tbody>
@@ -141,10 +137,10 @@ if ($result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {
     $rowClass = isset($userTypeColors[$row['role']]) ? $userTypeColors[$row['role']] : 'bg-gray-200';
     echo "<tr class='$rowClass'>";
-    echo "<td class='py-2 px-4  text-center'>" . $row['id'] . "</td>";
-    echo "<td class='py-2 px-4  text-center'>" . $row['username'] . "</td>";
-    echo "<td class='py-2 px-4  text-center'>" . $row['email'] . "</td>";
-    echo "<td class='py-2 px-4  text-center'>" . $row['role'] . "</td>";
+    echo "<td class='text-sm text-center px-2'>" . $row['id'] . "</td>";
+    echo "<td class='text-sm text-center px-2'>" . $row['username'] . "</td>";
+    echo "<td class='text-sm text-center px-2'>" . $row['email'] . "</td>";
+    echo "<td class='text-sm text-center px-2'>" . $row['role'] . "</td>";
     echo "<td class='py-2 px-2 text-center flex justify-center space-x-2'>";
     echo"<a href='#' onclick=\"openUpdateModal('{$row['id']}', '{$row['username']}', '{$row['email']}', '{$row['role']}')\" class='bg-yellow-500 text-white px-2 py-1 rounded-lg hover:bg-yellow-600''>update</a>";
     echo"<a href='#' onclick=\"openDeleteModal('{$row['id']}')\" class='bg-red-500 text-white px-2 py-1 rounded-lg hover:bg-red-600'>Delete</a>";
@@ -152,14 +148,69 @@ if ($result->num_rows > 0) {
     echo "</tr>";
   }
 } else {
-  echo "<tr><td colspan='5' class='py-2 px-4 border text-center'>No users found</td></tr>";
+  echo "<tr><td colspan='5' class='text-sm text-center px-2'>No users found</td></tr>";
+}
+?>
+            </tbody>
+          </table>
+</div>
+    <!-- Main Content Area -->
+<!--    <main id="mainContent" class="">
+
+      <div class="flex justify-center bg-white shadow-md rounded-lg p-3">
+        <div class="w-full">
+          <h2 class="text-xl font-semibold mb-4 text-center"><i class="fas fa-user w-5 h-5 mr-2"></i>Account Management</h2>
+          <div class="flex justify-between py-4">
+            <div class="">
+              <input class="border p-2 rounded-lg" type="text" placeholder="Search...">
+              <button class="bg-blue-500 p-2 rounded-lg hover:text-white">Search</button>
+            </div>
+          
+          </div>
+          <table class="min-w-full border border-gray-300">
+            <thead>
+              <tr class="bg-gray-100">
+                <th class="text-sm text-center px-2">ID</th>
+                <th class="text-sm text-center px-2">Name</th>
+                <th class="text-sm text-center px-2">Email</th>
+                <th class="text-sm text-center px-2">Role</th>
+                <th class="text-sm text-center px-2">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+            <?php
+// Fetch user data from the database
+$sql = "SELECT id, username, email, role FROM users"; // Adjust 'users' to your actual table name
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+  $userTypeColors = [
+    'admin' => 'bg-yellow-200',
+    'user' => 'bg-blue-200',
+  ];
+
+  while ($row = $result->fetch_assoc()) {
+    $rowClass = isset($userTypeColors[$row['role']]) ? $userTypeColors[$row['role']] : 'bg-gray-200';
+    echo "<tr class='$rowClass'>";
+    echo "<td class='text-sm text-center px-2'>" . $row['id'] . "</td>";
+    echo "<td class='text-sm text-center px-2'>" . $row['username'] . "</td>";
+    echo "<td class='text-sm text-center px-2'>" . $row['email'] . "</td>";
+    echo "<td class='text-sm text-center px-2'>" . $row['role'] . "</td>";
+    echo "<td class='py-2 px-2 text-center flex justify-center space-x-2'>";
+    echo"<a href='#' onclick=\"openUpdateModal('{$row['id']}', '{$row['username']}', '{$row['email']}', '{$row['role']}')\" class='bg-yellow-500 text-white px-2 py-1 rounded-lg hover:bg-yellow-600''>update</a>";
+    echo"<a href='#' onclick=\"openDeleteModal('{$row['id']}')\" class='bg-red-500 text-white px-2 py-1 rounded-lg hover:bg-red-600'>Delete</a>";
+    echo"</td>";
+    echo "</tr>";
+  }
+} else {
+  echo "<tr><td colspan='5' class='text-sm text-center px-2'>No users found</td></tr>";
 }
 ?>
             </tbody>
           </table>
         </div>
       </div>
-    </main>
+    </main>-->
   </div>
 
 
@@ -184,11 +235,7 @@ if ($result->num_rows > 0) {
       
       <!-- Role -->
       <div class="mb-4">
-        <label class="block text-gray-700" for="updateRole">Role</label>
-        <select class="border rounded-lg w-full p-2" id="updateRole" name="role">
-          <option value="admin">Admin</option>
-          <option value="user">User</option>
-        </select>
+      <input type="hidden" name="role" value="user">
       </div>
 
       <!-- New Password (Optional) -->
@@ -231,7 +278,6 @@ if ($result->num_rows > 0) {
     document.getElementById('updateUserId').value = id;
     document.getElementById('updateUsername').value = username;
     document.getElementById('updateEmail').value = email;
-    document.getElementById('updateRole').value = role;
     document.getElementById('updateAccountModal').classList.remove('hidden');
   }
 
