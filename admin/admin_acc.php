@@ -136,7 +136,7 @@ if ($result->num_rows > 0) {
 
   while ($row = $result->fetch_assoc()) {
     $rowClass = isset($userTypeColors[$row['role']]) ? $userTypeColors[$row['role']] : 'bg-gray-200';
-    echo "<tr class='$rowClass'>";
+    echo "<tr class='$rowClass  hover:bg-blue-400'>";
     echo "<td class='text-sm text-center px-2'>" . $row['id'] . "</td>";
     echo "<td class='text-sm text-center px-2'>" . $row['username'] . "</td>";
     echo "<td class='text-sm text-center px-2'>" . $row['email'] . "</td>";
