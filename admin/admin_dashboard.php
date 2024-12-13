@@ -63,7 +63,7 @@ for ($i = 0; $i < count($abuseTypes); $i++) {
       <!-- Pet Information Summary -->
       <div class="flex gap-2 mb-3">
    <!-- Total Number of Pets Box -->
-   <div class="bg-[#f6fff8] shadow-md rounded-lg p-2 w-full sm:w-1/2 text-center">
+   <div class="bg-[#f6fff8] shadow-md rounded-lg p-2  sm:w-1/2 text-center">
      <i class="fas fa-paw text-3xl text-blue-500 mb-2"></i> <!-- Paw icon for pets -->
      <h2 class="text-lg font-poppins font-semibold mb-2">Total Pet Information</h2>
      <p class="text-lg">Total Number of Pets:</p>
@@ -71,7 +71,7 @@ for ($i = 0; $i < count($abuseTypes); $i++) {
    </div>
 
    <!-- Total Breeds Box -->
-   <div class="bg-[#f6fff8] shadow-md rounded-lg p-2 w-full sm:w-1/2 text-center">
+   <div class="bg-[#f6fff8] shadow-md rounded-lg p-2  sm:w-1/2 text-center">
      <i class="fas fa-dog text-3xl text-green-500 mb-2"></i> <!-- Dog icon for breeds -->
      <h2 class="text-lg font-poppins font-semibold mb-2">Total Breeds</h2>
      <p class="text-lg">Total Breeds:</p>
@@ -80,13 +80,14 @@ for ($i = 0; $i < count($abuseTypes); $i++) {
 </div>
 
  <!-- Combined Charts Box -->
- <div class="bg-[#f6fff8] rounded-lg shadow-md p-3 mb-4">
-      <h2 class="text-lg font-poppins font-semibold mb-4">Animal Data Distribution</h2>
+ <div class="bg-[#f6fff8] rounded-lg shadow-md p-4">
+      <h2 class="text-lg font-poppins font-semibold mb-4 flex justify-center">Animal Data Distribution</h2>
       <div class="chart-container">
         <canvas id="combinedChart"></canvas>
       </div>
     </div>
   </div>
+
 
 </div>
   <script>

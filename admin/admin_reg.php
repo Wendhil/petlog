@@ -99,7 +99,7 @@ if (isset($_GET['id'])) {
   <head>
   <?php include('disc/partials/admin_header.php')?>
   </head>
-  <body class="flex bg-[#90e0ef] font-poppins ">
+  <body class="flex bg-[#0077b6] font-poppins ">
 
     <!-- Sidebar -->
     <?php include('disc/partials/admin_sidebar.php'); ?>
@@ -116,18 +116,18 @@ if (isset($_GET['id'])) {
   </div>
   <table>
     <thead>
-      <tr class="bg-[#90e0ef]">
-        <th class="text-sm text-center">ID</th>
-        <th class="text-sm text-center"> Name</th>
-        <th class="text-sm text-center">Email</th>
-        <th class="text-sm text-center">Pet Name</th>
-        <th class="text-sm text-center">Pet Age</th>
-        <th class="text-sm text-center">Pet Breed</th>
-        <th class="text-sm text-center">Address</th>
-        <th class="text-sm text-center">Pet Image</th>
-        <th class="text-sm text-center">Vaccine Record</th>
-        <th class="text-sm text-center">Additional Info</th>
-        <th class="text-sm text-center">Time and Date</th>
+      <tr class="bg-gray-100"">
+        <th class="text-sm text-center  ">ID</th>
+        <th class="text-sm text-center  "> Name</th>
+        <th class="text-sm text-center  ">Email</th>
+        <th class="text-sm text-center  ">Pet Name</th>
+        <th class="text-sm text-center  ">Pet Age</th>
+        <th class="text-sm text-center  ">Pet Breed</th>
+        <th class="text-sm text-center  ">Address</th>
+        <th class="text-sm text-center  ">Pet Image</th>
+        <th class="text-sm text-center  ">Vaccine Record</th>
+        <th class="text-sm text-center  ">Additional Info</th>
+        <th class="text-sm text-center  ">Time and Date</th>
       </tr>
     </thead>
     <tbody>
@@ -137,18 +137,18 @@ if (isset($_GET['id'])) {
 
       if ($result->num_rows > 0) {
           while ($row = $result->fetch_assoc()) {
-              echo "<tr>";
-              echo "<td class='text-sm text-center'>" . $row['id'] . "</td>";
-              echo "<td class='text-sm text-center'>" . $row['owner'] . "</td>";
-              echo "<td class='text-sm text-center'>" . $row['email'] . "</td>";
-              echo "<td class='text-sm text-center'>" . $row['pet'] . "</td>";
-              echo "<td class='text-sm text-center'>" . $row['age'] . "</td>";
-              echo "<td class='text-sm text-center'>" . $row['breed'] . "</td>";
-              echo "<td class='text-sm text-center'>" . $row['address'] . "</td>";
-              echo "<td class='text-sm text-center'><a href='" . $row['pet_image'] . "' target='_blank'><img src='" . $row['pet_image'] . "' alt='Pet Image' class='w-16 h-16 object-cover rounded'></a></td>";
-              echo "<td class='text-sm text-center'><a href='" . $row['pet_vaccine'] . "' target='_blank'><img src='" . $row['pet_vaccine'] . "' alt='Pet vaccine' class='w-16 h-16 object-cover rounded'></a></td>";
-              echo "<td class='text-sm text-center'>" . $row['additional_info'] . "</td>";
-              echo "<td class='text-sm text-center'>" . $row['created_at'] . "</td>";
+              echo "<tr class='bg-blue-200 hover:bg-blue-400'>";
+              echo "<td class='text-sm text-center  '>" . $row['id'] . "</td>";
+              echo "<td class='text-sm text-center  '>" . $row['owner'] . "</td>";
+              echo "<td class='text-sm text-center  '>" . $row['email'] . "</td>";
+              echo "<td class='text-sm text-center  '>" . $row['pet'] . "</td>";
+              echo "<td class='text-sm text-center  '>" . $row['age'] . "</td>";
+              echo "<td class='text-sm text-center  '>" . $row['breed'] . "</td>";
+              echo "<td class='text-sm text-center  '>" . $row['address'] . "</td>";
+              echo "<td class='text-sm text-center  '><a href='" . $row['pet_image'] . "' target='_blank'><img src='" . $row['pet_image'] . "' alt='Pet Image' class='w-16 h-16 object-cover rounded'></a></td>";
+              echo "<td class='text-sm text-center  '><a href='" . $row['pet_vaccine'] . "' target='_blank'><img src='" . $row['pet_vaccine'] . "' alt='Pet vaccine' class='w-16 h-16 object-cover rounded'></a></td>";
+              echo "<td class='text-sm text-center  '>" . $row['additional_info'] . "</td>";
+              echo "<td class='text-sm text-center  '>" . $row['created_at'] . "</td>";
               echo "</tr>";
           }
       } else {

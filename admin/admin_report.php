@@ -10,7 +10,7 @@ checkAccess('admin');
 <head>
 <?php include('disc/partials/admin_header.php')?>
 </head>
-<body class="flex bg-[#90e0ef] font-poppins">
+<body class="flex bg-[#0077b6] font-poppins">
 
   <!-- Sidebar -->
   <?php include('disc/partials/admin_sidebar.php'); ?>
@@ -32,17 +32,17 @@ checkAccess('admin');
 <table class="w-full">
           <thead>
             <tr class="bg-[#90e0ef]">
-            <th class="text-sm text-center  ">ID</th>
-                <th class="text-sm text-center  ">Report Party</th>
-                <th class="text-sm text-center  ">Phone</th>
-                <th class="text-sm text-center  ">Email</th>
-                <th class="text-sm text-center  ">Species</th>
-                <th class="text-sm text-center  ">Breed</th>
-                <th class="text-sm text-center  ">Number of Involved</th>
-                <th class="text-sm text-center  ">Type of Abuse</th>
-                <th class="text-sm text-center  ">Description</th>
-                <th class="text-sm text-center  ">Evidence</th>
-                <th class="text-sm text-center  ">Time and Date</th>
+            <th class="text-sm text-center px-2  ">ID</th>
+                <th class="text-sm text-center px-2  ">Report Party</th>
+                <th class="text-sm text-center px-2  ">Phone</th>
+                <th class="text-sm text-center px-2  ">Email</th>
+                <th class="text-sm text-center px-2  ">Species</th>
+                <th class="text-sm text-center px-2  ">Breed</th>
+                <th class="text-sm text-center px-2  ">Number of Involved</th>
+                <th class="text-sm text-center px-2  ">Type of Abuse</th>
+                <th class="text-sm text-center px-2  ">Description</th>
+                <th class="text-sm text-center px-2  ">Evidence</th>
+                <th class="text-sm text-center px-2 ">Time and Date</th>
           
             </tr>
           </thead>
@@ -55,16 +55,16 @@ checkAccess('admin');
             if ($result->num_rows > 0) {
                 // Loop through each row and output data
                 while ($row = $result->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td class='text-sm text-center '>" . htmlspecialchars($row['id']) . "</td>";
-                    echo "<td class='text-sm text-center  '>" . htmlspecialchars($row['name']) . "</td>";
-                    echo "<td class='text-sm text-center  '>" . htmlspecialchars($row['phone']) . "</td>";
-                    echo "<td class='text-sm text-center  '>" . htmlspecialchars($row['email']) . "</td>";
-                    echo "<td class='text-sm text-center  '>" . htmlspecialchars($row['species']) . "</td>";
-                    echo "<td class='text-sm text-center  '>" . htmlspecialchars($row['breed']) . "</td>";
-                    echo "<td class='text-sm text-center  '>" . htmlspecialchars($row['numabuse']) . "</td>";
-                    echo "<td class='text-sm text-center  '>" . htmlspecialchars($row['typeabuse']) . "</td>";
-                    echo "<td class='text-sm text-center  '>" . htmlspecialchars($row['descript']) . "</td>";
+                    echo "<tr class='bg-blue-200 hover:bg-blue-400'>";
+                    echo "<td class='text-sm text-center px-2'>" . htmlspecialchars($row['id']) . "</td>";
+                    echo "<td class='text-sm text-center px-2'>" . htmlspecialchars($row['name']) . "</td>";
+                    echo "<td class='text-sm text-center px-2'>" . htmlspecialchars($row['phone']) . "</td>";
+                    echo "<td class='text-sm text-center px-2'>" . htmlspecialchars($row['email']) . "</td>";
+                    echo "<td class='text-sm text-center px-2'>" . htmlspecialchars($row['species']) . "</td>";
+                    echo "<td class='text-sm text-center px-2'>" . htmlspecialchars($row['breed']) . "</td>";
+                    echo "<td class='text-sm text-center px-2'>" . htmlspecialchars($row['numabuse']) . "</td>";
+                    echo "<td class='text-sm text-center px-2'>" . htmlspecialchars($row['typeabuse']) . "</td>";
+                    echo "<td class='text-sm text-center px-2'>" . htmlspecialchars($row['descript']) . "</td>";
         
                     // Show evidence image as a clickable image
                     echo "<td class='py-2 px-4 text-center'>";

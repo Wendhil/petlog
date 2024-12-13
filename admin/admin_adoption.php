@@ -85,7 +85,7 @@ if (isset($_GET['adopt_id'])) {
 <head>
   <?php include('disc/partials/admin_header.php')?>
 </head>
-<body class=" flex bg-[#90e0ef] font-poppins">
+<body class=" flex bg-[#0077b6] font-poppins">
 
   <!-- Sidebar -->
   <?php include('disc/partials/admin_sidebar.php'); ?>
@@ -102,7 +102,7 @@ if (isset($_GET['adopt_id'])) {
 <span></span>
 <input class="border p-1 rounded-lg" type="text" placeholder="Search...">
 </div>
-<table class="w-full">
+<table class="w-full h-90%">
           <thead>
             <tr class="bg-[#90e0ef]">
               <th class="text-sm text-center my-4 px-2">ID</th>
@@ -129,7 +129,7 @@ if (isset($_GET['adopt_id'])) {
               
                 // Loop through each row and output data
                 while ($row = $result->fetch_assoc()) {
-                    echo "<tr>";
+                    echo "<tr  class='bg-blue-200 hover:bg-blue-400'>";
                     echo "<td class='text-sm text-center px-2'>" . $row['adopt_id'] . "</td>";
                     echo "<td class='text-sm text-center px-2'>" . $row['name'] . "</td>";
                     echo "<td class='text-sm text-center px-2'>" . $row['email'] . "</td>";
