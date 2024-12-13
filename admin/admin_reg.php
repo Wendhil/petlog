@@ -114,10 +114,10 @@ if (isset($_GET['id'])) {
   <span></span>
   <input class="border p-1 rounded-lg" type="text" placeholder="Search...">
   </div>
-  <table>
+  <table class="w-full table-fixed">
     <thead>
       <tr class="bg-gray-100"">
-        <th class="text-sm text-center  ">ID</th>
+        <th class="text-sm text-center  ">No.</th>
         <th class="text-sm text-center  "> Name</th>
         <th class="text-sm text-center  ">Email</th>
         <th class="text-sm text-center  ">Pet Name</th>
@@ -136,18 +136,28 @@ if (isset($_GET['id'])) {
       $result = $conn->query($sql);
 
       if ($result->num_rows > 0) {
-          while ($row = $result->fetch_assoc()) {
+        $rowNumber = 0 ;
+          
+        while ($row = $result->fetch_assoc()) {
+          
+            if(empty($row['owner']) || empty($row['email']) || empty($row['pet']) || empty($row['age']) || empty($row['breed']) || empty($row['address'])){
+                $rowNumber = 0;
+            }else{
+                $rowNumber++;
+            }
+
+
               echo "<tr class='bg-blue-200 hover:bg-blue-400'>";
-              echo "<td class='text-sm text-center  '>" . $row['id'] . "</td>";
-              echo "<td class='text-sm text-center  '>" . $row['owner'] . "</td>";
-              echo "<td class='text-sm text-center  '>" . $row['email'] . "</td>";
-              echo "<td class='text-sm text-center  '>" . $row['pet'] . "</td>";
-              echo "<td class='text-sm text-center  '>" . $row['age'] . "</td>";
-              echo "<td class='text-sm text-center  '>" . $row['breed'] . "</td>";
-              echo "<td class='text-sm text-center  '>" . $row['address'] . "</td>";
-              echo "<td class='text-sm text-center  '><a href='" . $row['pet_image'] . "' target='_blank'><img src='" . $row['pet_image'] . "' alt='Pet Image' class='w-16 h-16 object-cover rounded'></a></td>";
+              echo "<td class='text-sm text-center  '>" . $rowNumber . "</td>";
+              echo "<td class='text-sm text-center whitespace-nowrap truncate '>" . $row['owner'] . "</td>";
+              echo "<td class='text-sm text-center whitespace-nowrap truncate '>" . $row['email'] . "</td>";
+              echo "<td class='text-sm text-center whitespace-nowrap truncate '>" . $row['pet'] . "</td>";
+              echo "<td class='text-sm text-center whitespace-nowrap truncate '>" . $row['age'] . "</td>";
+              echo "<td class='text-sm text-center whitespace-nowrap truncate '>" . $row['breed'] . "</td>";
+              echo "<td class='text-sm text-center whitespace-nowrap truncate '>" . $row['address'] . "</td>";
+              echo "<td class='text-sm text-center '><a href='" . $row['pet_image'] . "' target='_blank'><img src='" . $row['pet_image'] . "' alt='Pet Image' class='w-16 h-16 object-cover rounded'></a></td>";
               echo "<td class='text-sm text-center  '><a href='" . $row['pet_vaccine'] . "' target='_blank'><img src='" . $row['pet_vaccine'] . "' alt='Pet vaccine' class='w-16 h-16 object-cover rounded'></a></td>";
-              echo "<td class='text-sm text-center  '>" . $row['additional_info'] . "</td>";
+              echo "<td class='text-sm text-center whitespace-nowrap truncate '>" . $row['additional_info'] . "</td>";
               echo "<td class='text-sm text-center  '>" . $row['created_at'] . "</td>";
               echo "</tr>";
           }

@@ -59,29 +59,27 @@ for ($i = 0; $i < count($abuseTypes); $i++) {
   <div class="w-full">
     <?php include('disc/partials/admin_navbar.php'); ?>
 
-<div class="p-4 m-4">
+<div class="m-2">
       <!-- Pet Information Summary -->
-      <div class="flex gap-2 mb-3">
+      <div class="flex gap-2 m-2">
    <!-- Total Number of Pets Box -->
    <div class="bg-[#f6fff8] shadow-md rounded-lg p-2  sm:w-1/2 text-center">
-     <i class="fas fa-paw text-3xl text-blue-500 mb-2"></i> <!-- Paw icon for pets -->
+     <i class="fas fa-paw text-3xl text-blue-500 m-2"></i> <!-- Paw icon for pets -->
      <h2 class="text-lg font-poppins font-semibold mb-2">Total Pet Information</h2>
-     <p class="text-lg">Total Number of Pets:</p>
      <span class="text-2xl font-poppins font-semibold"><?php echo $totalPets; ?></span>
    </div>
 
    <!-- Total Breeds Box -->
    <div class="bg-[#f6fff8] shadow-md rounded-lg p-2  sm:w-1/2 text-center">
-     <i class="fas fa-dog text-3xl text-green-500 mb-2"></i> <!-- Dog icon for breeds -->
+     <i class="fas fa-dog text-3xl text-green-500 m-2"></i> <!-- Dog icon for breeds -->
      <h2 class="text-lg font-poppins font-semibold mb-2">Total Breeds</h2>
-     <p class="text-lg">Total Breeds:</p>
      <span class="text-2xl font-poppins font-semibold"><?php echo count($breedNames); ?></span>
    </div>
 </div>
 
  <!-- Combined Charts Box -->
- <div class="bg-[#f6fff8] rounded-lg shadow-md p-4">
-      <h2 class="text-lg font-poppins font-semibold mb-4 flex justify-center">Animal Data Distribution</h2>
+ <div class="bg-[#f6fff8] rounded-lg shadow-md m-4">
+      <h2 class="text-lg font-poppins font-semibold flex justify-center my-4">Animal Data Distribution</h2>
       <div class="chart-container">
         <canvas id="combinedChart"></canvas>
       </div>

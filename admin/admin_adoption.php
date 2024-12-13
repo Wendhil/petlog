@@ -102,21 +102,19 @@ if (isset($_GET['adopt_id'])) {
 <span></span>
 <input class="border p-1 rounded-lg" type="text" placeholder="Search...">
 </div>
-<table class="w-full h-90%">
+<table class="w-full table-fixed">
           <thead>
             <tr class="bg-[#90e0ef]">
-              <th class="text-sm text-center my-4 px-2">ID</th>
-              <th class="text-sm text-center my-4 px-2">Name</th>
-              <th class="text-sm text-center my-4 px-2">Email</th>
-              <th class="text-sm text-center my-4 px-2">Phone</th>
-              <th class="text-sm text-center my-4 px-2">Address</th>
-              <th class="text-sm text-center my-4 px-2">Pet Name</th>
-              <th class="text-sm text-center my-4 px-2">Pet Type</th>
-              <th class="text-sm text-center my-4 px-2">Reason</th>
-              <th class="text-sm text-center my-4 px-2">Experience</th>
-              <th class="text-sm text-center my-4 px-2">Time and Date</th> 
-              <th class="text-sm text-center my-4 px-2">Action</th>
-          
+              <th class="text-sm text-center  px-2">No.</th>
+              <th class="text-sm text-center  px-2">Name</th>
+              <th class="text-sm text-center  px-2">Email</th>
+              <th class="text-sm text-center  px-2">Phone</th>
+              <th class="text-sm text-center  px-2">Address</th>
+              <th class="text-sm text-center  px-2">Pet Name</th>
+              <th class="text-sm text-center  px-2">Pet Type</th>
+              <th class="text-sm text-center  px-2">Reason</th>
+              <th class="text-sm text-center  px-2">Experience</th>
+              <th class="text-sm text-center  px-2">Time and Date</th>           
             </tr>
           </thead>
           <tbody>
@@ -126,26 +124,35 @@ if (isset($_GET['adopt_id'])) {
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
-              
-                // Loop through each row and output data
+              $rowNumber = 0;
+               // Loop through each row and output data
                 while ($row = $result->fetch_assoc()) {
+                  
+                  if(empty($row['name']) || empty($row['email']) || empty($row['phone']) || empty($row['address']) || empty($row['pet_name']) || empty($row['pet_type']) || empty($row['reason']) || empty($row['experience']) || empty($row['created_at']) ){
+                    $rowNumber = 0;
+                  }else{
+                     $rowNumber++;
+                  }
+
+
                     echo "<tr  class='bg-blue-200 hover:bg-blue-400'>";
-                    echo "<td class='text-sm text-center px-2'>" . $row['adopt_id'] . "</td>";
-                    echo "<td class='text-sm text-center px-2'>" . $row['name'] . "</td>";
-                    echo "<td class='text-sm text-center px-2'>" . $row['email'] . "</td>";
-                    echo "<td class='text-sm text-center px-2'>" . $row['phone'] . "</td>";
-                    echo "<td class='text-sm text-center px-2'>" . $row['address'] . "</td>";
-                    echo "<td class='text-sm text-center px-2'>" . $row['pet_name'] . "</td>";
-                    echo "<td class='text-sm text-center px-2'>" . $row['pet_type'] . "</td>";
-                    echo "<td class='text-sm text-center px-2'>" . $row['reason'] . "</td>";
-                    echo "<td class='text-sm text-center px-2'>" . $row['experience'] . "</td>";
+                    echo "<td class='text-sm text-center px-2'>" . $rowNumber . "</td>";
+                    echo "<td class='text-sm text-center px-2 whitespace-nowrap truncate '>" . $row['name'] . "</td>";
+                    echo "<td class='text-sm text-center px-2 whitespace-nowrap truncate'>" . $row['email'] . "</td>";
+                    echo "<td class='text-sm text-center px-2 whitespace-nowrap truncate'>" . $row['phone'] . "</td>";
+                    echo "<td class='text-sm text-center px-2 whitespace-nowrap truncate'>" . $row['address'] . "</td>";
+                    echo "<td class='text-sm text-center px-2 whitespace-nowrap truncate'>" . $row['pet_name'] . "</td>";
+                    echo "<td class='text-sm text-center px-2 whitespace-nowrap truncate'>" . $row['pet_type'] . "</td>";
+                    echo "<td class='text-sm text-center px-2 whitespace-nowrap truncate'>" . $row['reason'] . "</td>";
+                    echo "<td class='text-sm text-center px-2 whitespace-nowrap truncate'>" . $row['experience'] . "</td>";
                     echo "<td class='text-sm text-center px-2'>" . $row['created_at'] . "</td>";
                     // Add Action Buttons
-                    echo "<td class='py-2 px-2 text-center px-2 flex justify-center space-x-2'>";
+                  /*  echo "<td class='py-2 px-2 text-center px-2 flex justify-center space-x-2'>";
                     echo " <a href='#' onclick=\"openUpdateRecordModal('{$row['adopt_id']}', '{$row['name']}', '{$row['email']}', '{$row['phone']}', '{$row['address']}', '{$row['pet_name']}', '{$row['pet_type']}', '{$row['reason']}', '{$row['experience']}')\" class='bg-yellow-500 text-white px-2 py-1  rounded-lg hover:bg-yellow-600'>Update</a>";
 
                     echo"<a href='#' onclick=\"openRecordDeleteModal('{$row['adopt_id']}')\" class='bg-red-500 text-white px-2 py-1 rounded-lg hover:bg-red-600'>Delete</a>";
                     echo "</td>";
+                    */
                     echo "</tr>";
                 }
             } else {

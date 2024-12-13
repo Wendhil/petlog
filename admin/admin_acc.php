@@ -114,7 +114,7 @@ if (isset($_GET['id'])) {
   <table class="w-full">
             <thead>
               <tr class="bg-gray-100">
-              <th class="text-sm text-center p-2">ID</th>
+              <th class="text-sm text-center p-2">No.</th>
                 <th class="text-sm text-center p-2">Name</th>
                 <th class="text-sm text-center p-2">Email</th>
                 <th class="text-sm text-center p-2">Role</th>
@@ -129,15 +129,23 @@ $sql = "SELECT id, username, email, role FROM users"; // Adjust 'users' to your 
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
+  $rowNumber = 0;
   $userTypeColors = [
     'admin' => 'bg-yellow-200',
     'user' => 'bg-blue-200',
   ];
-
+   
   while ($row = $result->fetch_assoc()) {
+
+    if (empty($row['username']) || empty($row['email'])) {
+      $rowNumber = 0;
+  } else {
+      $rowNumber++;
+  }
+     
     $rowClass = isset($userTypeColors[$row['role']]) ? $userTypeColors[$row['role']] : 'bg-gray-200';
     echo "<tr class='$rowClass  hover:bg-blue-400'>";
-    echo "<td class='text-sm text-center px-2'>" . $row['id'] . "</td>";
+    echo "<td class='text-sm text-center px-2'>" . $rowNumber . "</td>";
     echo "<td class='text-sm text-center px-2'>" . $row['username'] . "</td>";
     echo "<td class='text-sm text-center px-2'>" . $row['email'] . "</td>";
     echo "<td class='text-sm text-center px-2'>" . $row['role'] . "</td>";

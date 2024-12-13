@@ -29,10 +29,10 @@ checkAccess('admin');
 <span></span>
 <input class="border p-1 rounded-lg" type="text" placeholder="Search...">
 </div>
-<table class="w-full">
+<table class="w-full table-fixed">
           <thead>
             <tr class="bg-[#90e0ef]">
-            <th class="text-sm text-center px-2  ">ID</th>
+            <th class="text-sm text-center px-2  ">No.</th>
                 <th class="text-sm text-center px-2  ">Report Party</th>
                 <th class="text-sm text-center px-2  ">Phone</th>
                 <th class="text-sm text-center px-2  ">Email</th>
@@ -53,18 +53,27 @@ checkAccess('admin');
             $result = $conn->query($sql);
         
             if ($result->num_rows > 0) {
+              $rowNumber = 0;
                 // Loop through each row and output data
                 while ($row = $result->fetch_assoc()) {
+
+                  if(empty($row['name']) || empty($row['phone']) || empty($row['email']) || empty($row['species']) || empty($row['breed']) || empty($row['numabuse']) || empty($row['typeabuse']) || empty($row['descript'])){
+                    $rowNumber = 0;
+                  } else {
+                    $rowNumber++;
+                  }
+
+
                     echo "<tr class='bg-blue-200 hover:bg-blue-400'>";
-                    echo "<td class='text-sm text-center px-2'>" . htmlspecialchars($row['id']) . "</td>";
-                    echo "<td class='text-sm text-center px-2'>" . htmlspecialchars($row['name']) . "</td>";
-                    echo "<td class='text-sm text-center px-2'>" . htmlspecialchars($row['phone']) . "</td>";
-                    echo "<td class='text-sm text-center px-2'>" . htmlspecialchars($row['email']) . "</td>";
-                    echo "<td class='text-sm text-center px-2'>" . htmlspecialchars($row['species']) . "</td>";
-                    echo "<td class='text-sm text-center px-2'>" . htmlspecialchars($row['breed']) . "</td>";
-                    echo "<td class='text-sm text-center px-2'>" . htmlspecialchars($row['numabuse']) . "</td>";
-                    echo "<td class='text-sm text-center px-2'>" . htmlspecialchars($row['typeabuse']) . "</td>";
-                    echo "<td class='text-sm text-center px-2'>" . htmlspecialchars($row['descript']) . "</td>";
+                    echo "<td class='text-sm text-center px-2'>" . $rowNumber . "</td>";
+                    echo "<td class='text-sm text-center px-2 whitespace-nowrap truncate'>" . htmlspecialchars($row['name']) . "</td>";
+                    echo "<td class='text-sm text-center px-2 whitespace-nowrap truncate'>" . htmlspecialchars($row['phone']) . "</td>";
+                    echo "<td class='text-sm text-center px-2 whitespace-nowrap truncate'>" . htmlspecialchars($row['email']) . "</td>";
+                    echo "<td class='text-sm text-center px-2 whitespace-nowrap truncate'>" . htmlspecialchars($row['species']) . "</td>";
+                    echo "<td class='text-sm text-center px-2 whitespace-nowrap truncate'>" . htmlspecialchars($row['breed']) . "</td>";
+                    echo "<td class='text-sm text-center px-2 whitespace-nowrap truncate'>" . htmlspecialchars($row['numabuse']) . "</td>";
+                    echo "<td class='text-sm text-center px-2 whitespace-nowrap truncate'>" . htmlspecialchars($row['typeabuse']) . "</td>";
+                    echo "<td class='text-sm text-center px-2 whitespace-nowrap truncate'>" . htmlspecialchars($row['descript']) . "</td>";
         
                     // Show evidence image as a clickable image
                     echo "<td class='py-2 px-4 text-center'>";
